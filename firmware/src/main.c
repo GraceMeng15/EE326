@@ -33,7 +33,8 @@
 int main (void)
 {
 	/* Insert system clock initialization code here (sysclk_init()). */
-
+	sysclk_init();	// ASF: service -> system clock control
+	wdt_disable(WDT);
 	board_init();
 
 	/* Insert application code here, after the board has been initialized. */
