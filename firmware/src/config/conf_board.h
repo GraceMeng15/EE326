@@ -253,24 +253,24 @@
 #define PIN_USART0_TXD_FLAGS      (PIO_PERIPH_A | PIO_PULLUP)
 
 // Wifi COMM Pin definitions
-#define WIFI_COMM_PIN_NUM			PIO_PB11
-#define WIFI_COMM_PIO				PIOB
-#define WIFI_COMM_ID				ID_PIOB
-#define WIFI_COMM_MASK				PIO_PB11_IDX
+#define WIFI_COMM_PIN_NUM			PIO_PA9
+#define WIFI_COMM_PIO				PIOA
+#define WIFI_COMM_ID				ID_PIOA
+#define WIFI_COMM_MASK				PIO_PA9_IDX
 #define WIFI_COMM_ATTR				PIO_IT_RISE_EDGE
 
 // Wifi NET Pin definitions
-#define WIFI_NET_PIN_NUM			PIO_PB10
-#define WIFI_NET_PIO				PIOB
-#define WIFI_NET_ID					ID_PIOB
-#define WIFI_NET_MASK				PIO_PB10_IDX
+#define WIFI_NET_PIN_NUM			PIO_PA10
+#define WIFI_NET_PIO				PIOA
+#define WIFI_NET_ID					ID_PIOA
+#define WIFI_NET_MASK				PIO_PA10_IDX
 //#define WIFI_NET_ATTR				PIO_IT_RISE_EDGE
 
 // CLIENT_PIN config
-#define WIFI_CLIENT_PIN_MASK			PIO_PB13_IDX
+#define WIFI_CLIENT_PIN_MASK			PIO_PB3_IDX
 #define WIFI_CLIENT_PIN_ID				ID_PIOB
 #define WIFI_CLIENT_PIN_PIO				PIOB
-#define WIFI_CLIENT_PIN_NUM				PIO_PB13
+#define WIFI_CLIENT_PIN_NUM				PIO_PB3
 //#define WIFI_CLIENT_PIN_ATTR			PIO_IT_RISE_EDGE //Double-check this
 
 // RESET ESP32 Control pin
