@@ -21,17 +21,20 @@
 //ul_id = , 
 //ul_mask = ;
 
-//static uint32_t gs_ul_spi_clock = 500000; /* SPI clock setting (Hz). */
-static uint32_t gs_ul_spi_cmd = RC_SYN; /* Current SPI return code. */
-static uint32_t gs_ul_spi_state = 0; /* Current SPI state. */
+// ----------------------------------------------------------------------------
+// SPI Code from spi_example
+
+// static uint32_t gs_ul_spi_clock = 500000;	/* SPI clock setting (Hz). */
+
+static uint32_t gs_ul_spi_cmd = RC_SYN;	/* Current SPI return code. */
+static uint32_t gs_ul_spi_state = 0;	/* Current SPI state. */
 
 /* 64 bytes data buffer for SPI transfer and receive. */
-volatile uint8_t *gs_puc_transfer_buffer; /* Pointer to transfer buffer. */
-volatile uint32_t gs_ul_transfer_index; /* Transfer buffer index. */
-volatile uint32_t gs_ul_transfer_length; /* Transfer buffer length. */
-volatile uint32_t times_through_buffer;
+volatile uint8_t *gs_puc_transfer_buffer; 	/* Pointer to transfer buffer. */
+volatile uint32_t gs_ul_transfer_index; 	/* Transfer buffer index. */
+volatile uint32_t gs_ul_transfer_length; 	/* Transfer buffer length. */
 
-
+volatile uint32_t times_through_buffer; //
 
 // UART Communication and Control Line Variables
 volatile uint32_t received_byte_wifi = 0;
@@ -308,7 +311,7 @@ void write_image_to_web(void){
 	//times_through_buffer = 0;
 	prepare_spi_transfer();
 
-	//Issue the command “image_transfer xxxx? where xxxx is replaced by the length of the
+	//Issue the command ï¿½image_transfer xxxx? where xxxx is replaced by the length of the
 	//image you want to transfer.
 	char* command_buffer[100];
 		//image_size = 1000;
@@ -318,7 +321,7 @@ void write_image_to_web(void){
 	//while (!image_sent_flag){}
 	//delay_ms(100);
 	 
-	//The ESP32 will then set the “command complete?pin low and begin transferring the image
-	//over SPI. //After the image is done sending, the ESP32 will set the “command complete?pin high. The
+	//The ESP32 will then set the ï¿½command complete?pin low and begin transferring the image
+	//over SPI. //After the image is done sending, the ESP32 will set the ï¿½command complete?pin high. The
 	//MCU should sense this and then move on.
 }
