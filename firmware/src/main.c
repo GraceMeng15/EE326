@@ -126,7 +126,7 @@ int main (void)
 		else if (capture_ready)
 		{
 			start_capture();
-			if (len_success)
+			if (found_markers)
 			{
 				write_image_to_web();
 			}

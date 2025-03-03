@@ -366,20 +366,20 @@ static void board_configure_sram( void )
 
 	/* Configure SMC interface for SRAM */
 	smc_set_setup_timing(SMC, SRAM_CS, SMC_SETUP_NWE_SETUP(2)
-			| SMC_SETUP_NCS_WR_SETUP(0)
-			| SMC_SETUP_NRD_SETUP(3)
-			| SMC_SETUP_NCS_RD_SETUP(0));
+		| SMC_SETUP_NCS_WR_SETUP(0)
+		| SMC_SETUP_NRD_SETUP(3)
+		| SMC_SETUP_NCS_RD_SETUP(0));
 
 	smc_set_pulse_timing(SMC, SRAM_CS, SMC_PULSE_NWE_PULSE(4)
-			| SMC_PULSE_NCS_WR_PULSE(5)
-			| SMC_PULSE_NRD_PULSE(4)
-			| SMC_PULSE_NCS_RD_PULSE(6));
+		| SMC_PULSE_NCS_WR_PULSE(5)
+		| SMC_PULSE_NRD_PULSE(4)
+		| SMC_PULSE_NCS_RD_PULSE(6));
 
 	smc_set_cycle_timing(SMC, SRAM_CS, SMC_CYCLE_NWE_CYCLE(6)
-			| SMC_CYCLE_NRD_CYCLE(7));
+		| SMC_CYCLE_NRD_CYCLE(7));
 
 	smc_set_mode(SMC, SRAM_CS, SMC_MODE_READ_MODE
-			| SMC_MODE_WRITE_MODE);
+		| SMC_MODE_WRITE_MODE);
 }
 
 #ifdef DEFAULT_MODE_COLORED

@@ -141,10 +141,7 @@ uint8_t start_capture(void){
 	
 	/* Capture acquisition will start on rising edge of Vsync signal.
 	 * So wait g_vsync_flag = 1 before start process */
-	while (!g_ul_vsync_flag)
-	{
-		//delay_ms(10);		// !!! TRY WITHOUT
-	}
+	while (!g_ul_vsync_flag){}
 	
 	/* Disable vsync interrupt*/
 	pio_disable_interrupt(OV7740_VSYNC_PIO, OV7740_VSYNC_MASK);
@@ -152,14 +149,11 @@ uint8_t start_capture(void){
 	/* Enable pio capture*/
 	pio_capture_enable(OV7740_DATA_BUS_PIO);
 
-	/* Capture data and send it to external SRAM memory thanks to PDC
-	 * feature */
+	/* Capture data and send it to external SRAM memory thanks to PDC feature */
 	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf, 25000);		// 100000 >> 2 = 25000
 
 	/* Wait end of capture*/
 	while (!((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)) {}
-	
-	//while (!end_cap){}
 
 	/* Disable pio capture*/
 	pio_capture_disable(OV7740_DATA_BUS_PIO);
@@ -167,57 +161,80 @@ uint8_t start_capture(void){
 	/* Reset vsync flag*/
 	g_ul_vsync_flag = false;
 	
-	/* Check Size  */
-	len_success = 0;
+	// Check size
+	found_markers = 0;
 	find_image_len();
-	//return len_success;
-	
 }
 
-uint8_t find_image_len(void){
-	//Finds image length based on JPEG protocol. Returns 1 on success
-	//(i.e. able to find ?end of image? and ?start of image? markers),
-	// 0 on error.
+// uint8_t find_image_len(void){
+
+// 	// Finds image length based on JPEG protocol. Returns 1 on success
+// 	// (i.e. able to find “end of image” (EOI) and “start of image” (SOI) markers, with SOI preceding
+// 	// EOI), 0 on error.
 	
-	//iterate through the buffer and look for start and end of image markers
-	//start is 0xFFD8; end is 0xFFD9
-	image_size = 0;
-	image_started = 0;
-	image_ended = 0;
-	uint8_t byte;
-	uint8_t next_byte;
-	uint8_t complete = 0;
+// 	//iterate through the buffer and look for start and end of image markers
+// 	//start is 0xFFD8; end is 0xFFD9
+// 	image_size = 0;
+// 	image_started = 0;
+// 	image_ended = 0;
+// 	uint8_t byte;
+// 	uint8_t next_byte;
+// 	uint8_t complete = 0;
 	
-	for (uint32_t i = 0; i < 100000; ++i){
+// 	for (uint32_t i = 0; i < 100000; ++i){
+// 		//look for start of image
+// 		//#ifndef next_byte
+// 		//
+// 			//next_byte = g_p_uc_cap_dest_buf[i+1];
+// 		//#endif
+// 		byte = g_p_uc_cap_dest_buf[i];
+// 		next_byte = g_p_uc_cap_dest_buf[i+1];
 		
-		//look for start of image
-		//#ifndef next_byte
-		//
-			//next_byte = g_p_uc_cap_dest_buf[i+1];
-		//#endif
-		byte = g_p_uc_cap_dest_buf[i];
-		next_byte = g_p_uc_cap_dest_buf[i+1];
-		
-		if (byte == 0xff && next_byte == 0xd8) {
-			image_started = 1;
-			image_ended = 0;
-			start_pos = i;
-		}
-		else if (byte == 0xff && next_byte == 0xd9 && image_started == 1) {
-			image_ended = 1;
-			end_pos = i+1;
-			len_success = 1;
-			break;
-		}
-		//if (image_started && image_ended) {
-			//len_success = 1;
-			//break; 			//add +1 to the length counter
-		//}
-		image_size += image_started;
-		}
-		
-		
-	
-	//return 0 if start or end markers weren't encountered, 1 otherwise
-	
+// 		if (byte == 0xff && next_byte == 0xd8) {
+// 			image_started = 1;
+// 			image_ended = 0;
+// 			start_pos = i;
+// 		}
+// 		else if (byte == 0xff && next_byte == 0xd9 && image_started == 1) {
+// 			image_ended = 1;
+// 			end_pos = i+1;
+// 			len_success = 1;
+// 			break;
+// 		}
+
+// 		image_size += image_started;
+// 		}
+// 	//return 0 if start or end markers weren't encountered, 1 otherwise
+// }
+
+uint8_t find_image_len(void) {
+    // Initializations
+    image_size = 0;
+    uint8_t found_markers = 0;
+    uint8_t current_byte, next_byte;
+
+    // Find start (SOI, FFD8) and end (EOI, FFD9) markers
+    for (uint32_t i = 0; i < 99999; ++i) {
+        current_byte = g_p_uc_cap_dest_buf[i];
+        next_byte = g_p_uc_cap_dest_buf[i + 1];
+
+        if (current_byte == 0xFF) {
+            if (next_byte == 0xD8) { // SOI marker
+                if (!image_started) { // Only mark if not marked
+                    image_started = 1;
+                    start_pos = i;
+                }
+            } else if (next_byte == 0xD9 && image_started) { // EOI marker
+                image_ended = 1;
+                end_pos = i + 1;
+                found_markers = 1;
+                break;
+            }
+        }
+        if (image_started && !image_ended) {
+            image_size++;
+        }
+    }
+	// Returns 1 if both SOI and EOI were found with SOI preceding EOI, 0 otherwise
+    return found_markers;
 }
