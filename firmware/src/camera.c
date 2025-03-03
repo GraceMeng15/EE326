@@ -143,7 +143,7 @@ uint8_t start_capture(void){
 	 * So wait g_vsync_flag = 1 before start process */
 	while (!g_ul_vsync_flag)
 	{
-		delay_ms(10);		// !!! TRY WITHOUT
+		//delay_ms(10);		// !!! TRY WITHOUT
 	}
 	
 	/* Disable vsync interrupt*/
@@ -162,7 +162,7 @@ uint8_t start_capture(void){
 	}*/
 	while (!end_cap)
 	{
-		delay_ms(10);		// !!! TRY WITHOUT
+		//delay_ms(10);		// !!! TRY WITHOUT
 	}
 
 	// #define end_cap ((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)
