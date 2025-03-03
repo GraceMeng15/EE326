@@ -38,29 +38,27 @@ void board_init(void)
 	// XCLK
 	gpio_configure_pin(PIN_PCK1, PIN_PCK1_FLAGS);
 		
-	// SPI pin config
+	// SPI
 	gpio_configure_pin(SPI_MISO_GPIO, SPI_MISO_FLAGS);
 	gpio_configure_pin(SPI_MOSI_GPIO, SPI_MOSI_FLAGS);
 	gpio_configure_pin(SPI_SPCK_GPIO, SPI_SPCK_FLAGS);
 	gpio_configure_pin(SPI_NPCS0_GPIO, SPI_NPCS0_FLAGS);
 		
-	// USART pin config
-	gpio_configure_pin(PIN_USART0_RXD_IDX, PIN_USART0_RXD_FLAGS);
+	// USART
 	gpio_configure_pin(PIN_USART0_TXD_IDX, PIN_USART0_TXD_FLAGS);
+	gpio_configure_pin(PIN_USART0_RXD_IDX, PIN_USART0_RXD_FLAGS);
 
-	// Set IO Directions and init values
+	// IO Directions and Init Values for LED 1+2
 	ioport_set_pin_dir(LED_PIN, IOPORT_DIR_OUTPUT);
 	ioport_set_pin_level(LED_PIN, false);
 	ioport_set_pin_dir(LED_PIN2, IOPORT_DIR_OUTPUT);
 	ioport_set_pin_level(LED_PIN2, false);
 
-	// Control line pin ioport config
-	//ioport_set_pin_dir(WIFI_COMM_MASK,IOPORT_DIR_INPUT);
+	// Control line Pins - MASK+CLIENT
 	ioport_set_pin_dir(WIFI_NET_MASK, IOPORT_DIR_INPUT);
 	ioport_set_pin_dir(WIFI_CLIENT_PIN_MASK, IOPORT_DIR_INPUT);
 
-	// Pushbutton pin ioport config
-	//ioport_set_pin_dir(WIFI_SETUP_BUTTON_MASK, IOPORT_DIR_INPUT); // Maybe
+	// Pushbutton  - SETUP+RESET
 	ioport_set_pin_mode(WIFI_SETUP_BUTTON_MASK, IOPORT_MODE_PULLUP);
 	ioport_set_pin_dir(WIFI_RESET_MASK, IOPORT_DIR_OUTPUT);
 	ioport_set_pin_mode(WIFI_RESET_MASK, IOPORT_MODE_PULLUP);
