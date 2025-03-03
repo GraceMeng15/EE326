@@ -11,18 +11,18 @@
 #include <asf.h>
 #include "ov2640.h"
 
-uint32_t ul_id, ul_mask, ul_size;   // For interrupts
-uint8_t *uc_buf;        // CHANGE TO PREALLOCATED
+//DECLARE camera variables here
+#define end_cap ((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)
+uint32_t ul_id, ul_mask, ul_size; // For interrupts
+uint8_t *uc_buf;    //buffer to store the image in
 Pio *p_pio;
+uint8_t len_success;
 
-// JPEG Detecting Variables
-uint8_t found_markers;
 volatile uint32_t image_size;
 volatile uint32_t start_pos;
 volatile uint32_t end_pos;
-volatile uint8_t image_started;
+volatile uint8_t image_started; //logical T/F
 volatile uint8_t image_ended;
-
 volatile uint8_t g_p_uc_cap_dest_buf[100000];
 volatile uint8_t first_byte_sent;
 volatile uint8_t last_byte_sent;
