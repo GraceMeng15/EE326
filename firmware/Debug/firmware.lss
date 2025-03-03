@@ -3819,7 +3819,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   4019dc:	483c      	ldr	r0, [pc, #240]	; (401ad0 <main+0x1d8>)
   4019de:	4b30      	ldr	r3, [pc, #192]	; (401aa0 <main+0x1a8>)
   4019e0:	4798      	blx	r3
-	delay_ms(2000);	// test to find optimal time?
+	delay_ms(1000);	// test to find optimal time?
   4019e2:	483c      	ldr	r0, [pc, #240]	; (401ad4 <main+0x1dc>)
   4019e4:	4b29      	ldr	r3, [pc, #164]	; (401a8c <main+0x194>)
   4019e6:	4798      	blx	r3
@@ -3841,7 +3841,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
 		delay_ms(5000);
   4019f8:	f8df 80e8 	ldr.w	r8, [pc, #232]	; 401ae4 <main+0x1ec>
 		write_wifi_command("test", 10);
-		delay_ms(2000);
+		delay_ms(1000);
   4019fc:	4f35      	ldr	r7, [pc, #212]	; (401ad4 <main+0x1dc>)
   4019fe:	f8c6 a034 	str.w	sl, [r6, #52]	; 0x34
 		delay_ms(100);
@@ -3858,7 +3858,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   401a10:	482f      	ldr	r0, [pc, #188]	; (401ad0 <main+0x1d8>)
   401a12:	4b23      	ldr	r3, [pc, #140]	; (401aa0 <main+0x1a8>)
   401a14:	4798      	blx	r3
-		delay_ms(2000);
+		delay_ms(1000);
   401a16:	4638      	mov	r0, r7
   401a18:	47a0      	blx	r4
 	while (!reading_wifi_flag)
@@ -3943,7 +3943,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   401ac8:	004076c8 	.word	0x004076c8
   401acc:	004076d4 	.word	0x004076d4
   401ad0:	004076dc 	.word	0x004076dc
-  401ad4:	0105944a 	.word	0x0105944a
+  401ad4:	0082ca25 	.word	0x0082ca25
   401ad8:	004009b9 	.word	0x004009b9
   401adc:	2001916e 	.word	0x2001916e
   401ae0:	004010e9 	.word	0x004010e9

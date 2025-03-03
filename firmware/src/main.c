@@ -100,7 +100,7 @@ int main (void)
 	}
 
 	write_wifi_command("test", 10);
-	delay_ms(2000);	// test to find optimal time?
+	delay_ms(1000);	// test to find optimal time?
 	
 	while (!reading_wifi_flag)
 	{
@@ -110,7 +110,7 @@ int main (void)
 		ioport_set_pin_level(WIFI_RESET_MASK,true);
 		delay_ms(5000);
 		write_wifi_command("test", 10);
-		delay_ms(2000);
+		delay_ms(1000);
 	
 	}
 
