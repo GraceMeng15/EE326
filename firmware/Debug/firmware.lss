@@ -17,23 +17,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   6 .comment      00000059  00000000  00000000  000209ea  2**0
                   CONTENTS, READONLY
-  7 .debug_info   0001a569  00000000  00000000  00020a43  2**0
+  7 .debug_info   0001a568  00000000  00000000  00020a43  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00003b1a  00000000  00000000  0003afac  2**0
+  8 .debug_abbrev 00003b1a  00000000  00000000  0003afab  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00005af3  00000000  00000000  0003eac6  2**0
+  9 .debug_loc    00005af3  00000000  00000000  0003eac5  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_aranges 00000b78  00000000  00000000  000445b9  2**0
+ 10 .debug_aranges 00000b78  00000000  00000000  000445b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000ac0  00000000  00000000  00045131  2**0
+ 11 .debug_ranges 00000ac0  00000000  00000000  00045130  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  0000802d  00000000  00000000  00045bf1  2**0
+ 12 .debug_macro  0000802d  00000000  00000000  00045bf0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   0000fe95  00000000  00000000  0004dc1e  2**0
+ 13 .debug_line   0000fe94  00000000  00000000  0004dc1d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00053051  00000000  00000000  0005dab3  2**0
+ 14 .debug_str    0005304f  00000000  00000000  0005dab1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_frame  000025d8  00000000  00000000  000b0b04  2**2
+ 15 .debug_frame  000025d8  00000000  00000000  000b0b00  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -953,8 +953,8 @@ void spi_set_bits_per_transfer(Spi *p_spi, uint32_t ul_pcs_ch,
   400762:	4770      	bx	lr
 
 00400764 <vsync_handler>:
-	//Handler for rising-edge of VSYNC signal. 
-	//Should set a flag indicating a rising edge of VSYNC.
+void vsync_handler(uint32_t ul_id, uint32_t ul_mask){
+	// Handler for vertical synchronisation using by the OV7740 image sensor
 	unused(ul_id);
 	unused(ul_mask);
 
@@ -971,9 +971,7 @@ void spi_set_bits_per_transfer(Spi *p_spi, uint32_t ul_pcs_ch,
 void init_vsync_interrupts(void){
   400770:	b510      	push	{r4, lr}
   400772:	b082      	sub	sp, #8
-	//Configuration of VSYNC interrupt.
-	/* Initialize PIO interrupt handler, see PIO definition in conf_board.h
-	**/
+	// Initialize PIO interrupt handler, see PIO definition in conf_board.h
 	pio_handler_set(OV7740_VSYNC_PIO, OV7740_VSYNC_ID, OV7740_VSYNC_MASK,
   400774:	4b07      	ldr	r3, [pc, #28]	; (400794 <init_vsync_interrupts+0x24>)
   400776:	9300      	str	r3, [sp, #0]
@@ -1010,16 +1008,14 @@ __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
 void configure_twi(void){
   4007a4:	b500      	push	{lr}
   4007a6:	b085      	sub	sp, #20
-	//Configuration of TWI (two wire interface)
+	// Two Wire Interface
 	twi_options_t opt;
-		
-	/* Enable TWI peripheral */
-	pmc_enable_periph_clk(ID_BOARD_TWI);
+	pmc_enable_periph_clk(ID_BOARD_TWI);	// Enable TWI peripheral
   4007a8:	2013      	movs	r0, #19
   4007aa:	4b0e      	ldr	r3, [pc, #56]	; (4007e4 <configure_twi+0x40>)
   4007ac:	4798      	blx	r3
 
-	/* Init TWI peripheral */
+	// Init TWI peripheral
 	opt.master_clk = sysclk_get_cpu_hz();
   4007ae:	4b0e      	ldr	r3, [pc, #56]	; (4007e8 <configure_twi+0x44>)
   4007b0:	9301      	str	r3, [sp, #4]
@@ -1066,11 +1062,11 @@ __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
   4007d6:	f883 1313 	strb.w	r1, [r3, #787]	; 0x313
     NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
   4007da:	601a      	str	r2, [r3, #0]
+	// Configure TWI interrupts */
+	NVIC_DisableIRQ(BOARD_TWI_IRQn);
 	NVIC_ClearPendingIRQ(BOARD_TWI_IRQn);
 	NVIC_SetPriority(BOARD_TWI_IRQn, 0);
 	NVIC_EnableIRQ(BOARD_TWI_IRQn);
-
-
 }
   4007dc:	b005      	add	sp, #20
   4007de:	f85d fb04 	ldr.w	pc, [sp], #4
@@ -1083,14 +1079,14 @@ __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
   4007f8:	e000e100 	.word	0xe000e100
 
 004007fc <configure_camera>:
-	while (ov_init(BOARD_TWI) == 1) {
-	}
-	
+	// ov7740 Initialization */
+	while (ov_init(BOARD_TWI) == 1) {}
+
 }
 
 void configure_camera(void){
   4007fc:	b538      	push	{r3, r4, r5, lr}
-	//Configuration of OV2640 registers for desired operation.
+	// Don't touch: From Firmware PDF
 	ov_configure(BOARD_TWI, JPEG_INIT);
   4007fe:	4d09      	ldr	r5, [pc, #36]	; (400824 <configure_camera+0x28>)
   400800:	2100      	movs	r1, #0
@@ -1123,17 +1119,14 @@ void configure_camera(void){
   400830:	20000001 	.word	0x20000001
 
 00400834 <pio_capture_init>:
-	
-	//there may be more to it than this
-
-}
-
+ * \brief Initialize PIO capture for the OV7740 image sensor communication.
+ *
+ * \param p_pio PIO instance to be configured in PIO capture mode.
+ * \param ul_id Corresponding PIO ID.
+ */
 void pio_capture_init(Pio *p_pio, uint32_t ul_id){
   400834:	b510      	push	{r4, lr}
   400836:	4604      	mov	r4, r0
-	//Configuration and initialization of parallel
-	//capture.
-	
 	///* Enable peripheral clock */
 	pmc_enable_periph_clk(ul_id);
   400838:	4608      	mov	r0, r1
@@ -1180,10 +1173,10 @@ void init_camera(void){
 	configure_twi();
   40088e:	4b0f      	ldr	r3, [pc, #60]	; (4008cc <init_camera+0x40>)
   400890:	4798      	blx	r3
-	init_vsync_interrupts();
+	init_vsync_interrupts();							// Init Vsync handler
   400892:	4b0f      	ldr	r3, [pc, #60]	; (4008d0 <init_camera+0x44>)
   400894:	4798      	blx	r3
-	pio_capture_init(OV_DATA_BUS_PIO, OV_DATA_BUS_ID);
+	pio_capture_init(OV_DATA_BUS_PIO, OV_DATA_BUS_ID);	// Init PIO capture
   400896:	210b      	movs	r1, #11
   400898:	480e      	ldr	r0, [pc, #56]	; (4008d4 <init_camera+0x48>)
   40089a:	4b0f      	ldr	r3, [pc, #60]	; (4008d8 <init_camera+0x4c>)
@@ -1201,12 +1194,12 @@ void init_camera(void){
 	PMC->PMC_SCER = PMC_SCER_PCK1;
   4008ae:	f44f 7200 	mov.w	r2, #512	; 0x200
   4008b2:	601a      	str	r2, [r3, #0]
-	while (!(PMC->PMC_SCSR & PMC_SCSR_PCK1)) {
+	while (!(PMC->PMC_SCSR & PMC_SCSR_PCK1)) {}	
   4008b4:	461a      	mov	r2, r3
   4008b6:	6893      	ldr	r3, [r2, #8]
   4008b8:	f413 7f00 	tst.w	r3, #512	; 0x200
   4008bc:	d0fb      	beq.n	4008b6 <init_camera+0x2a>
-	while (ov_init(BOARD_TWI) == 1) {
+	while (ov_init(BOARD_TWI) == 1) {}
   4008be:	4d09      	ldr	r5, [pc, #36]	; (4008e4 <init_camera+0x58>)
   4008c0:	4c09      	ldr	r4, [pc, #36]	; (4008e8 <init_camera+0x5c>)
   4008c2:	4628      	mov	r0, r5
@@ -1225,46 +1218,44 @@ void init_camera(void){
   4008e8:	00400ad1 	.word	0x00400ad1
 
 004008ec <pio_capture_to_buffer>:
-
+ * \param p_uc_buf Buffer address where captured data must be stored.
+ * \param ul_size Data frame size.
+ */
 uint8_t pio_capture_to_buffer(Pio *p_pio, uint8_t *uc_buf, uint32_t ul_size){
-	//Uses parallel	capture and PDC to store image in buffer.
-	
-		/* Check if the first PDC bank is free */
-		if ((p_pio->PIO_RCR == 0) && (p_pio->PIO_RNCR == 0)) {
+	/* Check if the first PDC bank is free */
+	if ((p_pio->PIO_RCR == 0) && (p_pio->PIO_RNCR == 0)) {
   4008ec:	f8d0 316c 	ldr.w	r3, [r0, #364]	; 0x16c
   4008f0:	b913      	cbnz	r3, 4008f8 <pio_capture_to_buffer+0xc>
   4008f2:	f8d0 317c 	ldr.w	r3, [r0, #380]	; 0x17c
   4008f6:	b143      	cbz	r3, 40090a <pio_capture_to_buffer+0x1e>
-			p_pio->PIO_RPR = (uint32_t)uc_buf;
-			p_pio->PIO_RCR = ul_size;
-			p_pio->PIO_PTCR = PIO_PTCR_RXTEN;
-			return 1;
-			
-		} else if (p_pio->PIO_RNCR == 0) {
+		p_pio->PIO_RPR = (uint32_t)uc_buf;
+		p_pio->PIO_RCR = ul_size;
+		p_pio->PIO_PTCR = PIO_PTCR_RXTEN;
+		return 1;
+	} else if (p_pio->PIO_RNCR == 0) {
   4008f8:	f8d0 317c 	ldr.w	r3, [r0, #380]	; 0x17c
   4008fc:	b973      	cbnz	r3, 40091c <pio_capture_to_buffer+0x30>
-			p_pio->PIO_RNPR = (uint32_t)uc_buf;
+		p_pio->PIO_RNPR = (uint32_t)uc_buf;
   4008fe:	f8c0 1178 	str.w	r1, [r0, #376]	; 0x178
-			p_pio->PIO_RNCR = ul_size;
+		p_pio->PIO_RNCR = ul_size;
   400902:	f8c0 217c 	str.w	r2, [r0, #380]	; 0x17c
-			return 1;
+		return 1;
   400906:	2001      	movs	r0, #1
   400908:	4770      	bx	lr
-			p_pio->PIO_RPR = (uint32_t)uc_buf;
+		p_pio->PIO_RPR = (uint32_t)uc_buf;
   40090a:	f8c0 1168 	str.w	r1, [r0, #360]	; 0x168
-			p_pio->PIO_RCR = ul_size;
+		p_pio->PIO_RCR = ul_size;
   40090e:	f8c0 216c 	str.w	r2, [r0, #364]	; 0x16c
-			p_pio->PIO_PTCR = PIO_PTCR_RXTEN;
+		p_pio->PIO_PTCR = PIO_PTCR_RXTEN;
   400912:	2301      	movs	r3, #1
   400914:	f8c0 3188 	str.w	r3, [r0, #392]	; 0x188
-			return 1;
+		return 1;
   400918:	4618      	mov	r0, r3
   40091a:	4770      	bx	lr
-			
-		} else {
-			return 0;
+	} else {
+		return 0;
   40091c:	2000      	movs	r0, #0
-		}
+	}
 }
   40091e:	4770      	bx	lr
 
@@ -1392,7 +1383,7 @@ uint8_t find_image_len(void){
 004009b8 <start_capture>:
 uint8_t start_capture(void){
   4009b8:	b570      	push	{r4, r5, r6, lr}
-	pio_enable_interrupt(OV7740_VSYNC_PIO, OV7740_VSYNC_MASK);
+	pio_enable_interrupt(OV7740_VSYNC_PIO, OV7740_VSYNC_MASK);	// Enable vsync interrupt*/
   4009ba:	f44f 4100 	mov.w	r1, #32768	; 0x8000
   4009be:	481b      	ldr	r0, [pc, #108]	; (400a2c <start_capture+0x74>)
   4009c0:	4b1b      	ldr	r3, [pc, #108]	; (400a30 <start_capture+0x78>)
@@ -1401,12 +1392,12 @@ uint8_t start_capture(void){
   4009c4:	4b1b      	ldr	r3, [pc, #108]	; (400a34 <start_capture+0x7c>)
   4009c6:	681b      	ldr	r3, [r3, #0]
   4009c8:	b93b      	cbnz	r3, 4009da <start_capture+0x22>
-		delay_ms(10);
+		delay_ms(10);		// !!! TRY WITHOUT
   4009ca:	4e1b      	ldr	r6, [pc, #108]	; (400a38 <start_capture+0x80>)
   4009cc:	4d1b      	ldr	r5, [pc, #108]	; (400a3c <start_capture+0x84>)
 	while (!g_ul_vsync_flag)
   4009ce:	4c19      	ldr	r4, [pc, #100]	; (400a34 <start_capture+0x7c>)
-		delay_ms(10);
+		delay_ms(10);		// !!! TRY WITHOUT
   4009d0:	4630      	mov	r0, r6
   4009d2:	47a8      	blx	r5
 	while (!g_ul_vsync_flag)
@@ -1423,7 +1414,7 @@ uint8_t start_capture(void){
   4009e6:	4620      	mov	r0, r4
   4009e8:	4b16      	ldr	r3, [pc, #88]	; (400a44 <start_capture+0x8c>)
   4009ea:	4798      	blx	r3
-	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf, 25000);
+	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf, 25000);		// 100000 >> 2 = 25000
   4009ec:	f246 12a8 	movw	r2, #25000	; 0x61a8
   4009f0:	4915      	ldr	r1, [pc, #84]	; (400a48 <start_capture+0x90>)
   4009f2:	4620      	mov	r0, r4
@@ -1433,7 +1424,7 @@ uint8_t start_capture(void){
   4009f8:	f8d4 3160 	ldr.w	r3, [r4, #352]	; 0x160
   4009fc:	f013 0f08 	tst.w	r3, #8
   400a00:	d108      	bne.n	400a14 <start_capture+0x5c>
-		delay_ms(10);
+		delay_ms(10);		// !!! TRY WITHOUT
   400a02:	4e0d      	ldr	r6, [pc, #52]	; (400a38 <start_capture+0x80>)
   400a04:	4d0d      	ldr	r5, [pc, #52]	; (400a3c <start_capture+0x84>)
   400a06:	4630      	mov	r0, r6
@@ -2610,7 +2601,7 @@ void write_image_to_web(void){
 	 //(i.e. the image is not valid), return. Otherwise, follow this protocol
 	 //(illustrated in Appendix C):
 	
-	if (image_size == 0) { return; }
+	if (image_size == 0)
   4010ec:	4b0a      	ldr	r3, [pc, #40]	; (401118 <write_image_to_web+0x2c>)
   4010ee:	681b      	ldr	r3, [r3, #0]
   4010f0:	b903      	cbnz	r3, 4010f4 <write_image_to_web+0x8>
