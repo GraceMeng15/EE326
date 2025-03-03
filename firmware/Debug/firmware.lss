@@ -3832,7 +3832,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
 		//delay_ms(500);
 	}
 
-
+	//delay_ms(5000);
 	//ioport_set_pin_level(LED_PIN,true);
 	while (!reading_wifi_flag)	{
   4019de:	4b36      	ldr	r3, [pc, #216]	; (401ab8 <main+0x23c>)

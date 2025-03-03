@@ -151,7 +151,7 @@ int main (void)
 		//delay_ms(500);
 	}
 
-
+	//delay_ms(5000);
 	//ioport_set_pin_level(LED_PIN,true);
 	while (!reading_wifi_flag)	{
 		
