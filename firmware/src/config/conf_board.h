@@ -290,4 +290,7 @@
 #define LED_PIN		PIO_PA19_IDX
 #define LED_PIN2	PIO_PA22_IDX
 
+#define wifi_ready ioport_get_pin_level(WIFI_NET_MASK)
+#define capture_ready ioport_get_pin_level(WIFI_CLIENT_PIN_MASK)
+
 #endif // CONF_BOARD_H

@@ -28,6 +28,7 @@
 /*
  * Support and FAQ: visit <a href="https://www.microchip.com/support/">Microchip Support</a>
  */
+
 #include <asf.h>
 #include "conf_board.h"
 #include "conf_clock.h"
@@ -37,8 +38,7 @@
 #include "timer_interface.h"
 
 char* pbuf_test[50];
-
-#define capture_ready ioport_get_pin_level(WIFI_CLIENT_PIN_MASK) //&& ioport_get_pin_level(WIFI_NET_MASK)
+char* buff[100];
 
 int main (void)
 {
@@ -58,74 +58,59 @@ int main (void)
 	// Camera Initializations
 	init_camera();
 	configure_camera();
-	 
-	//* Reset the WiFi and wait for it to connect to a network. While waiting, make sure to listen
-	//for the ?provision? pin.	 
-	 
-	//* Send ?test? to the WiFi module and wait for a response of ?SUCCESS?. If you do not receive
-	//it, wait 10 seconds, reset the WiFi module, and try again.
-	 
 
 	// Reset Wifi
 	ioport_set_pin_level(WIFI_RESET_MASK, false);
-	delay_ms(200);
+	delay_ms(100);
 	ioport_set_pin_level(WIFI_RESET_MASK, true);
-	delay_ms(200);
-
-
-	// Wifi Board Control Line Pin Config
-	char* buff[100];
-	sprintf (buff, "set comm_gpio %d", ESP_COMM_GPIO);
-	delay_ms(10);
-	write_wifi_command(buff,2);
-	sprintf (buff, "set net_gpio %d", ESP_NET_GPIO);
-	delay_ms(10);
-	write_wifi_command(buff,2);
-	sprintf (buff, "set clients_gpio %d", ESP_CLIENT_GPIO);
-	delay_ms(10);
-	write_wifi_command(buff,2);
-
-	// Send ESP32 indicator LED config commands
-	sprintf (buff, "set wlan_gpio %d", ESP_NET_LED);
-	write_wifi_command(buff,2);
-	sprintf (buff, "set websocket_gpio %d", ESP_CLIENT_LED);
-	write_wifi_command(buff,2);
-	sprintf (buff, "set ap_gpio %d", ESP_PROV_LED);
-	write_wifi_command(buff,2);
+	delay_ms(100);
 	
 	// Set SPI Baud Rate
 	sprintf(buff, "set spi_baud %d", SPI_BAUDRATE);
-	write_wifi_command(buff,2);
+	write_wifi_command(buff, 2);
 
-	//write_wifi_command("test",10);
+	// Send ESP32 indicator LED config commands
+	sprintf (buff, "set wlan_gpio %d", ESP_NET_LED);
+	write_wifi_command(buff, 2);
+	sprintf (buff, "set websocket_gpio %d", ESP_CLIENT_LED);
+	write_wifi_command(buff, 2);
+	sprintf (buff, "set ap_gpio %d", ESP_PROV_LED);
+	write_wifi_command(buff, 2);
+
+	// Wifi Board Control Line Pin Config
+	sprintf (buff, "set comm_gpio %d", ESP_COMM_GPIO);
+	write_wifi_command(buff, 2);
+	sprintf (buff, "set net_gpio %d", ESP_NET_GPIO);
+	write_wifi_command(buff, 2);
+	sprintf (buff, "set clients_gpio %d", ESP_CLIENT_GPIO);
+	write_wifi_command(buff, 2);
 
 	reading_wifi_flag = false;
 	provisioning_flag = false;
 
-
-	//// Wait for Network Connection ACK
-	while (!ioport_get_pin_level(WIFI_NET_MASK))
+	// Wait for Network Connection ACK
+	while (!wifi_ready)
 	{
-		if (provisioning_flag) { // if Wifi Setup button is pressed
-			write_wifi_command("provision",1);
+		if (provisioning_flag)  // if Wifi Setup button is pressed
+		{
+			write_wifi_command("provision", 1);
 			provisioning_flag = false;
-			write_wifi_command("get mac",1);
+			write_wifi_command("get mac", 1);
 		}
 	}
 
-	// UART test & wait before reading flag
-	write_wifi_command("test",10);
-	delay_s(8);	// test to find optimal time?
+	write_wifi_command("test", 10);
+	delay_ms(2000);	// test to find optimal time?
 	
-	while (!reading_wifi_flag)	{
+	while (!reading_wifi_flag)
+	{
 		// Reset wifi chip
 		ioport_set_pin_level(WIFI_RESET_MASK,false);
 		delay_ms(100);
 		ioport_set_pin_level(WIFI_RESET_MASK,true);
 		delay_ms(5000);
-	
-		write_wifi_command("test",10);
-		delay_s(8);
+		write_wifi_command("test", 10);
+		delay_ms(2000);
 	
 	}
 
