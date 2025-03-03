@@ -12,7 +12,7 @@
 #include "ov2640.h"
 
 //DECLARE camera variables here
-#define end_cap ((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)
+// #define end_cap ((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)
 uint32_t ul_id, ul_mask, ul_size; // For interrupts
 uint8_t *uc_buf;    //buffer to store the image in
 Pio *p_pio;
