@@ -153,6 +153,9 @@ int main (void)
 
 	//delay_ms(5000);
 	//ioport_set_pin_level(LED_PIN,true);
+	write_wifi_command("test",10);
+	delay_s(8);
+	
 	while (!reading_wifi_flag)	{
 		
 		// Reset wifi chip
