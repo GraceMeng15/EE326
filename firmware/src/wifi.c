@@ -3,13 +3,7 @@
  *
  * Created: 2025/2/10 14:30:22
  *  Author: 17713
- */ 
-/*
- * wifi.c
- *
- * Created: 2/5/2023 10:15:16 AM
- *  Author: seanp
- */ 
+ */
 
 #include "wifi.h"
 #include "camera.h"

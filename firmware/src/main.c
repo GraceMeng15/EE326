@@ -40,6 +40,7 @@
 
 char* pbuf_test[50];
 
+#define capture_ready ioport_get_pin_level(WIFI_CLIENT_PIN_MASK) //&& ioport_get_pin_level(WIFI_NET_MASK)
 int main (void)
 {
 	//Initialize clock and board definitions.
@@ -172,20 +173,24 @@ int main (void)
 	}
 
 	// Start Main Loop
-	while (1)	{
+	while (true)
+	{
 		// Check if WIFI_SETUP_BUTTON was pressed and send provision command if so
 		//ioport_set_pin_level(LED_PIN,false);
 		//ioport_set_pin_level(LED_PIN,true);
 		//delay_ms(500);
 		//ioport_set_pin_level(LED_PIN,false);
 		//delay_ms(500);
-		if (provisioning_flag) {
-			write_wifi_command("provision",1);
+		if (provisioning_flag)
+		{
+			write_wifi_command("provision", 1);
 			provisioning_flag = false;
 		}
-		if (ioport_get_pin_level(WIFI_NET_MASK) && ioport_get_pin_level(WIFI_CLIENT_PIN_MASK))	{
+		else if (capture_ready)
+		{
 			start_capture();
-			if (len_success) {
+			if (len_success)
+			{
 				write_image_to_web();
 			}
 		}

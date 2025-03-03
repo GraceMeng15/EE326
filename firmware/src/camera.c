@@ -3,13 +3,7 @@
  *
  * Created: 2025/2/10 14:32:27
  *  Author: 17713
- */ 
-/*
- * camera.c
- *
- * Created: 2/5/2023 10:15:57 AM
- *  Author: seanp
- */ 
+ */
 
 #include "camera.h"
 //
@@ -115,7 +109,7 @@ void configure_camera(void){
 	ov_configure(BOARD_TWI, JPEG_320x240);
 	
 	//let the camera adapt to environment
-	delay_ms(3000);
+	delay_ms(2000);
 
 	
 	//there may be more to it than this

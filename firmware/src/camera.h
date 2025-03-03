@@ -3,13 +3,7 @@
  *
  * Created: 2025/2/10 14:30:53
  *  Author: 17713
- */ 
-/*
- * camera.h
- *
- * Created: 2/5/2023 10:16:10 AM
- *  Author: seanp
- */ 
+ */
 
 #ifndef CAMERA_H_
 #define CAMERA_H_
