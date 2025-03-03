@@ -172,8 +172,10 @@ uint8_t start_capture(void){
 	
 	/* Capture acquisition will start on rising edge of Vsync signal.
 	 * So wait g_vsync_flag = 1 before start process */
-	while (!g_ul_vsync_flag) {
+	while (!g_ul_vsync_flag)
+	{
 		//Wait for flag
+		delay_ms(10);
 	}
 	
 	/* Disable vsync interrupt*/
@@ -184,13 +186,18 @@ uint8_t start_capture(void){
 
 	/* Capture data and send it to external SRAM memory thanks to PDC
 	 * feature */
-	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf,
-			(100000) >> 2);
+	//pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf, (100000) >> 2);
+	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf, 25000);
 
 	/* Wait end of capture*/
-	while (!((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) ==
-			PIO_PCIMR_RXBUFF)) {
+	/*
+	while (!((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)) {
+	}*/
+	while (!end_cap)
+	{
+		delay_ms(10);
 	}
+	
 
 	/* Disable pio capture*/
 	pio_capture_disable(OV7740_DATA_BUS_PIO);
