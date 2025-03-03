@@ -17,9 +17,10 @@
 #include <asf.h>
 #include <string.h>
 
-// Test LED Pins, for breadboard debugging
-#define LED_PIN		PIO_PA19_IDX
-#define LED_PIN2	PIO_PA22_IDX
+// moved to conf_board
+// // Test LED Pins, for breadboard debugging
+// #define LED_PIN		PIO_PA19_IDX
+// #define LED_PIN2	PIO_PA22_IDX
 
 // Control Pins Declaration - PA9, PA10, PB3 // change name
 #define ESP_COMM_GPIO					21	// COMM PIN   - connect to MCU | PA9
