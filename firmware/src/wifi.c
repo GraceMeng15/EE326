@@ -10,11 +10,6 @@
 #include "ov2640.h"
 #include "timer_interface.h"
 
-//INITIALIZE WiFi variables here
-//in_byte = ;
-//ul_id = , 
-//ul_mask = ;
-
 // ----------------------------------------------------------------------------
 // SPI Code from spi_example
 
@@ -40,10 +35,6 @@ volatile bool command_flag = false;
 
 char buff_storage[50];
 
-
-
-//----------------TODO: USART functions----------------//
-
 void wifi_usart_handler(void)
 {
 	uint32_t ul_status;
@@ -51,43 +42,50 @@ void wifi_usart_handler(void)
 	/* Read USART Status. */
 	ul_status = usart_get_status(WIFI_USART);
 
-	if (ul_status & US_CSR_RXBUFF) {
+	if (ul_status & US_CSR_RXBUFF)
+	{
 		usart_read(WIFI_USART, &received_byte_wifi);
 		new_rx_wifi = true;
 		process_incoming_byte_wifi((uint8_t)received_byte_wifi);
 	}
 }
 
-void wifi_command_response_handler(uint32_t ul_id, uint32_t ul_mask) {
+void wifi_command_response_handler(uint32_t ul_id, uint32_t ul_mask)
+{
 	process_data_wifi();
-	for (uint32_t jj = 0; jj < 1000; jj++) {
-		input_line_wifi[jj] = 0;
+	uint32_t ind = 0;
+	while (ind < 1000)
+	{
+		input_line_wifi[ind] = 0;
+		ind += 1;
 	}
 	input_pos_wifi = 0;
 	command_flag = true;
 }
 
-void process_incoming_byte_wifi(uint8_t in_byte) {
+void process_incoming_byte_wifi(uint8_t in_byte)
+{
 	input_line_wifi[input_pos_wifi++] = in_byte;
 }
 
-void process_data_wifi() {
-	if (strstr(input_line_wifi, "SUCCESS")) {
-		//ioport_toggle_pin_level(LED_PIN);
+void process_data_wifi()
+{
+	if (strstr(input_line_wifi, "SUCCESS"))
+	{
 		reading_wifi_flag = true;
 	}
 }
 
 void configure_usart(void)
 {	
-	const sam_usart_opt_t usart_console_settings = {
+	const sam_usart_opt_t usart_console_settings =
+	{
 		WIFI_USART_BAUDRATE,
 		US_MR_CHRL_8_BIT,
 		US_MR_PAR_NO,
 		US_MR_NBSTOP_1_BIT,
 		US_MR_CHMODE_NORMAL,
-		/* This field is only used in IrDA mode. */
-		0
+		0 // IrDA mode only
 	};
 
 	/* Enable the peripheral clock in the PMC. */
@@ -132,20 +130,27 @@ void write_wifi_command(char* comm, uint8_t cnt) //TODO: Implement timeout mecha
 	/* Writes a command (comm) to the ESP32, and waits either for an acknowledgment or a timeout. The timeout can be
 	 created by setting the global variable counts to zero, which will automatically increment every second, and waiting
 	while counts < cnt. */
+	counts = 0;
 	command_flag = false;
+	ioport_set_pin_level(LED_PIN2, 1);
 	char wifi_buff[100];
 	sprintf (wifi_buff, "%s\r\n", comm);
 	usart_write_line(WIFI_USART, wifi_buff);
-	
-	//ioport_set_pin_level(LED_PIN,true);
-	counts = 0;
-	// Wait time = cnt seconds
-	ioport_set_pin_level(LED_PIN2,true);
-	while ((counts < cnt) && (command_flag==false))	{
+	while (true)
+	{
+		if (counts >= cnt)
+		{
+			break;
+		}
+		else if (command_flag)
+		{
+			break;
+		}
 	}
-	//ioport_set_pin_level(LED_PIN,false);
-	//ioport_set_pin_level(LED_PIN2,false);
-	command_flag = false;
+	if (command_flag)
+	{
+		command_flag = false;
+	}
 }
 
 
@@ -176,11 +181,6 @@ void configure_wifi_provision_pin(void)
 	/* Enable PIO interrupt lines. */
 	pio_enable_interrupt(WIFI_SETUP_BUTTON_PIO, WIFI_SETUP_BUTTON_NUM);
 }
-
-/** Thomas' Code **/
-
-//----------------TODO: SPI functions----------------//
-
 
 void wifi_spi_handler(void){
 	//// Handler for peripheral mode interrupts on SPI bus. When the
@@ -285,16 +285,15 @@ void prepare_spi_transfer(void){
 	
 }
 
-/* Sean's Code */
-
-//----------------TODO: SYSTEM INTEGRATION----------------//
-
 void write_image_to_web(void){
 	 //Writes an image from the SAM4S8B to the ESP32. If the length of the image is zero 
 	 //(i.e. the image is not valid), return. Otherwise, follow this protocol
 	 //(illustrated in Appendix C):
 	
-	if (image_size == 0) { return; }
+	if (image_size == 0)
+	{
+		return;
+	}
 	
 	//first_byte_sent = gs_puc_transfer_buffer[gs_ul_transfer_index];
 	//second_byte_sent = gs_puc_transfer_buffer[gs_ul_transfer_index + 1];

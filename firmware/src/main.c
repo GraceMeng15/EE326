@@ -99,6 +99,7 @@ int main (void)
 		}
 	}
 
+	delay_ms(100);
 	write_wifi_command("test", 10);
 	delay_ms(1000);	// test to find optimal time?
 	
