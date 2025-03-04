@@ -181,10 +181,10 @@ uint8_t find_image_len(void){
 	//start is 0xFFD8; end is 0xFFD9
 	image_size = 0;
 	image_started = 0;
-	image_ended = 0;
+	//image_ended = 0;
 	uint8_t current_byte;
 	uint8_t next_byte;
-	uint8_t complete = 0;
+	// uint8_t complete = 0;
 	
 	for (uint32_t i = 0; i < 100000; ++i){
 	
@@ -193,11 +193,11 @@ uint8_t find_image_len(void){
 		
 		if (current_byte == 0xff && next_byte == 0xd8) {
 			image_started = 1;
-			image_ended = 0;
-			start_pos = i;
+			//image_ended = 0;
+			start_pos = i;	// => gs_ul_transfer_index
 		}
-		else if (current_byte == 0xff && next_byte == 0xd9 && image_started == 1) {
-			image_ended = 1;
+		else if (image_started && current_byte == 0xff && next_byte == 0xd9) {
+			//image_ended = 1;
 			end_pos = i+1;
 			len_success = 1;
 			break;
