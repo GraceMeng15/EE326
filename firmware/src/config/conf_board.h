@@ -15,9 +15,9 @@
 
 /** Conf_board. */
 // not used?
-#define CONF_BOARD_SPI /** SPI MACRO definition */
-#define CONF_BOARD_SPI_NPCS0 /** SPI slave select MACRO definition */
-#define SPI_ID          ID_SPI  /** Spi Hw ID . */
+// #define CONF_BOARD_SPI /** SPI MACRO definition */
+// #define CONF_BOARD_SPI_NPCS0 /** SPI slave select MACRO definition */
+// #define SPI_ID          ID_SPI  /** Spi Hw ID . */
 
 
 #define SPI_SLAVE_BASE       SPI /** SPI base address for SPI slave mode */
@@ -103,10 +103,10 @@
 
 /** TWI0 pins */
 #define PINS_TWI0                      PIN_TWI_TWD0, PIN_TWI_TWCK0
-#define ID_BOARD_TWI		               ID_TWI0
-#define BOARD_TWI			                 TWI0
-#define BOARD_TWI_IRQn		             TWI0_IRQn
-#define PIN_TWI_TWD0                   {PIO_PA3A_TWD0, PIOA, ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT} /** TWI0 data pin */
+#define ID_BOARD_TWI		           ID_TWI0
+#define BOARD_TWI			           TWI0
+#define BOARD_TWI_IRQn		           TWI0_IRQn
+#define PIN_TWI_TWD0                   {PIO_PA3A_TWD0, PIOA, ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT}  /** TWI0 data pin */
 #define PIN_TWI_TWCK0                  {PIO_PA4A_TWCK0, PIOA, ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT} /** TWI0 clock pin */
 
 /** TWI0 Data pins definition */
@@ -141,8 +141,6 @@
 #define PIN_PCK1_FLAGS                 (PIO_PERIPH_B | PIO_DEFAULT)
 
 // -------------------------------------------------------- Camera --------------------------------------------------------
-
-
 /* Image sensor board defines. */
 // Image sensor Power pin.
 //#define OV_POWER_PIO                   OV_SW_OVT_PIO
