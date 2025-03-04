@@ -157,13 +157,12 @@ uint8_t start_capture(void){
 	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf, 25000);		// 100000 >> 2 = 25000
 
 	/* Wait end of capture*/
-	/*
-	while (!((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)) {
-	}*/
-	while (!end_cap)
-	{
-		delay_ms(10);		// !!! TRY WITHOUT
-	}
+	
+	while (!((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)) {}
+	// while (!end_cap)
+	// {
+	// 	delay_ms(10);		// !!! TRY WITHOUT
+	// }
 
 	// #define end_cap ((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)
 	// while (!end_cap)
