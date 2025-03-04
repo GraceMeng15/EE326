@@ -8009,7 +8009,7 @@ OUTPUT(firmware.elf elf32-littlearm)
  .comment       0x00000059       0x5a src/ASF/sam/utils/syscalls/gcc/syscalls.o
  .comment       0x00000059       0x5a src/main.o
 
-.debug_info     0x00000000    0x1a398
+.debug_info     0x00000000    0x1a39c
  .debug_info    0x00000000     0x18c9 src/ASF/sam/drivers/pio/pio_handler.o
  .debug_info    0x000018c9     0x11c9 src/ASF/sam/drivers/spi/spi.o
  .debug_info    0x00002a92     0x123c src/ASF/sam/drivers/tc/tc.o
@@ -8029,7 +8029,7 @@ OUTPUT(firmware.elf elf32-littlearm)
  .debug_info    0x00016f29      0x6d2 src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
  .debug_info    0x000175fb      0x458 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
  .debug_info    0x00017a53      0xdb0 src/ASF/sam/utils/syscalls/gcc/syscalls.o
- .debug_info    0x00018803     0x1b95 src/main.o
+ .debug_info    0x00018803     0x1b99 src/main.o
 
 .debug_abbrev   0x00000000     0x3b0b
  .debug_abbrev  0x00000000      0x37f src/ASF/sam/drivers/pio/pio_handler.o

@@ -2,7 +2,7 @@
  * camera.h
  *
  * Created: 2025/2/10 14:30:53
- *  Author: 17713
+ *  Author: Grace & Xiaoyi
  */
 
 #ifndef CAMERA_H_

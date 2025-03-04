@@ -63,7 +63,7 @@ int main (void)
 	ioport_set_pin_level(WIFI_RESET_MASK, false);
 	delay_ms(100);
 	ioport_set_pin_level(WIFI_RESET_MASK, true);
-	delay_ms(100);
+	delay_ms(5000);
 	
 	// Set SPI Baud Rate
 	sprintf(buff, "set spi_baud %d", SPI_BAUDRATE);

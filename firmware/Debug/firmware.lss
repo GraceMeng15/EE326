@@ -17,23 +17,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   6 .comment      00000059  00000000  00000000  000209ea  2**0
                   CONTENTS, READONLY
-  7 .debug_info   0001a398  00000000  00000000  00020a43  2**0
+  7 .debug_info   0001a39c  00000000  00000000  00020a43  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00003b0b  00000000  00000000  0003addb  2**0
+  8 .debug_abbrev 00003b0b  00000000  00000000  0003addf  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00005b16  00000000  00000000  0003e8e6  2**0
+  9 .debug_loc    00005b16  00000000  00000000  0003e8ea  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_aranges 00000b78  00000000  00000000  000443fc  2**0
+ 10 .debug_aranges 00000b78  00000000  00000000  00044400  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000ac0  00000000  00000000  00044f74  2**0
+ 11 .debug_ranges 00000ac0  00000000  00000000  00044f78  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  0000802d  00000000  00000000  00045a34  2**0
+ 12 .debug_macro  0000802d  00000000  00000000  00045a38  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   0000fe7d  00000000  00000000  0004da61  2**0
+ 13 .debug_line   0000fe7d  00000000  00000000  0004da65  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00052fd4  00000000  00000000  0005d8de  2**0
+ 14 .debug_str    00052fd4  00000000  00000000  0005d8e2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_frame  000025d4  00000000  00000000  000b08b4  2**2
+ 15 .debug_frame  000025d4  00000000  00000000  000b08b8  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -3662,241 +3662,241 @@ int main (void)
   401916:	4b56      	ldr	r3, [pc, #344]	; (401a70 <main+0x18c>)
   401918:	4798      	blx	r3
 		base->PIO_CODR = arch_ioport_pin_to_mask(pin);
-  40191a:	4e56      	ldr	r6, [pc, #344]	; (401a74 <main+0x190>)
-  40191c:	2701      	movs	r7, #1
-  40191e:	6377      	str	r7, [r6, #52]	; 0x34
+  40191a:	4d56      	ldr	r5, [pc, #344]	; (401a74 <main+0x190>)
+  40191c:	2601      	movs	r6, #1
+  40191e:	636e      	str	r6, [r5, #52]	; 0x34
 
 	// Reset Wifi
 	ioport_set_pin_level(WIFI_RESET_MASK, false);
 	delay_ms(100);
-  401920:	4d55      	ldr	r5, [pc, #340]	; (401a78 <main+0x194>)
-  401922:	4628      	mov	r0, r5
-  401924:	4c55      	ldr	r4, [pc, #340]	; (401a7c <main+0x198>)
-  401926:	47a0      	blx	r4
+  401920:	4855      	ldr	r0, [pc, #340]	; (401a78 <main+0x194>)
+  401922:	4c56      	ldr	r4, [pc, #344]	; (401a7c <main+0x198>)
+  401924:	47a0      	blx	r4
 		base->PIO_SODR = arch_ioport_pin_to_mask(pin);
-  401928:	6337      	str	r7, [r6, #48]	; 0x30
+  401926:	632e      	str	r6, [r5, #48]	; 0x30
 	ioport_set_pin_level(WIFI_RESET_MASK, true);
-	delay_ms(100);
-  40192a:	4628      	mov	r0, r5
-  40192c:	47a0      	blx	r4
+	delay_ms(5000);
+  401928:	4855      	ldr	r0, [pc, #340]	; (401a80 <main+0x19c>)
+  40192a:	47a0      	blx	r4
 	
 	// Set SPI Baud Rate
 	sprintf(buff, "set spi_baud %d", SPI_BAUDRATE);
-  40192e:	4c54      	ldr	r4, [pc, #336]	; (401a80 <main+0x19c>)
-  401930:	4a54      	ldr	r2, [pc, #336]	; (401a84 <main+0x1a0>)
-  401932:	4955      	ldr	r1, [pc, #340]	; (401a88 <main+0x1a4>)
-  401934:	4620      	mov	r0, r4
-  401936:	4e55      	ldr	r6, [pc, #340]	; (401a8c <main+0x1a8>)
-  401938:	47b0      	blx	r6
+  40192c:	4c55      	ldr	r4, [pc, #340]	; (401a84 <main+0x1a0>)
+  40192e:	4a56      	ldr	r2, [pc, #344]	; (401a88 <main+0x1a4>)
+  401930:	4956      	ldr	r1, [pc, #344]	; (401a8c <main+0x1a8>)
+  401932:	4620      	mov	r0, r4
+  401934:	4e56      	ldr	r6, [pc, #344]	; (401a90 <main+0x1ac>)
+  401936:	47b0      	blx	r6
 	write_wifi_command(buff, 2);
-  40193a:	2102      	movs	r1, #2
-  40193c:	4620      	mov	r0, r4
-  40193e:	4d54      	ldr	r5, [pc, #336]	; (401a90 <main+0x1ac>)
-  401940:	47a8      	blx	r5
+  401938:	2102      	movs	r1, #2
+  40193a:	4620      	mov	r0, r4
+  40193c:	4d55      	ldr	r5, [pc, #340]	; (401a94 <main+0x1b0>)
+  40193e:	47a8      	blx	r5
 
 	// Send ESP32 indicator LED config commands
 	sprintf (buff, "set wlan_gpio %d", ESP_NET_LED);
-  401942:	2219      	movs	r2, #25
-  401944:	4953      	ldr	r1, [pc, #332]	; (401a94 <main+0x1b0>)
-  401946:	4620      	mov	r0, r4
-  401948:	47b0      	blx	r6
+  401940:	2219      	movs	r2, #25
+  401942:	4955      	ldr	r1, [pc, #340]	; (401a98 <main+0x1b4>)
+  401944:	4620      	mov	r0, r4
+  401946:	47b0      	blx	r6
 	write_wifi_command(buff, 2);
-  40194a:	2102      	movs	r1, #2
-  40194c:	4620      	mov	r0, r4
-  40194e:	47a8      	blx	r5
+  401948:	2102      	movs	r1, #2
+  40194a:	4620      	mov	r0, r4
+  40194c:	47a8      	blx	r5
 	sprintf (buff, "set websocket_gpio %d", ESP_CLIENT_LED);
-  401950:	221b      	movs	r2, #27
-  401952:	4951      	ldr	r1, [pc, #324]	; (401a98 <main+0x1b4>)
-  401954:	4620      	mov	r0, r4
-  401956:	47b0      	blx	r6
+  40194e:	221b      	movs	r2, #27
+  401950:	4952      	ldr	r1, [pc, #328]	; (401a9c <main+0x1b8>)
+  401952:	4620      	mov	r0, r4
+  401954:	47b0      	blx	r6
 	write_wifi_command(buff, 2);
-  401958:	2102      	movs	r1, #2
-  40195a:	4620      	mov	r0, r4
-  40195c:	47a8      	blx	r5
+  401956:	2102      	movs	r1, #2
+  401958:	4620      	mov	r0, r4
+  40195a:	47a8      	blx	r5
 	sprintf (buff, "set ap_gpio %d", ESP_PROV_LED);
-  40195e:	221a      	movs	r2, #26
-  401960:	494e      	ldr	r1, [pc, #312]	; (401a9c <main+0x1b8>)
-  401962:	4620      	mov	r0, r4
-  401964:	47b0      	blx	r6
+  40195c:	221a      	movs	r2, #26
+  40195e:	4950      	ldr	r1, [pc, #320]	; (401aa0 <main+0x1bc>)
+  401960:	4620      	mov	r0, r4
+  401962:	47b0      	blx	r6
 	write_wifi_command(buff, 2);
-  401966:	2102      	movs	r1, #2
-  401968:	4620      	mov	r0, r4
-  40196a:	47a8      	blx	r5
+  401964:	2102      	movs	r1, #2
+  401966:	4620      	mov	r0, r4
+  401968:	47a8      	blx	r5
 
 	// Wifi Board Control Line Pin Config
 	sprintf (buff, "set comm_gpio %d", ESP_COMM_GPIO);
-  40196c:	2215      	movs	r2, #21
-  40196e:	494c      	ldr	r1, [pc, #304]	; (401aa0 <main+0x1bc>)
-  401970:	4620      	mov	r0, r4
-  401972:	47b0      	blx	r6
+  40196a:	2215      	movs	r2, #21
+  40196c:	494d      	ldr	r1, [pc, #308]	; (401aa4 <main+0x1c0>)
+  40196e:	4620      	mov	r0, r4
+  401970:	47b0      	blx	r6
 	write_wifi_command(buff, 2);
-  401974:	2102      	movs	r1, #2
-  401976:	4620      	mov	r0, r4
-  401978:	47a8      	blx	r5
+  401972:	2102      	movs	r1, #2
+  401974:	4620      	mov	r0, r4
+  401976:	47a8      	blx	r5
 	sprintf (buff, "set net_gpio %d", ESP_NET_GPIO);
-  40197a:	2216      	movs	r2, #22
-  40197c:	4949      	ldr	r1, [pc, #292]	; (401aa4 <main+0x1c0>)
-  40197e:	4620      	mov	r0, r4
-  401980:	47b0      	blx	r6
+  401978:	2216      	movs	r2, #22
+  40197a:	494b      	ldr	r1, [pc, #300]	; (401aa8 <main+0x1c4>)
+  40197c:	4620      	mov	r0, r4
+  40197e:	47b0      	blx	r6
 	write_wifi_command(buff, 2);
-  401982:	2102      	movs	r1, #2
-  401984:	4620      	mov	r0, r4
-  401986:	47a8      	blx	r5
+  401980:	2102      	movs	r1, #2
+  401982:	4620      	mov	r0, r4
+  401984:	47a8      	blx	r5
 	sprintf (buff, "set clients_gpio %d", ESP_CLIENT_GPIO);
-  401988:	2220      	movs	r2, #32
-  40198a:	4947      	ldr	r1, [pc, #284]	; (401aa8 <main+0x1c4>)
-  40198c:	4620      	mov	r0, r4
-  40198e:	47b0      	blx	r6
+  401986:	2220      	movs	r2, #32
+  401988:	4948      	ldr	r1, [pc, #288]	; (401aac <main+0x1c8>)
+  40198a:	4620      	mov	r0, r4
+  40198c:	47b0      	blx	r6
 	write_wifi_command(buff, 2);
-  401990:	2102      	movs	r1, #2
-  401992:	4620      	mov	r0, r4
-  401994:	47a8      	blx	r5
+  40198e:	2102      	movs	r1, #2
+  401990:	4620      	mov	r0, r4
+  401992:	47a8      	blx	r5
 
 	reading_wifi_flag = false;
-  401996:	2300      	movs	r3, #0
-  401998:	4a44      	ldr	r2, [pc, #272]	; (401aac <main+0x1c8>)
-  40199a:	7013      	strb	r3, [r2, #0]
+  401994:	2300      	movs	r3, #0
+  401996:	4a46      	ldr	r2, [pc, #280]	; (401ab0 <main+0x1cc>)
+  401998:	7013      	strb	r3, [r2, #0]
 	provisioning_flag = false;
-  40199c:	4a44      	ldr	r2, [pc, #272]	; (401ab0 <main+0x1cc>)
-  40199e:	7013      	strb	r3, [r2, #0]
+  40199a:	4a46      	ldr	r2, [pc, #280]	; (401ab4 <main+0x1d0>)
+  40199c:	7013      	strb	r3, [r2, #0]
 	}
 }
 
 __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
 {
 	return arch_ioport_pin_to_base(pin)->PIO_PDSR & arch_ioport_pin_to_mask(pin);
-  4019a0:	4d44      	ldr	r5, [pc, #272]	; (401ab4 <main+0x1d0>)
+  40199e:	4d46      	ldr	r5, [pc, #280]	; (401ab8 <main+0x1d4>)
 
 	// Wait for Network Connection ACK
 	while (!wifi_ready)
 	{
 		if (provisioning_flag)  // if Wifi Setup button is pressed
-  4019a2:	4614      	mov	r4, r2
-  4019a4:	6beb      	ldr	r3, [r5, #60]	; 0x3c
+  4019a0:	4614      	mov	r4, r2
+  4019a2:	6beb      	ldr	r3, [r5, #60]	; 0x3c
 	while (!wifi_ready)
-  4019a6:	f413 6f80 	tst.w	r3, #1024	; 0x400
-  4019aa:	d10c      	bne.n	4019c6 <main+0xe2>
+  4019a4:	f413 6f80 	tst.w	r3, #1024	; 0x400
+  4019a8:	d10c      	bne.n	4019c4 <main+0xe0>
 		if (provisioning_flag)  // if Wifi Setup button is pressed
-  4019ac:	7823      	ldrb	r3, [r4, #0]
-  4019ae:	2b00      	cmp	r3, #0
-  4019b0:	d0f8      	beq.n	4019a4 <main+0xc0>
+  4019aa:	7823      	ldrb	r3, [r4, #0]
+  4019ac:	2b00      	cmp	r3, #0
+  4019ae:	d0f8      	beq.n	4019a2 <main+0xbe>
 		{
 			write_wifi_command("provision", 1);
-  4019b2:	2101      	movs	r1, #1
-  4019b4:	4840      	ldr	r0, [pc, #256]	; (401ab8 <main+0x1d4>)
-  4019b6:	4e36      	ldr	r6, [pc, #216]	; (401a90 <main+0x1ac>)
-  4019b8:	47b0      	blx	r6
+  4019b0:	2101      	movs	r1, #1
+  4019b2:	4842      	ldr	r0, [pc, #264]	; (401abc <main+0x1d8>)
+  4019b4:	4e37      	ldr	r6, [pc, #220]	; (401a94 <main+0x1b0>)
+  4019b6:	47b0      	blx	r6
 			provisioning_flag = false;
-  4019ba:	2300      	movs	r3, #0
-  4019bc:	7023      	strb	r3, [r4, #0]
+  4019b8:	2300      	movs	r3, #0
+  4019ba:	7023      	strb	r3, [r4, #0]
 			write_wifi_command("get mac", 1);
-  4019be:	2101      	movs	r1, #1
-  4019c0:	483e      	ldr	r0, [pc, #248]	; (401abc <main+0x1d8>)
-  4019c2:	47b0      	blx	r6
-  4019c4:	e7ee      	b.n	4019a4 <main+0xc0>
+  4019bc:	2101      	movs	r1, #1
+  4019be:	4840      	ldr	r0, [pc, #256]	; (401ac0 <main+0x1dc>)
+  4019c0:	47b0      	blx	r6
+  4019c2:	e7ee      	b.n	4019a2 <main+0xbe>
 		}
 	}
 
 	delay_ms(100);
-  4019c6:	482c      	ldr	r0, [pc, #176]	; (401a78 <main+0x194>)
-  4019c8:	4c2c      	ldr	r4, [pc, #176]	; (401a7c <main+0x198>)
-  4019ca:	47a0      	blx	r4
+  4019c4:	482c      	ldr	r0, [pc, #176]	; (401a78 <main+0x194>)
+  4019c6:	4c2d      	ldr	r4, [pc, #180]	; (401a7c <main+0x198>)
+  4019c8:	47a0      	blx	r4
 	write_wifi_command("test", 10);
-  4019cc:	210a      	movs	r1, #10
-  4019ce:	483c      	ldr	r0, [pc, #240]	; (401ac0 <main+0x1dc>)
-  4019d0:	4b2f      	ldr	r3, [pc, #188]	; (401a90 <main+0x1ac>)
-  4019d2:	4798      	blx	r3
+  4019ca:	210a      	movs	r1, #10
+  4019cc:	483d      	ldr	r0, [pc, #244]	; (401ac4 <main+0x1e0>)
+  4019ce:	4b31      	ldr	r3, [pc, #196]	; (401a94 <main+0x1b0>)
+  4019d0:	4798      	blx	r3
 	delay_ms(1000);	// test to find optimal time?
-  4019d4:	483b      	ldr	r0, [pc, #236]	; (401ac4 <main+0x1e0>)
-  4019d6:	47a0      	blx	r4
+  4019d2:	483d      	ldr	r0, [pc, #244]	; (401ac8 <main+0x1e4>)
+  4019d4:	47a0      	blx	r4
 	
 	while (!reading_wifi_flag)
-  4019d8:	4b34      	ldr	r3, [pc, #208]	; (401aac <main+0x1c8>)
-  4019da:	781b      	ldrb	r3, [r3, #0]
-  4019dc:	b9cb      	cbnz	r3, 401a12 <main+0x12e>
+  4019d6:	4b36      	ldr	r3, [pc, #216]	; (401ab0 <main+0x1cc>)
+  4019d8:	781b      	ldrb	r3, [r3, #0]
+  4019da:	b9cb      	cbnz	r3, 401a10 <main+0x12c>
 		base->PIO_CODR = arch_ioport_pin_to_mask(pin);
-  4019de:	4e25      	ldr	r6, [pc, #148]	; (401a74 <main+0x190>)
-  4019e0:	2501      	movs	r5, #1
-  4019e2:	46aa      	mov	sl, r5
+  4019dc:	4e25      	ldr	r6, [pc, #148]	; (401a74 <main+0x190>)
+  4019de:	2501      	movs	r5, #1
+  4019e0:	46aa      	mov	sl, r5
 	{
 		// Reset wifi chip
 		ioport_set_pin_level(WIFI_RESET_MASK,false);
 		delay_ms(100);
-  4019e4:	f8df 9090 	ldr.w	r9, [pc, #144]	; 401a78 <main+0x194>
+  4019e2:	f8df 9094 	ldr.w	r9, [pc, #148]	; 401a78 <main+0x194>
 		ioport_set_pin_level(WIFI_RESET_MASK,true);
 		delay_ms(5000);
-  4019e8:	f8df 80e8 	ldr.w	r8, [pc, #232]	; 401ad4 <main+0x1f0>
+  4019e6:	f8df 8098 	ldr.w	r8, [pc, #152]	; 401a80 <main+0x19c>
 		write_wifi_command("test", 10);
 		delay_ms(1000);
-  4019ec:	4f35      	ldr	r7, [pc, #212]	; (401ac4 <main+0x1e0>)
-  4019ee:	f8c6 a034 	str.w	sl, [r6, #52]	; 0x34
+  4019ea:	4f37      	ldr	r7, [pc, #220]	; (401ac8 <main+0x1e4>)
+  4019ec:	f8c6 a034 	str.w	sl, [r6, #52]	; 0x34
 		delay_ms(100);
-  4019f2:	4648      	mov	r0, r9
-  4019f4:	4c21      	ldr	r4, [pc, #132]	; (401a7c <main+0x198>)
-  4019f6:	47a0      	blx	r4
+  4019f0:	4648      	mov	r0, r9
+  4019f2:	4c22      	ldr	r4, [pc, #136]	; (401a7c <main+0x198>)
+  4019f4:	47a0      	blx	r4
 		base->PIO_SODR = arch_ioport_pin_to_mask(pin);
-  4019f8:	6335      	str	r5, [r6, #48]	; 0x30
+  4019f6:	6335      	str	r5, [r6, #48]	; 0x30
 		delay_ms(5000);
-  4019fa:	4640      	mov	r0, r8
-  4019fc:	47a0      	blx	r4
+  4019f8:	4640      	mov	r0, r8
+  4019fa:	47a0      	blx	r4
 		write_wifi_command("test", 10);
-  4019fe:	210a      	movs	r1, #10
-  401a00:	482f      	ldr	r0, [pc, #188]	; (401ac0 <main+0x1dc>)
-  401a02:	4b23      	ldr	r3, [pc, #140]	; (401a90 <main+0x1ac>)
-  401a04:	4798      	blx	r3
+  4019fc:	210a      	movs	r1, #10
+  4019fe:	4831      	ldr	r0, [pc, #196]	; (401ac4 <main+0x1e0>)
+  401a00:	4b24      	ldr	r3, [pc, #144]	; (401a94 <main+0x1b0>)
+  401a02:	4798      	blx	r3
 		delay_ms(1000);
-  401a06:	4638      	mov	r0, r7
-  401a08:	47a0      	blx	r4
+  401a04:	4638      	mov	r0, r7
+  401a06:	47a0      	blx	r4
 	while (!reading_wifi_flag)
-  401a0a:	4b28      	ldr	r3, [pc, #160]	; (401aac <main+0x1c8>)
-  401a0c:	781b      	ldrb	r3, [r3, #0]
-  401a0e:	2b00      	cmp	r3, #0
-  401a10:	d0ed      	beq.n	4019ee <main+0x10a>
+  401a08:	4b29      	ldr	r3, [pc, #164]	; (401ab0 <main+0x1cc>)
+  401a0a:	781b      	ldrb	r3, [r3, #0]
+  401a0c:	2b00      	cmp	r3, #0
+  401a0e:	d0ed      	beq.n	4019ec <main+0x108>
 	}
 
 	// Start Main Loop
 	while (true)
 	{
 		if (provisioning_flag) // if Wifi Setup button is pressed
-  401a12:	4c27      	ldr	r4, [pc, #156]	; (401ab0 <main+0x1cc>)
+  401a10:	4c28      	ldr	r4, [pc, #160]	; (401ab4 <main+0x1d0>)
 	return arch_ioport_pin_to_base(pin)->PIO_PDSR & arch_ioport_pin_to_mask(pin);
-  401a14:	4d17      	ldr	r5, [pc, #92]	; (401a74 <main+0x190>)
+  401a12:	4d18      	ldr	r5, [pc, #96]	; (401a74 <main+0x190>)
 			write_wifi_command("provision", 1);
 			provisioning_flag = false;
 		}
 		else if (capture_ready)
 		{
 			start_capture();
-  401a16:	4e2c      	ldr	r6, [pc, #176]	; (401ac8 <main+0x1e4>)
-  401a18:	e005      	b.n	401a26 <main+0x142>
+  401a14:	4e2d      	ldr	r6, [pc, #180]	; (401acc <main+0x1e8>)
+  401a16:	e005      	b.n	401a24 <main+0x140>
 			write_wifi_command("provision", 1);
-  401a1a:	2101      	movs	r1, #1
-  401a1c:	4826      	ldr	r0, [pc, #152]	; (401ab8 <main+0x1d4>)
-  401a1e:	4b1c      	ldr	r3, [pc, #112]	; (401a90 <main+0x1ac>)
-  401a20:	4798      	blx	r3
+  401a18:	2101      	movs	r1, #1
+  401a1a:	4828      	ldr	r0, [pc, #160]	; (401abc <main+0x1d8>)
+  401a1c:	4b1d      	ldr	r3, [pc, #116]	; (401a94 <main+0x1b0>)
+  401a1e:	4798      	blx	r3
 			provisioning_flag = false;
-  401a22:	2300      	movs	r3, #0
-  401a24:	7023      	strb	r3, [r4, #0]
+  401a20:	2300      	movs	r3, #0
+  401a22:	7023      	strb	r3, [r4, #0]
 		if (provisioning_flag) // if Wifi Setup button is pressed
-  401a26:	7823      	ldrb	r3, [r4, #0]
-  401a28:	2b00      	cmp	r3, #0
-  401a2a:	d1f6      	bne.n	401a1a <main+0x136>
-  401a2c:	6beb      	ldr	r3, [r5, #60]	; 0x3c
+  401a24:	7823      	ldrb	r3, [r4, #0]
+  401a26:	2b00      	cmp	r3, #0
+  401a28:	d1f6      	bne.n	401a18 <main+0x134>
+  401a2a:	6beb      	ldr	r3, [r5, #60]	; 0x3c
 		else if (capture_ready)
-  401a2e:	f013 0f08 	tst.w	r3, #8
-  401a32:	d0f8      	beq.n	401a26 <main+0x142>
+  401a2c:	f013 0f08 	tst.w	r3, #8
+  401a30:	d0f8      	beq.n	401a24 <main+0x140>
 			start_capture();
-  401a34:	47b0      	blx	r6
+  401a32:	47b0      	blx	r6
 			if (find_len_success)
-  401a36:	4b25      	ldr	r3, [pc, #148]	; (401acc <main+0x1e8>)
-  401a38:	781b      	ldrb	r3, [r3, #0]
-  401a3a:	2b00      	cmp	r3, #0
-  401a3c:	d0f3      	beq.n	401a26 <main+0x142>
+  401a34:	4b26      	ldr	r3, [pc, #152]	; (401ad0 <main+0x1ec>)
+  401a36:	781b      	ldrb	r3, [r3, #0]
+  401a38:	2b00      	cmp	r3, #0
+  401a3a:	d0f3      	beq.n	401a24 <main+0x140>
 			{
 				write_image_to_web();
-  401a3e:	4b24      	ldr	r3, [pc, #144]	; (401ad0 <main+0x1ec>)
-  401a40:	4798      	blx	r3
-  401a42:	e7f0      	b.n	401a26 <main+0x142>
+  401a3c:	4b25      	ldr	r3, [pc, #148]	; (401ad4 <main+0x1f0>)
+  401a3e:	4798      	blx	r3
+  401a40:	e7f0      	b.n	401a24 <main+0x140>
+  401a42:	bf00      	nop
   401a44:	00401115 	.word	0x00401115
   401a48:	400e1450 	.word	0x400e1450
   401a4c:	0040075d 	.word	0x0040075d
@@ -3912,28 +3912,28 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   401a74:	400e1000 	.word	0x400e1000
   401a78:	000d1437 	.word	0x000d1437
   401a7c:	20000001 	.word	0x20000001
-  401a80:	20019678 	.word	0x20019678
-  401a84:	000c3500 	.word	0x000c3500
-  401a88:	00407648 	.word	0x00407648
-  401a8c:	00401bc5 	.word	0x00401bc5
-  401a90:	00400ed9 	.word	0x00400ed9
-  401a94:	00407658 	.word	0x00407658
-  401a98:	0040766c 	.word	0x0040766c
-  401a9c:	00407684 	.word	0x00407684
-  401aa0:	00407694 	.word	0x00407694
-  401aa4:	004076a8 	.word	0x004076a8
-  401aa8:	004076b8 	.word	0x004076b8
-  401aac:	20019594 	.word	0x20019594
-  401ab0:	200195a5 	.word	0x200195a5
-  401ab4:	400e0e00 	.word	0x400e0e00
-  401ab8:	004076cc 	.word	0x004076cc
-  401abc:	004076d8 	.word	0x004076d8
-  401ac0:	004076e0 	.word	0x004076e0
-  401ac4:	0082ca25 	.word	0x0082ca25
-  401ac8:	004009b1 	.word	0x004009b1
-  401acc:	2001915c 	.word	0x2001915c
-  401ad0:	004010d5 	.word	0x004010d5
-  401ad4:	028df2b7 	.word	0x028df2b7
+  401a80:	028df2b7 	.word	0x028df2b7
+  401a84:	20019678 	.word	0x20019678
+  401a88:	000c3500 	.word	0x000c3500
+  401a8c:	00407648 	.word	0x00407648
+  401a90:	00401bc5 	.word	0x00401bc5
+  401a94:	00400ed9 	.word	0x00400ed9
+  401a98:	00407658 	.word	0x00407658
+  401a9c:	0040766c 	.word	0x0040766c
+  401aa0:	00407684 	.word	0x00407684
+  401aa4:	00407694 	.word	0x00407694
+  401aa8:	004076a8 	.word	0x004076a8
+  401aac:	004076b8 	.word	0x004076b8
+  401ab0:	20019594 	.word	0x20019594
+  401ab4:	200195a5 	.word	0x200195a5
+  401ab8:	400e0e00 	.word	0x400e0e00
+  401abc:	004076cc 	.word	0x004076cc
+  401ac0:	004076d8 	.word	0x004076d8
+  401ac4:	004076e0 	.word	0x004076e0
+  401ac8:	0082ca25 	.word	0x0082ca25
+  401acc:	004009b1 	.word	0x004009b1
+  401ad0:	2001915c 	.word	0x2001915c
+  401ad4:	004010d5 	.word	0x004010d5
 
 00401ad8 <__libc_init_array>:
   401ad8:	b570      	push	{r4, r5, r6, lr}
