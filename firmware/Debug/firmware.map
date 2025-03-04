@@ -8009,7 +8009,7 @@ OUTPUT(firmware.elf elf32-littlearm)
  .comment       0x00000059       0x5a src/ASF/sam/utils/syscalls/gcc/syscalls.o
  .comment       0x00000059       0x5a src/main.o
 
-.debug_info     0x00000000    0x1a39a
+.debug_info     0x00000000    0x1a39d
  .debug_info    0x00000000     0x18c9 src/ASF/sam/drivers/pio/pio_handler.o
  .debug_info    0x000018c9     0x11c9 src/ASF/sam/drivers/spi/spi.o
  .debug_info    0x00002a92     0x123c src/ASF/sam/drivers/tc/tc.o
@@ -8020,18 +8020,18 @@ OUTPUT(firmware.elf elf32-littlearm)
  .debug_info    0x00009dc9     0x1ca6 src/ov2640.o
  .debug_info    0x0000ba6f      0xc72 src/ov2640_table_registers.o
  .debug_info    0x0000c6e1     0x10e5 src/timer_interface.o
- .debug_info    0x0000d7c6     0x2711 src/wifi.o
- .debug_info    0x0000fed7      0xa45 src/ASF/common/services/delay/sam/cycle_counter.o
- .debug_info    0x0001091c     0x12c2 src/ASF/common/services/clock/sam4s/sysclk.o
- .debug_info    0x00011bde     0x221d src/ASF/sam/drivers/pio/pio.o
- .debug_info    0x00013dfb     0x19bc src/ASF/sam/drivers/pmc/pmc.o
- .debug_info    0x000157b7     0x1770 src/ASF/common/boards/user_board/init.o
- .debug_info    0x00016f27      0x6d2 src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
- .debug_info    0x000175f9      0x458 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
- .debug_info    0x00017a51      0xdb0 src/ASF/sam/utils/syscalls/gcc/syscalls.o
- .debug_info    0x00018801     0x1b99 src/main.o
+ .debug_info    0x0000d7c6     0x2714 src/wifi.o
+ .debug_info    0x0000feda      0xa45 src/ASF/common/services/delay/sam/cycle_counter.o
+ .debug_info    0x0001091f     0x12c2 src/ASF/common/services/clock/sam4s/sysclk.o
+ .debug_info    0x00011be1     0x221d src/ASF/sam/drivers/pio/pio.o
+ .debug_info    0x00013dfe     0x19bc src/ASF/sam/drivers/pmc/pmc.o
+ .debug_info    0x000157ba     0x1770 src/ASF/common/boards/user_board/init.o
+ .debug_info    0x00016f2a      0x6d2 src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
+ .debug_info    0x000175fc      0x458 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
+ .debug_info    0x00017a54      0xdb0 src/ASF/sam/utils/syscalls/gcc/syscalls.o
+ .debug_info    0x00018804     0x1b99 src/main.o
 
-.debug_abbrev   0x00000000     0x3afc
+.debug_abbrev   0x00000000     0x3ac2
  .debug_abbrev  0x00000000      0x37f src/ASF/sam/drivers/pio/pio_handler.o
  .debug_abbrev  0x0000037f      0x398 src/ASF/sam/drivers/spi/spi.o
  .debug_abbrev  0x00000717      0x293 src/ASF/sam/drivers/tc/tc.o
@@ -8042,16 +8042,16 @@ OUTPUT(firmware.elf elf32-littlearm)
  .debug_abbrev  0x00001739      0x3b0 src/ov2640.o
  .debug_abbrev  0x00001ae9      0x1b4 src/ov2640_table_registers.o
  .debug_abbrev  0x00001c9d      0x2bd src/timer_interface.o
- .debug_abbrev  0x00001f5a      0x45c src/wifi.o
- .debug_abbrev  0x000023b6      0x1b3 src/ASF/common/services/delay/sam/cycle_counter.o
- .debug_abbrev  0x00002569      0x333 src/ASF/common/services/clock/sam4s/sysclk.o
- .debug_abbrev  0x0000289c      0x3ff src/ASF/sam/drivers/pio/pio.o
- .debug_abbrev  0x00002c9b      0x315 src/ASF/sam/drivers/pmc/pmc.o
- .debug_abbrev  0x00002fb0      0x2f0 src/ASF/common/boards/user_board/init.o
- .debug_abbrev  0x000032a0      0x15e src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
- .debug_abbrev  0x000033fe      0x102 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
- .debug_abbrev  0x00003500      0x264 src/ASF/sam/utils/syscalls/gcc/syscalls.o
- .debug_abbrev  0x00003764      0x398 src/main.o
+ .debug_abbrev  0x00001f5a      0x422 src/wifi.o
+ .debug_abbrev  0x0000237c      0x1b3 src/ASF/common/services/delay/sam/cycle_counter.o
+ .debug_abbrev  0x0000252f      0x333 src/ASF/common/services/clock/sam4s/sysclk.o
+ .debug_abbrev  0x00002862      0x3ff src/ASF/sam/drivers/pio/pio.o
+ .debug_abbrev  0x00002c61      0x315 src/ASF/sam/drivers/pmc/pmc.o
+ .debug_abbrev  0x00002f76      0x2f0 src/ASF/common/boards/user_board/init.o
+ .debug_abbrev  0x00003266      0x15e src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
+ .debug_abbrev  0x000033c4      0x102 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
+ .debug_abbrev  0x000034c6      0x264 src/ASF/sam/utils/syscalls/gcc/syscalls.o
+ .debug_abbrev  0x0000372a      0x398 src/main.o
 
 .debug_loc      0x00000000     0x5b16
  .debug_loc     0x00000000      0x531 src/ASF/sam/drivers/pio/pio_handler.o
@@ -8193,7 +8193,7 @@ OUTPUT(firmware.elf elf32-littlearm)
  .debug_macro   0x0000780c      0x122 src/ASF/sam/utils/syscalls/gcc/syscalls.o
  .debug_macro   0x0000792e      0x6ff src/main.o
 
-.debug_line     0x00000000     0xfe7d
+.debug_line     0x00000000     0xfe8d
  .debug_line    0x00000000      0xafe src/ASF/sam/drivers/pio/pio_handler.o
  .debug_line    0x00000afe      0xc8a src/ASF/sam/drivers/spi/spi.o
  .debug_line    0x00001788      0xbd7 src/ASF/sam/drivers/tc/tc.o
@@ -8204,16 +8204,16 @@ OUTPUT(firmware.elf elf32-littlearm)
  .debug_line    0x00005abf      0xdde src/ov2640.o
  .debug_line    0x0000689d      0xbed src/ov2640_table_registers.o
  .debug_line    0x0000748a      0xfae src/timer_interface.o
- .debug_line    0x00008438     0x114b src/wifi.o
- .debug_line    0x00009583      0xa3f src/ASF/common/services/delay/sam/cycle_counter.o
- .debug_line    0x00009fc2      0xbc8 src/ASF/common/services/clock/sam4s/sysclk.o
- .debug_line    0x0000ab8a      0xee8 src/ASF/sam/drivers/pio/pio.o
- .debug_line    0x0000ba72      0xfcf src/ASF/sam/drivers/pmc/pmc.o
- .debug_line    0x0000ca41      0xf92 src/ASF/common/boards/user_board/init.o
- .debug_line    0x0000d9d3      0x80c src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
- .debug_line    0x0000e1df      0x83d src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
- .debug_line    0x0000ea1c      0x40b src/ASF/sam/utils/syscalls/gcc/syscalls.o
- .debug_line    0x0000ee27     0x1056 src/main.o
+ .debug_line    0x00008438     0x115b src/wifi.o
+ .debug_line    0x00009593      0xa3f src/ASF/common/services/delay/sam/cycle_counter.o
+ .debug_line    0x00009fd2      0xbc8 src/ASF/common/services/clock/sam4s/sysclk.o
+ .debug_line    0x0000ab9a      0xee8 src/ASF/sam/drivers/pio/pio.o
+ .debug_line    0x0000ba82      0xfcf src/ASF/sam/drivers/pmc/pmc.o
+ .debug_line    0x0000ca51      0xf92 src/ASF/common/boards/user_board/init.o
+ .debug_line    0x0000d9e3      0x80c src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
+ .debug_line    0x0000e1ef      0x83d src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
+ .debug_line    0x0000ea2c      0x40b src/ASF/sam/utils/syscalls/gcc/syscalls.o
+ .debug_line    0x0000ee37     0x1056 src/main.o
 
 .debug_str      0x00000000    0x53019
  .debug_str     0x00000000    0x4ac4f src/ASF/sam/drivers/pio/pio_handler.o

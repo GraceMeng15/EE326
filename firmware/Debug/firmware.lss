@@ -17,23 +17,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   6 .comment      00000059  00000000  00000000  000209ea  2**0
                   CONTENTS, READONLY
-  7 .debug_info   0001a39a  00000000  00000000  00020a43  2**0
+  7 .debug_info   0001a39d  00000000  00000000  00020a43  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00003afc  00000000  00000000  0003addd  2**0
+  8 .debug_abbrev 00003ac2  00000000  00000000  0003ade0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00005b16  00000000  00000000  0003e8d9  2**0
+  9 .debug_loc    00005b16  00000000  00000000  0003e8a2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_aranges 00000b78  00000000  00000000  000443ef  2**0
+ 10 .debug_aranges 00000b78  00000000  00000000  000443b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000ac0  00000000  00000000  00044f67  2**0
+ 11 .debug_ranges 00000ac0  00000000  00000000  00044f30  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  0000802d  00000000  00000000  00045a27  2**0
+ 12 .debug_macro  0000802d  00000000  00000000  000459f0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   0000fe7d  00000000  00000000  0004da54  2**0
+ 13 .debug_line   0000fe8d  00000000  00000000  0004da1d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00053019  00000000  00000000  0005d8d1  2**0
+ 14 .debug_str    00053019  00000000  00000000  0005d8aa  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_frame  000025d4  00000000  00000000  000b08ec  2**2
+ 15 .debug_frame  000025d4  00000000  00000000  000b08c4  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -2320,7 +2320,6 @@ void wifi_provision_handler(uint32_t ul_id, uint32_t ul_mask)
   400f3c:	00400725 	.word	0x00400725
 
 00400f40 <configure_wifi_provision_pin>:
-	
 }
 
 
@@ -2334,8 +2333,7 @@ void configure_wifi_provision_pin(void)
   400f46:	4b0b      	ldr	r3, [pc, #44]	; (400f74 <configure_wifi_provision_pin+0x34>)
   400f48:	4798      	blx	r3
 
-	/* Initialize PIO interrupt handler, see PIO definition in conf_board.h
-	**/
+	/* Initialize PIO interrupt handler, see PIO definition in conf_board.h **/
 	pio_handler_set(WIFI_SETUP_BUTTON_PIO, WIFI_SETUP_BUTTON_ID, WIFI_SETUP_BUTTON_NUM, WIFI_SETUP_BUTTON_ATTR, wifi_provision_handler);
   400f4a:	4c0b      	ldr	r4, [pc, #44]	; (400f78 <configure_wifi_provision_pin+0x38>)
   400f4c:	4b0b      	ldr	r3, [pc, #44]	; (400f7c <configure_wifi_provision_pin+0x3c>)
@@ -2378,19 +2376,19 @@ static inline uint32_t spi_read_status(Spi *p_spi)
 	return p_spi->SPI_SR;
   400f8c:	4b12      	ldr	r3, [pc, #72]	; (400fd8 <SPI_Handler+0x4c>)
   400f8e:	691b      	ldr	r3, [r3, #16]
-	//times_through_buffer++;
-
-
+	uint32_t new_cmd = 0;
+	static uint16_t data;
+	uint8_t uc_pcs;
 
 	//if status register says "ready" and Receive Data Register Full
-	if (spi_read_status(SPI_SLAVE_BASE) & SPI_SR_RDRF) {
+	if (spi_read_status(SPI_SLAVE_BASE) & SPI_SR_RDRF)
   400f90:	f013 0f01 	tst.w	r3, #1
   400f94:	d100      	bne.n	400f98 <SPI_Handler+0xc>
   400f96:	4770      	bx	lr
-void wifi_spi_handler(void){
+{
   400f98:	b510      	push	{r4, lr}
   400f9a:	b082      	sub	sp, #8
-			
+	{		
 		spi_read(SPI_SLAVE_BASE, &data, &uc_pcs);
   400f9c:	f10d 0207 	add.w	r2, sp, #7
   400fa0:	490e      	ldr	r1, [pc, #56]	; (400fdc <SPI_Handler+0x50>)
@@ -2402,20 +2400,16 @@ void wifi_spi_handler(void){
   400faa:	6813      	ldr	r3, [r2, #0]
   400fac:	3301      	adds	r3, #1
   400fae:	6013      	str	r3, [r2, #0]
-
-		
-		//gs_puc_transfer_buffer[gs_ul_transfer_index] = data;
-			
-		if (gs_ul_transfer_length--) {
+		if (gs_ul_transfer_length--)
   400fb0:	4a0d      	ldr	r2, [pc, #52]	; (400fe8 <SPI_Handler+0x5c>)
   400fb2:	6813      	ldr	r3, [r2, #0]
   400fb4:	1e59      	subs	r1, r3, #1
   400fb6:	6011      	str	r1, [r2, #0]
   400fb8:	b90b      	cbnz	r3, 400fbe <SPI_Handler+0x32>
-		//else if (gs_ul_transfer_index == start_pos + 2) {
-			//second_byte_sent = g_p_uc_cap_dest_buf[gs_ul_transfer_index-1];
-		//}
-		
+		{
+			//transfer one byte of image
+			spi_write(SPI_SLAVE_BASE, g_p_uc_cap_dest_buf[gs_ul_transfer_index++], 0, 0);
+		}
 	}
 }
   400fba:	b002      	add	sp, #8
@@ -2445,12 +2439,12 @@ void wifi_spi_handler(void){
   400ff4:	0040028d 	.word	0x0040028d
 
 00400ff8 <spi_peripheral_initialize>:
-	
 	/* Start waiting command. */
 	prepare_spi_transfer();
 }
 
-void spi_peripheral_initialize(void){
+void spi_peripheral_initialize(void)
+{
   400ff8:	b510      	push	{r4, lr}
 	//Initialize the SPI port as a peripheral (slave) device.
 	spi_enable_clock(SPI_SLAVE_BASE);
@@ -2518,41 +2512,41 @@ static inline void spi_enable_interrupt(Spi *p_spi, uint32_t ul_sources)
   40105c:	004002fd 	.word	0x004002fd
 
 00401060 <prepare_spi_transfer>:
-	
 }
 
-void prepare_spi_transfer(void){
+void prepare_spi_transfer(void)
+{
 	// Set necessary parameters to prepare for SPI transfer.
-	gs_puc_transfer_buffer = g_p_uc_cap_dest_buf;
-  401060:	4a07      	ldr	r2, [pc, #28]	; (401080 <prepare_spi_transfer+0x20>)
-  401062:	4b08      	ldr	r3, [pc, #32]	; (401084 <prepare_spi_transfer+0x24>)
-  401064:	601a      	str	r2, [r3, #0]
-	gs_ul_transfer_index = start_pos;
-  401066:	4b08      	ldr	r3, [pc, #32]	; (401088 <prepare_spi_transfer+0x28>)
-  401068:	681a      	ldr	r2, [r3, #0]
-  40106a:	4b08      	ldr	r3, [pc, #32]	; (40108c <prepare_spi_transfer+0x2c>)
-  40106c:	601a      	str	r2, [r3, #0]
-	gs_ul_transfer_length = image_size+1;
-  40106e:	4b08      	ldr	r3, [pc, #32]	; (401090 <prepare_spi_transfer+0x30>)
-  401070:	681b      	ldr	r3, [r3, #0]
-  401072:	3301      	adds	r3, #1
-  401074:	4a07      	ldr	r2, [pc, #28]	; (401094 <prepare_spi_transfer+0x34>)
-  401076:	6013      	str	r3, [r2, #0]
 	image_sent_flag = 0;
-  401078:	2200      	movs	r2, #0
+  401060:	2200      	movs	r2, #0
+  401062:	4b07      	ldr	r3, [pc, #28]	; (401080 <prepare_spi_transfer+0x20>)
+  401064:	701a      	strb	r2, [r3, #0]
+	gs_puc_transfer_buffer = g_p_uc_cap_dest_buf;
+  401066:	4a07      	ldr	r2, [pc, #28]	; (401084 <prepare_spi_transfer+0x24>)
+  401068:	4b07      	ldr	r3, [pc, #28]	; (401088 <prepare_spi_transfer+0x28>)
+  40106a:	601a      	str	r2, [r3, #0]
+	gs_ul_transfer_length = image_size + 1;
+  40106c:	4b07      	ldr	r3, [pc, #28]	; (40108c <prepare_spi_transfer+0x2c>)
+  40106e:	681b      	ldr	r3, [r3, #0]
+  401070:	3301      	adds	r3, #1
+  401072:	4a07      	ldr	r2, [pc, #28]	; (401090 <prepare_spi_transfer+0x30>)
+  401074:	6013      	str	r3, [r2, #0]
+	gs_ul_transfer_index = start_pos;
+  401076:	4b07      	ldr	r3, [pc, #28]	; (401094 <prepare_spi_transfer+0x34>)
+  401078:	681a      	ldr	r2, [r3, #0]
   40107a:	4b07      	ldr	r3, [pc, #28]	; (401098 <prepare_spi_transfer+0x38>)
-  40107c:	701a      	strb	r2, [r3, #0]
+  40107c:	601a      	str	r2, [r3, #0]
   40107e:	4770      	bx	lr
-  401080:	20000ab4 	.word	0x20000ab4
-  401084:	200195a0 	.word	0x200195a0
-  401088:	20019158 	.word	0x20019158
-  40108c:	20019590 	.word	0x20019590
-  401090:	20000aa4 	.word	0x20000aa4
-  401094:	20019598 	.word	0x20019598
-  401098:	20000ab0 	.word	0x20000ab0
+  401080:	20000ab0 	.word	0x20000ab0
+  401084:	20000ab4 	.word	0x20000ab4
+  401088:	200195a0 	.word	0x200195a0
+  40108c:	20000aa4 	.word	0x20000aa4
+  401090:	20019598 	.word	0x20019598
+  401094:	20019158 	.word	0x20019158
+  401098:	20019590 	.word	0x20019590
 
 0040109c <configure_spi>:
-void configure_spi(void){
+{
   40109c:	b508      	push	{r3, lr}
     NVIC->ICER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
   40109e:	4b0a      	ldr	r3, [pc, #40]	; (4010c8 <configure_spi+0x2c>)
@@ -2582,33 +2576,29 @@ void configure_spi(void){
   4010d0:	00401061 	.word	0x00401061
 
 004010d4 <write_image_to_web>:
-void write_image_to_web(void){
+void write_image_to_web(void)
+{
 	 //Writes an image from the SAM4S8B to the ESP32. If the length of the image is zero 
 	 //(i.e. the image is not valid), return. Otherwise, follow this protocol
 	 //(illustrated in Appendix C):
-	
 	if (image_size == 0)
   4010d4:	4b0a      	ldr	r3, [pc, #40]	; (401100 <write_image_to_web+0x2c>)
   4010d6:	681b      	ldr	r3, [r3, #0]
   4010d8:	b903      	cbnz	r3, 4010dc <write_image_to_web+0x8>
   4010da:	4770      	bx	lr
-void write_image_to_web(void){
+{
   4010dc:	b500      	push	{lr}
   4010de:	b0e5      	sub	sp, #404	; 0x194
+	{
 		return;
 	}
-	
-	//Configure the SPI interface to be ready for a transfer by setting its parameters appropriately.
-	//times_through_buffer = 0;
-	prepare_spi_transfer();
+	else
+	{
+		prepare_spi_transfer();
   4010e0:	4b08      	ldr	r3, [pc, #32]	; (401104 <write_image_to_web+0x30>)
   4010e2:	4798      	blx	r3
-	//image you want to transfer.
-	char* command_buffer[100];
-		//image_size = 1000;
-		//sprintf(command_buffer, "image_transfer %d", image_size); // Full image transfer command
-	// sprintf(command_buffer, "image_test %d", image_size+3); // Test image transfer command
-	sprintf(command_buffer, "image_transfer %d", image_size+3);
+		char* command_buffer[100];
+		sprintf(command_buffer, "image_transfer %d", image_size+3); // sprintf(command_buffer, "image_test %d", image_size+3);
   4010e4:	4b06      	ldr	r3, [pc, #24]	; (401100 <write_image_to_web+0x2c>)
   4010e6:	681a      	ldr	r2, [r3, #0]
   4010e8:	3203      	adds	r2, #3
@@ -2616,15 +2606,12 @@ void write_image_to_web(void){
   4010ec:	4668      	mov	r0, sp
   4010ee:	4b07      	ldr	r3, [pc, #28]	; (40110c <write_image_to_web+0x38>)
   4010f0:	4798      	blx	r3
-	write_wifi_command(command_buffer, 1);
+		write_wifi_command(command_buffer, 1);
   4010f2:	2101      	movs	r1, #1
   4010f4:	4668      	mov	r0, sp
   4010f6:	4b06      	ldr	r3, [pc, #24]	; (401110 <write_image_to_web+0x3c>)
   4010f8:	4798      	blx	r3
-	
-	//The ESP32 will then set the �command complete?pin low and begin transferring the image
-	//over SPI. //After the image is done sending, the ESP32 will set the �command complete?pin high. The
-	//MCU should sense this and then move on.
+	}
   4010fa:	b065      	add	sp, #404	; 0x194
   4010fc:	f85d fb04 	ldr.w	pc, [sp], #4
   401100:	20000aa4 	.word	0x20000aa4
