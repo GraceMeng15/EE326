@@ -309,7 +309,7 @@ void write_image_to_web(void){
 	char* command_buffer[100];
 		//image_size = 1000;
 		//sprintf(command_buffer, "image_transfer %d", image_size); // Full image transfer command
-	sprintf(command_buffer, "image_transfer %d", image_size+3); // Test image transfer command
+	sprintf(command_buffer, "image_test %d", image_size+3); // Test image transfer command
 	write_wifi_command(command_buffer, 1);
 	//while (!image_sent_flag){}
 	//delay_ms(100);

@@ -159,22 +159,6 @@ uint8_t start_capture(void){
 	/* Wait end of capture*/
 	
 	while (!((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)) {}
-	// while (!end_cap)
-	// {
-	// 	delay_ms(10);		// !!! TRY WITHOUT
-	// }
-
-	// #define end_cap ((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)
-	// while (!end_cap)
-	// {
-	// 	delay_ms(10);		// !!! TRY WITHOUT
-	// }
-	// and
-	
-	// while (!((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) ==
-	// 		PIO_PCIMR_RXBUFF)) {
-	// }
-	
 
 	/* Disable pio capture*/
 	pio_capture_disable(OV7740_DATA_BUS_PIO);
@@ -185,7 +169,6 @@ uint8_t start_capture(void){
 	/* Check Size  */
 	len_success = 0;
 	find_image_len();
-	//return len_success;
 	
 }
 
