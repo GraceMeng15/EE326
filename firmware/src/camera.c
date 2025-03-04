@@ -182,26 +182,21 @@ uint8_t find_image_len(void){
 	image_size = 0;
 	image_started = 0;
 	image_ended = 0;
-	uint8_t byte;
+	uint8_t current_byte;
 	uint8_t next_byte;
 	uint8_t complete = 0;
 	
 	for (uint32_t i = 0; i < 100000; ++i){
-		
-		//look for start of image
-		//#ifndef next_byte
-		//
-			//next_byte = g_p_uc_cap_dest_buf[i+1];
-		//#endif
-		byte = g_p_uc_cap_dest_buf[i];
+	
+		current_byte = g_p_uc_cap_dest_buf[i];
 		next_byte = g_p_uc_cap_dest_buf[i+1];
 		
-		if (byte == 0xff && next_byte == 0xd8) {
+		if (current_byte == 0xff && next_byte == 0xd8) {
 			image_started = 1;
 			image_ended = 0;
 			start_pos = i;
 		}
-		else if (byte == 0xff && next_byte == 0xd9 && image_started == 1) {
+		else if (current_byte == 0xff && next_byte == 0xd9 && image_started == 1) {
 			image_ended = 1;
 			end_pos = i+1;
 			len_success = 1;
