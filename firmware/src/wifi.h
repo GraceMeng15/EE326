@@ -4,12 +4,6 @@
  * Created: 2025/2/10 14:30:41
  *  Author: 17713
  */ 
-/*
- * wifi.h
- *
- * Created: 2/5/2023 10:15:35 AM
- *  Author: seanp
- */ 
 
 #ifndef WIFI_H_
 #define WIFI_H_

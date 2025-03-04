@@ -79,7 +79,7 @@
 #define SPI_CHIP_SEL 0 /* Chip select. */
 #define SPI_CHIP_PCS spi_get_pcs(SPI_CHIP_SEL)
 #define SPI_CLK_POLARITY 0 /* Clock polarity. */
-#define SPI_CLK_PHASE 0 /* Clock phase. */
+#define SPI_CLK_PHASE 1 /* Clock phase. */
 #define SPI_DLYBS 0x40 /* Delay before SPCK. */
 #define SPI_DLYBCT 0x10 /* Delay between consecutive transfers. */
 

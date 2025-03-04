@@ -191,18 +191,17 @@ uint8_t find_image_len(void){
 			image_started = 1;
 			start_pos = i;	// => gs_ul_transfer_index
 		}
-		else if (image_started && current_byte == 0xff && next_byte == 0xd9) {
+		else if (image_started && current_byte == 0xff && next_byte == 0xd9) {  
 			end_pos = i+1;
 			find_len_success = 1;
 			break;
 		}
-		//image_size += image_started;
 	}
 	
 	if (find_len_success) {
-        image_size = end_pos - start_pos ;  // Compute the correct image size
+        image_size = end_pos - start_pos - 1 ; 
     } else {
-        image_size = 0;  // Reset if no valid JPEG markers were found
+        image_size = 0;
     }
 	return find_len_success;	// 1 if both SOI and EOI are found
 }
