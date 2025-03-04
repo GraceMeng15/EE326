@@ -271,18 +271,8 @@ void prepare_spi_transfer(void){
 	//Set necessary parameters to prepare for SPI transfer.
 	gs_puc_transfer_buffer = g_p_uc_cap_dest_buf;
 	gs_ul_transfer_index = start_pos;
-	// gs_ul_transfer_length = image_size;
 	gs_ul_transfer_length = image_size+1;
 	image_sent_flag = 0;
-	
-	
-	//char* spi_test[1000];
-	// sprintf(spi_test,"Test");
-	
-	
-	//spi_write(SPI_SLAVE_BASE, gs_puc_transfer_buffer[gs_ul_transfer_index], 0,0);
-	//sprintf(gs_puc_transfer_buffer,)
-	
 }
 
 void write_image_to_web(void){
