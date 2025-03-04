@@ -11,21 +11,15 @@
 #ifndef CONF_BOARD_H
 #define CONF_BOARD_H
 
-//#define CONF_BOARD_UART_CONSOLE /** Enable Com Port. */
-//#define CONSOLE_UART_ID          ID_UART0 /** Usart Hw ID used by the console (UART0). */
-
-//below: conf_board from the OV7740 image sensor example
-//
-//#define CONF_BOARD_OV7740_IMAGE_SENSOR /** Enable OV7740 image sensor. */
-
-//
-//
-/******************************* SPI definition *********************************/
+// -------------------------------------------------------- SPI --------------------------------------------------------
 
 /** Conf_board. */
+// not used?
 #define CONF_BOARD_SPI /** SPI MACRO definition */
 #define CONF_BOARD_SPI_NPCS0 /** SPI slave select MACRO definition */
 #define SPI_ID          ID_SPI  /** Spi Hw ID . */
+
+
 #define SPI_SLAVE_BASE       SPI /** SPI base address for SPI slave mode */
 #define wifi_spi_handler	SPI_Handler
 
@@ -71,11 +65,6 @@
 #define SPI_NPCS0_TYPE                 PIO_PERIPH_A
 #define SPI_NPCS0_ATTR                 PIO_DEFAULT
 
-
-//Wifi buffer config		From Ilya In-Class Example: Wifi input buffer configuration
-//volatile uint8_t USART_INPUT_MAX_LEN = 1000;
-#define MAX_LENGTH 1000 //image length for buffer
-
 #define SPI_CHIP_SEL 0 /* Chip select. */
 #define SPI_CHIP_PCS spi_get_pcs(SPI_CHIP_SEL)
 #define SPI_CLK_POLARITY 0 /* Clock polarity. */
@@ -110,7 +99,7 @@
 #define SPI_BAUDRATE		800000 /* SPi baudrate, used in UART command to ESP32 to set the SPI baudrate (wow crazy) */
 
 
-/******************************* TWI definition*********************************/
+// -------------------------------------------------------- TWI --------------------------------------------------------
 
 /** TWI0 pins */
 #define PINS_TWI0                      PIN_TWI_TWD0, PIN_TWI_TWCK0
@@ -151,7 +140,7 @@
 #define PIN_PCK1                       (PIO_PA17_IDX)
 #define PIN_PCK1_FLAGS                 (PIO_PERIPH_B | PIO_DEFAULT)
 
-/******************************* OV definition*********************************/
+// -------------------------------------------------------- Camera --------------------------------------------------------
 
 
 /* Image sensor board defines. */
@@ -213,9 +202,7 @@
 
 
 
-/******************************* USART definition*********************************/
-
-
+// -------------------------------------------------------- USART --------------------------------------------------------
 #define WIFI_ID_USART				ID_USART0
 #define WIFI_USART					USART0
 #define WIFI_USART_BAUDRATE		115200
@@ -234,34 +221,34 @@
 #define PIN_USART0_TXD_IDX        (PIO_PA6_IDX)
 #define PIN_USART0_TXD_FLAGS      (PIO_PERIPH_A | PIO_PULLUP)
 
-// Wifi COMM Pin definitions
+// Wifi: COMM
 #define WIFI_COMM_PIN_NUM			PIO_PA9
 #define WIFI_COMM_PIO				PIOA
 #define WIFI_COMM_ID				ID_PIOA
 #define WIFI_COMM_MASK				PIO_PA9_IDX
 #define WIFI_COMM_ATTR				PIO_IT_RISE_EDGE
 
-// Wifi NET Pin definitions
+// Wifi: NET
 #define WIFI_NET_PIN_NUM			PIO_PA10
 #define WIFI_NET_PIO				PIOA
 #define WIFI_NET_ID					ID_PIOA
 #define WIFI_NET_MASK				PIO_PA10_IDX
 #define WIFI_NET_ATTR				PIO_IT_RISE_EDGE
 
-// CLIENT_PIN config
+// Wifi: CLIENT
 #define WIFI_CLIENT_PIN_MASK			PIO_PB3_IDX
 #define WIFI_CLIENT_PIN_ID				ID_PIOB
 #define WIFI_CLIENT_PIN_PIO				PIOB
 #define WIFI_CLIENT_PIN_NUM				PIO_PB3
-#define WIFI_CLIENT_PIN_ATTR			PIO_IT_RISE_EDGE //Double-check this
+#define WIFI_CLIENT_PIN_ATTR			PIO_IT_RISE_EDGE
 
-// RESET ESP32 Control pin
+// WIFI: RESET
 #define WIFI_RESET_MASK					PIO_PB0_IDX
 #define WIFI_RESET_ID					ID_PIOB
 #define WIFI_RESET_PIO					PIOB
 #define WIFI_RESET_NUM					PIO_PB0
 
-// WIFI_SETUP Pushbutton pin
+// WIFI: SETUP Button
 #define WIFI_SETUP_BUTTON_MASK			PIO_PB14_IDX
 #define WIFI_SETUP_BUTTON_ID            ID_PIOB
 #define WIFI_SETUP_BUTTON_PIO           PIOB
