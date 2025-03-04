@@ -16,7 +16,7 @@
 uint32_t ul_id, ul_mask, ul_size; // For interrupts
 uint8_t *uc_buf;    //buffer to store the image in
 Pio *p_pio;
-uint8_t len_success;
+uint8_t find_len_success;
 
 volatile uint32_t image_size;
 volatile uint32_t start_pos;
