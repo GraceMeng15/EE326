@@ -390,7 +390,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x3ca src/ASF/common/services/serial/usart_serial.o
  .debug_macro   0x00000000       0x46 src/ASF/common/services/serial/usart_serial.o
  .debug_macro   0x00000000      0x2df src/ASF/common/services/serial/usart_serial.o
- .debug_macro   0x00000000      0x457 src/ASF/common/services/serial/usart_serial.o
+ .debug_macro   0x00000000      0x465 src/ASF/common/services/serial/usart_serial.o
  .debug_macro   0x00000000       0x58 src/ASF/common/services/serial/usart_serial.o
  .debug_macro   0x00000000       0x82 src/ASF/common/services/serial/usart_serial.o
  .debug_macro   0x00000000       0x46 src/ASF/common/services/serial/usart_serial.o
@@ -398,7 +398,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x1c src/ASF/common/services/serial/usart_serial.o
  .debug_macro   0x00000000       0x2e src/ASF/common/services/serial/usart_serial.o
  .debug_line    0x00000000      0xc79 src/ASF/common/services/serial/usart_serial.o
- .debug_str     0x00000000    0x4d036 src/ASF/common/services/serial/usart_serial.o
+ .debug_str     0x00000000    0x4d075 src/ASF/common/services/serial/usart_serial.o
  .comment       0x00000000       0x5a src/ASF/common/services/serial/usart_serial.o
  .debug_frame   0x00000000       0x7c src/ASF/common/services/serial/usart_serial.o
  .ARM.attributes
@@ -647,7 +647,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x3ca src/ASF/common/services/spi/sam_spi/spi_master.o
  .debug_macro   0x00000000       0x46 src/ASF/common/services/spi/sam_spi/spi_master.o
  .debug_macro   0x00000000      0x2df src/ASF/common/services/spi/sam_spi/spi_master.o
- .debug_macro   0x00000000      0x457 src/ASF/common/services/spi/sam_spi/spi_master.o
+ .debug_macro   0x00000000      0x465 src/ASF/common/services/spi/sam_spi/spi_master.o
  .debug_macro   0x00000000       0x58 src/ASF/common/services/spi/sam_spi/spi_master.o
  .debug_macro   0x00000000       0x82 src/ASF/common/services/spi/sam_spi/spi_master.o
  .debug_macro   0x00000000       0x46 src/ASF/common/services/spi/sam_spi/spi_master.o
@@ -656,7 +656,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x28 src/ASF/common/services/spi/sam_spi/spi_master.o
  .debug_macro   0x00000000       0x2e src/ASF/common/services/spi/sam_spi/spi_master.o
  .debug_line    0x00000000      0xd2f src/ASF/common/services/spi/sam_spi/spi_master.o
- .debug_str     0x00000000    0x4d3ed src/ASF/common/services/spi/sam_spi/spi_master.o
+ .debug_str     0x00000000    0x4d42c src/ASF/common/services/spi/sam_spi/spi_master.o
  .comment       0x00000000       0x5a src/ASF/common/services/spi/sam_spi/spi_master.o
  .debug_frame   0x00000000      0x108 src/ASF/common/services/spi/sam_spi/spi_master.o
  .ARM.attributes
@@ -1838,7 +1838,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x3ca src/ASF/sam/drivers/spi/spi.o
  .debug_macro   0x00000000       0x46 src/ASF/sam/drivers/spi/spi.o
  .debug_macro   0x00000000      0x2df src/ASF/sam/drivers/spi/spi.o
- .debug_macro   0x00000000      0x457 src/ASF/sam/drivers/spi/spi.o
+ .debug_macro   0x00000000      0x465 src/ASF/sam/drivers/spi/spi.o
  .debug_macro   0x00000000       0x58 src/ASF/sam/drivers/spi/spi.o
  .debug_macro   0x00000000       0x82 src/ASF/sam/drivers/spi/spi.o
  .debug_macro   0x00000000       0x46 src/ASF/sam/drivers/spi/spi.o
@@ -3391,7 +3391,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x73 src/camera.o
  .debug_macro   0x00000000       0x3e src/camera.o
  .debug_macro   0x00000000      0x3ca src/camera.o
- .debug_macro   0x00000000      0x457 src/camera.o
+ .debug_macro   0x00000000      0x465 src/camera.o
  .debug_macro   0x00000000       0x46 src/camera.o
  .debug_macro   0x00000000      0x2df src/camera.o
  .debug_macro   0x00000000       0x58 src/camera.o
@@ -3645,7 +3645,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x3e src/ov2640.o
  .debug_macro   0x00000000      0x3ca src/ov2640.o
  .debug_macro   0x00000000      0x2df src/ov2640.o
- .debug_macro   0x00000000      0x457 src/ov2640.o
+ .debug_macro   0x00000000      0x465 src/ov2640.o
  .debug_macro   0x00000000       0x4c src/ov2640.o
  .debug_macro   0x00000000       0x46 src/ov2640.o
  .debug_macro   0x00000000       0x58 src/ov2640.o
@@ -3879,7 +3879,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x73 src/ov2640_table_registers.o
  .debug_macro   0x00000000       0x3e src/ov2640_table_registers.o
  .debug_macro   0x00000000      0x3ca src/ov2640_table_registers.o
- .debug_macro   0x00000000      0x457 src/ov2640_table_registers.o
+ .debug_macro   0x00000000      0x465 src/ov2640_table_registers.o
  .debug_macro   0x00000000       0x4c src/ov2640_table_registers.o
  .debug_macro   0x00000000       0x46 src/ov2640_table_registers.o
  .debug_macro   0x00000000       0x58 src/ov2640_table_registers.o
@@ -4124,7 +4124,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x73 src/timer_interface.o
  .debug_macro   0x00000000       0x3e src/timer_interface.o
  .debug_macro   0x00000000      0x3ca src/timer_interface.o
- .debug_macro   0x00000000      0x457 src/timer_interface.o
+ .debug_macro   0x00000000      0x465 src/timer_interface.o
  .debug_macro   0x00000000       0x46 src/timer_interface.o
  .debug_macro   0x00000000      0x2df src/timer_interface.o
  .debug_macro   0x00000000       0x58 src/timer_interface.o
@@ -4384,7 +4384,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x73 src/wifi.o
  .debug_macro   0x00000000       0x3e src/wifi.o
  .debug_macro   0x00000000      0x3ca src/wifi.o
- .debug_macro   0x00000000      0x457 src/wifi.o
+ .debug_macro   0x00000000      0x465 src/wifi.o
  .debug_macro   0x00000000       0x46 src/wifi.o
  .debug_macro   0x00000000      0x2df src/wifi.o
  .debug_macro   0x00000000       0x58 src/wifi.o
@@ -4848,7 +4848,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x3e src/ASF/common/services/clock/sam4s/sysclk.o
  .debug_macro   0x00000000      0x3ca src/ASF/common/services/clock/sam4s/sysclk.o
  .debug_macro   0x00000000      0x2d9 src/ASF/common/services/clock/sam4s/sysclk.o
- .debug_macro   0x00000000      0x457 src/ASF/common/services/clock/sam4s/sysclk.o
+ .debug_macro   0x00000000      0x465 src/ASF/common/services/clock/sam4s/sysclk.o
  .debug_macro   0x00000000       0x58 src/ASF/common/services/clock/sam4s/sysclk.o
  .debug_macro   0x00000000       0x82 src/ASF/common/services/clock/sam4s/sysclk.o
  .debug_macro   0x00000000       0x46 src/ASF/common/services/clock/sam4s/sysclk.o
@@ -5701,9 +5701,9 @@ Discarded input sections
  .debug_macro   0x00000000       0x34 src/ASF/sam/drivers/pmc/sleep.o
  .debug_macro   0x00000000       0x58 src/ASF/sam/drivers/pmc/sleep.o
  .debug_macro   0x00000000      0x2df src/ASF/sam/drivers/pmc/sleep.o
- .debug_macro   0x00000000      0x457 src/ASF/sam/drivers/pmc/sleep.o
+ .debug_macro   0x00000000      0x465 src/ASF/sam/drivers/pmc/sleep.o
  .debug_line    0x00000000      0xbb3 src/ASF/sam/drivers/pmc/sleep.o
- .debug_str     0x00000000    0x4c7eb src/ASF/sam/drivers/pmc/sleep.o
+ .debug_str     0x00000000    0x4c82a src/ASF/sam/drivers/pmc/sleep.o
  .comment       0x00000000       0x5a src/ASF/sam/drivers/pmc/sleep.o
  .debug_frame   0x00000000       0x68 src/ASF/sam/drivers/pmc/sleep.o
  .ARM.attributes
@@ -5941,7 +5941,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x73 src/ASF/common/boards/user_board/init.o
  .debug_macro   0x00000000       0x3e src/ASF/common/boards/user_board/init.o
  .debug_macro   0x00000000      0x3ca src/ASF/common/boards/user_board/init.o
- .debug_macro   0x00000000      0x457 src/ASF/common/boards/user_board/init.o
+ .debug_macro   0x00000000      0x465 src/ASF/common/boards/user_board/init.o
  .debug_macro   0x00000000       0x46 src/ASF/common/boards/user_board/init.o
  .debug_macro   0x00000000      0x2df src/ASF/common/boards/user_board/init.o
  .debug_macro   0x00000000       0x58 src/ASF/common/boards/user_board/init.o
@@ -6783,7 +6783,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x73 src/main.o
  .debug_macro   0x00000000       0x3e src/main.o
  .debug_macro   0x00000000      0x3ca src/main.o
- .debug_macro   0x00000000      0x457 src/main.o
+ .debug_macro   0x00000000      0x465 src/main.o
  .debug_macro   0x00000000       0x46 src/main.o
  .debug_macro   0x00000000      0x2df src/main.o
  .debug_macro   0x00000000       0x58 src/main.o
@@ -8009,7 +8009,7 @@ OUTPUT(firmware.elf elf32-littlearm)
  .comment       0x00000059       0x5a src/ASF/sam/utils/syscalls/gcc/syscalls.o
  .comment       0x00000059       0x5a src/main.o
 
-.debug_info     0x00000000    0x1a39c
+.debug_info     0x00000000    0x1a39a
  .debug_info    0x00000000     0x18c9 src/ASF/sam/drivers/pio/pio_handler.o
  .debug_info    0x000018c9     0x11c9 src/ASF/sam/drivers/spi/spi.o
  .debug_info    0x00002a92     0x123c src/ASF/sam/drivers/tc/tc.o
@@ -8020,18 +8020,18 @@ OUTPUT(firmware.elf elf32-littlearm)
  .debug_info    0x00009dc9     0x1ca6 src/ov2640.o
  .debug_info    0x0000ba6f      0xc72 src/ov2640_table_registers.o
  .debug_info    0x0000c6e1     0x10e5 src/timer_interface.o
- .debug_info    0x0000d7c6     0x2713 src/wifi.o
- .debug_info    0x0000fed9      0xa45 src/ASF/common/services/delay/sam/cycle_counter.o
- .debug_info    0x0001091e     0x12c2 src/ASF/common/services/clock/sam4s/sysclk.o
- .debug_info    0x00011be0     0x221d src/ASF/sam/drivers/pio/pio.o
- .debug_info    0x00013dfd     0x19bc src/ASF/sam/drivers/pmc/pmc.o
- .debug_info    0x000157b9     0x1770 src/ASF/common/boards/user_board/init.o
- .debug_info    0x00016f29      0x6d2 src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
- .debug_info    0x000175fb      0x458 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
- .debug_info    0x00017a53      0xdb0 src/ASF/sam/utils/syscalls/gcc/syscalls.o
- .debug_info    0x00018803     0x1b99 src/main.o
+ .debug_info    0x0000d7c6     0x2711 src/wifi.o
+ .debug_info    0x0000fed7      0xa45 src/ASF/common/services/delay/sam/cycle_counter.o
+ .debug_info    0x0001091c     0x12c2 src/ASF/common/services/clock/sam4s/sysclk.o
+ .debug_info    0x00011bde     0x221d src/ASF/sam/drivers/pio/pio.o
+ .debug_info    0x00013dfb     0x19bc src/ASF/sam/drivers/pmc/pmc.o
+ .debug_info    0x000157b7     0x1770 src/ASF/common/boards/user_board/init.o
+ .debug_info    0x00016f27      0x6d2 src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
+ .debug_info    0x000175f9      0x458 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
+ .debug_info    0x00017a51      0xdb0 src/ASF/sam/utils/syscalls/gcc/syscalls.o
+ .debug_info    0x00018801     0x1b99 src/main.o
 
-.debug_abbrev   0x00000000     0x3b0b
+.debug_abbrev   0x00000000     0x3afc
  .debug_abbrev  0x00000000      0x37f src/ASF/sam/drivers/pio/pio_handler.o
  .debug_abbrev  0x0000037f      0x398 src/ASF/sam/drivers/spi/spi.o
  .debug_abbrev  0x00000717      0x293 src/ASF/sam/drivers/tc/tc.o
@@ -8042,16 +8042,16 @@ OUTPUT(firmware.elf elf32-littlearm)
  .debug_abbrev  0x00001739      0x3b0 src/ov2640.o
  .debug_abbrev  0x00001ae9      0x1b4 src/ov2640_table_registers.o
  .debug_abbrev  0x00001c9d      0x2bd src/timer_interface.o
- .debug_abbrev  0x00001f5a      0x46b src/wifi.o
- .debug_abbrev  0x000023c5      0x1b3 src/ASF/common/services/delay/sam/cycle_counter.o
- .debug_abbrev  0x00002578      0x333 src/ASF/common/services/clock/sam4s/sysclk.o
- .debug_abbrev  0x000028ab      0x3ff src/ASF/sam/drivers/pio/pio.o
- .debug_abbrev  0x00002caa      0x315 src/ASF/sam/drivers/pmc/pmc.o
- .debug_abbrev  0x00002fbf      0x2f0 src/ASF/common/boards/user_board/init.o
- .debug_abbrev  0x000032af      0x15e src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
- .debug_abbrev  0x0000340d      0x102 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
- .debug_abbrev  0x0000350f      0x264 src/ASF/sam/utils/syscalls/gcc/syscalls.o
- .debug_abbrev  0x00003773      0x398 src/main.o
+ .debug_abbrev  0x00001f5a      0x45c src/wifi.o
+ .debug_abbrev  0x000023b6      0x1b3 src/ASF/common/services/delay/sam/cycle_counter.o
+ .debug_abbrev  0x00002569      0x333 src/ASF/common/services/clock/sam4s/sysclk.o
+ .debug_abbrev  0x0000289c      0x3ff src/ASF/sam/drivers/pio/pio.o
+ .debug_abbrev  0x00002c9b      0x315 src/ASF/sam/drivers/pmc/pmc.o
+ .debug_abbrev  0x00002fb0      0x2f0 src/ASF/common/boards/user_board/init.o
+ .debug_abbrev  0x000032a0      0x15e src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
+ .debug_abbrev  0x000033fe      0x102 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
+ .debug_abbrev  0x00003500      0x264 src/ASF/sam/utils/syscalls/gcc/syscalls.o
+ .debug_abbrev  0x00003764      0x398 src/main.o
 
 .debug_loc      0x00000000     0x5b16
  .debug_loc     0x00000000      0x531 src/ASF/sam/drivers/pio/pio_handler.o
@@ -8215,47 +8215,47 @@ OUTPUT(firmware.elf elf32-littlearm)
  .debug_line    0x0000ea1c      0x40b src/ASF/sam/utils/syscalls/gcc/syscalls.o
  .debug_line    0x0000ee27     0x1056 src/main.o
 
-.debug_str      0x00000000    0x52fd4
+.debug_str      0x00000000    0x53019
  .debug_str     0x00000000    0x4ac4f src/ASF/sam/drivers/pio/pio_handler.o
                               0x4b109 (size before relaxing)
- .debug_str     0x0004ac4f     0x2a15 src/ASF/sam/drivers/spi/spi.o
-                              0x4cffa (size before relaxing)
- .debug_str     0x0004d664      0x374 src/ASF/sam/drivers/tc/tc.o
+ .debug_str     0x0004ac4f     0x2a54 src/ASF/sam/drivers/spi/spi.o
+                              0x4d039 (size before relaxing)
+ .debug_str     0x0004d6a3      0x374 src/ASF/sam/drivers/tc/tc.o
                               0x4a950 (size before relaxing)
- .debug_str     0x0004d9d8      0x51e src/ASF/sam/drivers/twi/twi.o
+ .debug_str     0x0004da17      0x51e src/ASF/sam/drivers/twi/twi.o
                               0x4ab30 (size before relaxing)
- .debug_str     0x0004def6      0x94e src/ASF/sam/drivers/usart/usart.o
+ .debug_str     0x0004df35      0x94e src/ASF/sam/drivers/usart/usart.o
                               0x4afea (size before relaxing)
- .debug_str     0x0004e844      0x12a src/ASF/sam/drivers/wdt/wdt.o
+ .debug_str     0x0004e883      0x12a src/ASF/sam/drivers/wdt/wdt.o
                               0x4a6ec (size before relaxing)
- .debug_str     0x0004e96e     0x25de src/camera.o
-                              0x4fe85 (size before relaxing)
- .debug_str     0x00050f4c      0x1dd src/ov2640.o
-                              0x4f100 (size before relaxing)
- .debug_str     0x00051129       0x20 src/ov2640_table_registers.o
-                              0x4e8bd (size before relaxing)
- .debug_str     0x00051149       0x66 src/timer_interface.o
-                              0x4e065 (size before relaxing)
- .debug_str     0x000511af      0x42c src/wifi.o
-                              0x501e0 (size before relaxing)
- .debug_str     0x000515db       0x35 src/ASF/common/services/delay/sam/cycle_counter.o
+ .debug_str     0x0004e9ad     0x25de src/camera.o
+                              0x4fec4 (size before relaxing)
+ .debug_str     0x00050f8b      0x1dd src/ov2640.o
+                              0x4f13f (size before relaxing)
+ .debug_str     0x00051168       0x20 src/ov2640_table_registers.o
+                              0x4e8fc (size before relaxing)
+ .debug_str     0x00051188       0x66 src/timer_interface.o
+                              0x4e0a4 (size before relaxing)
+ .debug_str     0x000511ee      0x432 src/wifi.o
+                              0x50225 (size before relaxing)
+ .debug_str     0x00051620       0x35 src/ASF/common/services/delay/sam/cycle_counter.o
                               0x4a765 (size before relaxing)
- .debug_str     0x00051610      0x271 src/ASF/common/services/clock/sam4s/sysclk.o
-                              0x4cf92 (size before relaxing)
- .debug_str     0x00051881      0x467 src/ASF/sam/drivers/pio/pio.o
+ .debug_str     0x00051655      0x271 src/ASF/common/services/clock/sam4s/sysclk.o
+                              0x4cfd1 (size before relaxing)
+ .debug_str     0x000518c6      0x467 src/ASF/sam/drivers/pio/pio.o
                               0x4b205 (size before relaxing)
- .debug_str     0x00051ce8      0x58a src/ASF/sam/drivers/pmc/pmc.o
+ .debug_str     0x00051d2d      0x58a src/ASF/sam/drivers/pmc/pmc.o
                               0x4b051 (size before relaxing)
- .debug_str     0x00052272       0xc3 src/ASF/common/boards/user_board/init.o
-                              0x4e0ea (size before relaxing)
- .debug_str     0x00052335      0x428 src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
+ .debug_str     0x000522b7       0xc3 src/ASF/common/boards/user_board/init.o
+                              0x4e129 (size before relaxing)
+ .debug_str     0x0005237a      0x428 src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
                               0x3a207 (size before relaxing)
- .debug_str     0x0005275d       0xb9 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
+ .debug_str     0x000527a2       0xb9 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
                               0x39fac (size before relaxing)
- .debug_str     0x00052816      0x77b src/ASF/sam/utils/syscalls/gcc/syscalls.o
+ .debug_str     0x0005285b      0x77b src/ASF/sam/utils/syscalls/gcc/syscalls.o
                                0x740c (size before relaxing)
- .debug_str     0x00052f91       0x43 src/main.o
-                              0x4fa9d (size before relaxing)
+ .debug_str     0x00052fd6       0x43 src/main.o
+                              0x4fadc (size before relaxing)
 
 .debug_frame    0x00000000     0x25d4
  .debug_frame   0x00000000       0xdc src/ASF/sam/drivers/pio/pio_handler.o

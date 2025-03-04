@@ -168,16 +168,6 @@
 #define OV7740_DATA_BUS_PIO            OV_DATA_BUS_PIO
 #define OV7740_DATA_BUS_ID             OV_DATA_BUS_ID
 
-
-// Board-level Pin Definitions
-/** OV_SW_OVT pin definition */
-//#define OV_SW_OVT_GPIO                 PIO_PC10_IDX
-//#define OV_SW_OVT_FLAGS                (PIO_OUTPUT_1 | PIO_DEFAULT)
-//#define OV_SW_OVT_MASK                 PIO_PC10
-//#define OV_SW_OVT_PIO                  PIOC
-//#define OV_SW_OVT_ID                   ID_PIOC
-//#define OV_SW_OVT_TYPE                 PIO_OUTPUT_1
-
 /** OV_RST pin definition */
 #define OV_RST_GPIO                    PIO_PA20_IDX
 #define OV_RST_FLAGS                   (PIO_OUTPUT_1 | PIO_DEFAULT)
@@ -186,21 +176,13 @@
 #define OV_RST_ID                      ID_PIOC
 #define OV_RST_TYPE                    PIO_OUTPUT_1
 
-/** OV_FSIN definition */
-//#define OV_FSIN_GPIO                   PIO_PA21_IDX
-//#define OV_FSIN_FLAGS                  (PIO_OUTPUT_0 | PIO_DEFAULT)
-//#define OV_FSIN_MASK                   PIO_PA21
-//#define OV_FSIN_PIO                    PIOA
-//#define OV_FSIN_ID                     ID_PIOA
-//#define OV_FSIN_TYPE                   PIO_OUTPUT_0
-
-/** OV_HSYNC pin definition */
-#define OV_HSYNC_GPIO                  PIO_PA16_IDX
-#define OV_HSYNC_FLAGS                 (PIO_PULLUP | PIO_IT_RISE_EDGE)
-#define OV_HSYNC_MASK                  PIO_PA16
-#define OV_HSYNC_PIO                   PIOA
-#define OV_HSYNC_ID                    ID_PIOA
-#define OV_HSYNC_TYPE                  PIO_PULLUP
+/** OV_HREF pin definition */
+#define OV_HREF_GPIO                  PIO_PA16_IDX
+#define OV_HREF_FLAGS                 (PIO_PULLUP | PIO_IT_RISE_EDGE)
+#define OV_HREF_MASK                  PIO_PA16
+#define OV_HREF_PIO                   PIOA
+#define OV_HREF_ID                    ID_PIOA
+#define OV_HREF_TYPE                  PIO_PULLUP
 
 /** OV_VSYNC pin definition */
 #define OV_VSYNC_GPIO                  PIO_PA15_IDX
@@ -264,14 +246,14 @@
 #define WIFI_NET_PIO				PIOA
 #define WIFI_NET_ID					ID_PIOA
 #define WIFI_NET_MASK				PIO_PA10_IDX
-//#define WIFI_NET_ATTR				PIO_IT_RISE_EDGE
+#define WIFI_NET_ATTR				PIO_IT_RISE_EDGE
 
 // CLIENT_PIN config
 #define WIFI_CLIENT_PIN_MASK			PIO_PB3_IDX
 #define WIFI_CLIENT_PIN_ID				ID_PIOB
 #define WIFI_CLIENT_PIN_PIO				PIOB
 #define WIFI_CLIENT_PIN_NUM				PIO_PB3
-//#define WIFI_CLIENT_PIN_ATTR			PIO_IT_RISE_EDGE //Double-check this
+#define WIFI_CLIENT_PIN_ATTR			PIO_IT_RISE_EDGE //Double-check this
 
 // RESET ESP32 Control pin
 #define WIFI_RESET_MASK					PIO_PB0_IDX

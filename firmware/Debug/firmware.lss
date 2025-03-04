@@ -17,23 +17,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   6 .comment      00000059  00000000  00000000  000209ea  2**0
                   CONTENTS, READONLY
-  7 .debug_info   0001a39c  00000000  00000000  00020a43  2**0
+  7 .debug_info   0001a39a  00000000  00000000  00020a43  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00003b0b  00000000  00000000  0003addf  2**0
+  8 .debug_abbrev 00003afc  00000000  00000000  0003addd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00005b16  00000000  00000000  0003e8ea  2**0
+  9 .debug_loc    00005b16  00000000  00000000  0003e8d9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_aranges 00000b78  00000000  00000000  00044400  2**0
+ 10 .debug_aranges 00000b78  00000000  00000000  000443ef  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000ac0  00000000  00000000  00044f78  2**0
+ 11 .debug_ranges 00000ac0  00000000  00000000  00044f67  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_macro  0000802d  00000000  00000000  00045a38  2**0
+ 12 .debug_macro  0000802d  00000000  00000000  00045a27  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   0000fe7d  00000000  00000000  0004da65  2**0
+ 13 .debug_line   0000fe7d  00000000  00000000  0004da54  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00052fd4  00000000  00000000  0005d8e2  2**0
+ 14 .debug_str    00053019  00000000  00000000  0005d8d1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_frame  000025d4  00000000  00000000  000b08b8  2**2
+ 15 .debug_frame  000025d4  00000000  00000000  000b08ec  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1155,7 +1155,7 @@ void pio_capture_init(Pio *p_pio, uint32_t ul_id){
   400866:	f043 0320 	orr.w	r3, r3, #32
   40086a:	f8c4 3150 	str.w	r3, [r4, #336]	; 0x150
 
-	/* Only HSYNC and VSYNC enabled */
+	/* Only HREF and VSYNC enabled */
 	p_pio->PIO_PCMR &= ~((uint32_t)PIO_PCMR_ALWYS);
   40086e:	f8d4 3150 	ldr.w	r3, [r4, #336]	; 0x150
   400872:	f423 7300 	bic.w	r3, r3, #512	; 0x200
@@ -2287,11 +2287,11 @@ void wifi_provision_handler(uint32_t ul_id, uint32_t ul_mask)
   400efc:	480e      	ldr	r0, [pc, #56]	; (400f38 <write_wifi_command+0x60>)
   400efe:	4b0f      	ldr	r3, [pc, #60]	; (400f3c <write_wifi_command+0x64>)
   400f00:	4798      	blx	r3
-		if (counts >= cnt)
+		if (counts >= total)
   400f02:	4a08      	ldr	r2, [pc, #32]	; (400f24 <write_wifi_command+0x4c>)
 		else if (command_flag)
   400f04:	4908      	ldr	r1, [pc, #32]	; (400f28 <write_wifi_command+0x50>)
-		if (counts >= cnt)
+		if (counts >= total)
   400f06:	7813      	ldrb	r3, [r2, #0]
   400f08:	b2db      	uxtb	r3, r3
   400f0a:	42a3      	cmp	r3, r4
@@ -3198,7 +3198,7 @@ void board_init(void)
   401574:	f04f 5160 	mov.w	r1, #939524096	; 0x38000000
   401578:	2014      	movs	r0, #20
   40157a:	47a0      	blx	r4
-	gpio_configure_pin(OV_HSYNC_GPIO, OV_HSYNC_FLAGS);
+	gpio_configure_pin(OV_HREF_GPIO, OV_HREF_FLAGS);
   40157c:	2171      	movs	r1, #113	; 0x71
   40157e:	2010      	movs	r0, #16
   401580:	47a0      	blx	r4

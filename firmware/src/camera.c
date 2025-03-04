@@ -104,7 +104,7 @@ void pio_capture_init(Pio *p_pio, uint32_t ul_id){
 	p_pio->PIO_PCMR &= ~((uint32_t)PIO_PCMR_DSIZE_Msk);
 	p_pio->PIO_PCMR |= PIO_PCMR_DSIZE_WORD;
 
-	/* Only HSYNC and VSYNC enabled */
+	/* Only HREF and VSYNC enabled */
 	p_pio->PIO_PCMR &= ~((uint32_t)PIO_PCMR_ALWYS);
 	p_pio->PIO_PCMR &= ~((uint32_t)PIO_PCMR_HALFS);
 }

@@ -24,7 +24,7 @@ void board_init(void)
 		
 	// Data Bus and Camera Utility Pin config
 	gpio_configure_pin(OV_RST_GPIO, OV_RST_TYPE);
-	gpio_configure_pin(OV_HSYNC_GPIO, OV_HSYNC_FLAGS);
+	gpio_configure_pin(OV_HREF_GPIO, OV_HREF_FLAGS);
 	gpio_configure_pin(OV_VSYNC_GPIO, OV_VSYNC_FLAGS);
 	gpio_configure_pin(OV_DATA_BUS_D2, OV_DATA_BUS_FLAGS);
 	gpio_configure_pin(OV_DATA_BUS_D3, OV_DATA_BUS_FLAGS);

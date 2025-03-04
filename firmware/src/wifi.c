@@ -125,11 +125,8 @@ void configure_wifi_comm_pin(void)
 }
 
 
-void write_wifi_command(char* comm, uint8_t cnt) //TODO: Implement timeout mechanism
+void write_wifi_command(char* comm, uint8_t total)
 {
-	/* Writes a command (comm) to the ESP32, and waits either for an acknowledgment or a timeout. The timeout can be
-	 created by setting the global variable counts to zero, which will automatically increment every second, and waiting
-	while counts < cnt. */
 	counts = 0;
 	command_flag = false;
 	ioport_set_pin_level(LED_PIN2, 1);
@@ -138,7 +135,7 @@ void write_wifi_command(char* comm, uint8_t cnt) //TODO: Implement timeout mecha
 	usart_write_line(WIFI_USART, wifi_buff);
 	while (true)
 	{
-		if (counts >= cnt)
+		if (counts >= total)
 		{
 			break;
 		}
