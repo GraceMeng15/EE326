@@ -200,7 +200,7 @@ uint8_t find_image_len(void){
 	}
 	
 	if (find_len_success) {
-        image_size = end_pos - start_pos + 1;  // Compute the correct image size
+        image_size = end_pos - start_pos ;  // Compute the correct image size
     } else {
         image_size = 0;  // Reset if no valid JPEG markers were found
     }
