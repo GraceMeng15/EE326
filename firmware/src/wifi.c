@@ -297,7 +297,7 @@ void write_image_to_web(void){
 		//image_size = 1000;
 		//sprintf(command_buffer, "image_transfer %d", image_size); // Full image transfer command
 	// sprintf(command_buffer, "image_test %d", image_size+3); // Test image transfer command
-	sprintf(command_buffer, "image_test %d", image_size);
+	sprintf(command_buffer, "image_test %d", image_size+3);
 	write_wifi_command(command_buffer, 1);
 	
 	//The ESP32 will then set the �command complete?pin low and begin transferring the image
