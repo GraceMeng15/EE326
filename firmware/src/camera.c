@@ -173,18 +173,14 @@ uint8_t start_capture(void){
 }
 
 uint8_t find_image_len(void){
-	//Finds image length based on JPEG protocol. Returns 1 on success
-	//(i.e. able to find ?end of image? and ?start of image? markers),
+	// Finds image length based on JPEG protocol. Returns 1 on success
+	// (i.e. able to find ?end of image? and ?start of image? markers),
 	// 0 on error.
 	
-	//iterate through the buffer and look for start and end of image markers
-	//start is 0xFFD8; end is 0xFFD9
 	image_size = 0;
 	image_started = 0;
-	//image_ended = 0;
 	uint8_t current_byte;
 	uint8_t next_byte;
-	// uint8_t complete = 0;
 	
 	for (uint32_t i = 0; i < 100000; ++i){
 	
@@ -193,24 +189,15 @@ uint8_t find_image_len(void){
 		
 		if (current_byte == 0xff && next_byte == 0xd8) {
 			image_started = 1;
-			//image_ended = 0;
 			start_pos = i;	// => gs_ul_transfer_index
 		}
 		else if (image_started && current_byte == 0xff && next_byte == 0xd9) {
-			//image_ended = 1;
 			end_pos = i+1;
 			find_len_success = 1;
 			break;
 		}
-		//if (image_started && image_ended) {
-			//len_success = 1;
-			//break; 			//add +1 to the length counter
-		//}
 		image_size += image_started;
 	}
 		
-	return find_len_success;
-	
-	//return 0 if start or end markers weren't encountered, 1 otherwise
-
+	return find_len_success;	// 1 if both SOI and EOI are found
 }

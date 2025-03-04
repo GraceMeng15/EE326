@@ -287,11 +287,6 @@ void write_image_to_web(void){
 		return;
 	}
 	
-	//first_byte_sent = gs_puc_transfer_buffer[gs_ul_transfer_index];
-	//second_byte_sent = gs_puc_transfer_buffer[gs_ul_transfer_index + 1];
-	//first_byte_unsent = gs_puc_transfer_buffer[gs_ul_transfer_index -1];
-	//last_byte_sent = gs_puc_transfer_buffer[gs_ul_transfer_index + gs_ul_transfer_length];
-
 	//Configure the SPI interface to be ready for a transfer by setting its parameters appropriately.
 	//times_through_buffer = 0;
 	prepare_spi_transfer();
@@ -301,11 +296,10 @@ void write_image_to_web(void){
 	char* command_buffer[100];
 		//image_size = 1000;
 		//sprintf(command_buffer, "image_transfer %d", image_size); // Full image transfer command
-	sprintf(command_buffer, "image_test %d", image_size+3); // Test image transfer command
+	// sprintf(command_buffer, "image_test %d", image_size+3); // Test image transfer command
+	sprintf(command_buffer, "image_test %d", image_size);
 	write_wifi_command(command_buffer, 1);
-	//while (!image_sent_flag){}
-	//delay_ms(100);
-	 
+	
 	//The ESP32 will then set the �command complete?pin low and begin transferring the image
 	//over SPI. //After the image is done sending, the ESP32 will set the �command complete?pin high. The
 	//MCU should sense this and then move on.
