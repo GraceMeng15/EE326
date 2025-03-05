@@ -37,7 +37,6 @@
 #include "ov2640.h"
 #include "timer_interface.h"
 
-char* pbuf_test[50];
 char* buff[100];
 
 int main (void)

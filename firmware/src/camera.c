@@ -7,7 +7,6 @@
 
 #include "camera.h"
 
-// Intialize LCD display.
 #define IMAGE_WIDTH		(320UL)
 #define IMAGE_HEIGHT	(240UL)
 #define TWI_CLK			(400000UL) 					// TWI clock frequency in Hz (400KHz)
@@ -79,9 +78,6 @@ void configure_camera(void){
 	ov_configure(BOARD_TWI, YUV422);
 	ov_configure(BOARD_TWI, JPEG);
 	ov_configure(BOARD_TWI, JPEG_320x240);
-	
-	//let the camera adapt to environment
-	delay_ms(2000);
 }
 
 /**
