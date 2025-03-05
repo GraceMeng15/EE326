@@ -12,14 +12,6 @@
 #define CONF_BOARD_H
 
 // -------------------------------------------------------- SPI --------------------------------------------------------
-
-/** Conf_board. */
-// not used?
-// #define CONF_BOARD_SPI /** SPI MACRO definition */
-// #define CONF_BOARD_SPI_NPCS0 /** SPI slave select MACRO definition */
-// #define SPI_ID          ID_SPI  /** Spi Hw ID . */
-
-
 #define SPI_SLAVE_BASE       SPI /** SPI base address for SPI slave mode */
 #define wifi_spi_handler	SPI_Handler
 
@@ -65,12 +57,12 @@
 #define SPI_NPCS0_TYPE                 PIO_PERIPH_A
 #define SPI_NPCS0_ATTR                 PIO_DEFAULT
 
-#define SPI_CHIP_SEL 0 /* Chip select. */
+#define SPI_CHIP_SEL 0              /* Chip select. */
 #define SPI_CHIP_PCS spi_get_pcs(SPI_CHIP_SEL)
-#define SPI_CLK_POLARITY 0 /* Clock polarity. */
-#define SPI_CLK_PHASE 1 /* Clock phase. */
-#define SPI_DLYBS 0x40 /* Delay before SPCK. */
-#define SPI_DLYBCT 0x10 /* Delay between consecutive transfers. */
+#define SPI_CLK_POLARITY 0          /* Clock polarity. */
+#define SPI_CLK_PHASE 1             /* Clock phase. */
+#define SPI_DLYBS 0x40              /* Delay before SPCK. */
+#define SPI_DLYBCT 0x10             /* Delay between consecutive transfers. */
 
 /* SPI slave states for this example. */
 #define SLAVE_STATE_IDLE           0
@@ -81,26 +73,26 @@
 #define SLAVE_STATE_END            5
 
 /* SPI example commands for this example. */
-#define CMD_TEST     0x10101010 /* slave test state, begin to return RC_RDY. */
-#define CMD_DATA     0x29380000 /* Slave data state, begin to return last data block. */
-#define CMD_STATUS   0x68390384 /* Slave status state, begin to return RC_RDY + RC_STATUS. */
-#define CMD_END      0x68390484 /* Slave idle state, begin to return RC_SYN. */
-#define RC_SYN       0x55AA55AA /* General return value. */
-#define RC_RDY       0x12345678 /* Ready status. */
+#define CMD_TEST     0x10101010     /* slave test state, begin to return RC_RDY. */
+#define CMD_DATA     0x29380000     /* Slave data state, begin to return last data block. */
+#define CMD_STATUS   0x68390384     /* Slave status state, begin to return RC_RDY + RC_STATUS. */
+#define CMD_END      0x68390484     /* Slave idle state, begin to return RC_SYN. */
+#define RC_SYN       0x55AA55AA     /* General return value. */
+#define RC_RDY       0x12345678     /* Ready status. */
 
-#define CMD_DATA_MSK 0xFFFF0000 /* Slave data mask. */
-#define DATA_BLOCK_MSK 0x0000FFFF /* Slave data block mask. */
-#define NB_STATUS_CMD   20 /* Number of commands logged in status. */
-#define NUM_SPCK_CONFIGURATIONS 4 /* Number of SPI clock configurations. */
-#define COMM_BUFFER_SIZE   64 /* SPI Communicate buffer size. */
-#define UART_BAUDRATE      115200 /* UART baudrate. */
-#define MAX_DATA_BLOCK_NUMBER  4 /* Data block number. */
-#define MAX_RETRY    4 /* Max retry times. */
+#define CMD_DATA_MSK 0xFFFF0000     /* Slave data mask. */
+#define DATA_BLOCK_MSK 0x0000FFFF   /* Slave data block mask. */
+#define NB_STATUS_CMD   20          /* Number of commands logged in status. */
+#define NUM_SPCK_CONFIGURATIONS 4   /* Number of SPI clock configurations. */
+#define COMM_BUFFER_SIZE   64       /* SPI Communicate buffer size. */
+#define UART_BAUDRATE      115200   /* UART baudrate. */
+#define MAX_DATA_BLOCK_NUMBER  4    /* Data block number. */
+#define MAX_RETRY    4              /* Max retry times. */
+
 #define SPI_BAUDRATE		800000 /* SPi baudrate, used in UART command to ESP32 to set the SPI baudrate (wow crazy) */
 
 
 // -------------------------------------------------------- TWI --------------------------------------------------------
-
 /** TWI0 pins */
 #define PINS_TWI0                      PIN_TWI_TWD0, PIN_TWI_TWCK0
 #define ID_BOARD_TWI		           ID_TWI0
@@ -141,10 +133,6 @@
 #define PIN_PCK1_FLAGS                 (PIO_PERIPH_B | PIO_DEFAULT)
 
 // -------------------------------------------------------- Camera --------------------------------------------------------
-/* Image sensor board defines. */
-// Image sensor Power pin.
-//#define OV_POWER_PIO                   OV_SW_OVT_PIO
-//#define OV_POWER_MASK                  OV_SW_OVT_MASK
 // Image sensor VSYNC pin.
 #define OV7740_VSYNC_PIO			   OV_VSYNC_PIO
 #define OV7740_VSYNC_ID				   OV_VSYNC_ID
@@ -195,15 +183,10 @@
 #define OV_DATA_BUS_TYPE               PIO_INPUT
 #define OV_DATA_BUS_ATTR               PIO_DEFAULT
 
-// RST Pin (this is only driven high)
-//#define OV2640_RST_MASK					PIO_PA20_IDX
-
-
-
 // -------------------------------------------------------- USART --------------------------------------------------------
 #define WIFI_ID_USART				ID_USART0
 #define WIFI_USART					USART0
-#define WIFI_USART_BAUDRATE		115200
+#define WIFI_USART_BAUDRATE		    115200
 #define wifi_usart_handler			USART0_Handler
 #define USART_IRQn					USART0_IRQn
 
