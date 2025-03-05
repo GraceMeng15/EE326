@@ -48,7 +48,7 @@ void wifi_command_response_handler(uint32_t ul_id, uint32_t ul_mask)
 {
 	process_data_wifi();
 	uint32_t i = 0;
-	while (id_t < 1000)
+	while (i < 1000)
 	{
 		wifi_buffer_in[i] = 0;
 		i += 1;
