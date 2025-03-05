@@ -21,19 +21,13 @@
 #define ESP_PROV_LED					26  // LED3
 #define ESP_CLIENT_LED					27  // LED4
 
-
+// Interrupt and Control Line Variable Initialization
+volatile bool reading_wifi_flag;
+volatile bool provisioning_flag;
+volatile char wifi_buffer_in[1000];
+volatile uint32_t input_pos_wifi;
 
 uint32_t ul_id, ul_mask;
-//not used?
-// uint8_t in_byte, cnt;
-// char* comm;
-//uint8_t cnt;
-
-// Interrupt and Control Line Variable Initialization
-volatile bool reading_wifi_flag; // Flag for test/success confirmation
-volatile bool provisioning_flag; // Flag for provisioning button
-volatile char input_line_wifi[1000]; // UART Data buffer
-volatile uint32_t input_pos_wifi; // UART Data index variable
 
 // WiFi Function Declarations from PDF
 void wifi_usart_handler(void);

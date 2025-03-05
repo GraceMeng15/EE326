@@ -13,10 +13,8 @@
 // ----------------------------------------------------------------------------
 // SPI Code from spi_example
 
-// static uint32_t gs_ul_spi_clock = 500000;	/* SPI clock setting (Hz). */
-
-static uint32_t gs_ul_spi_cmd = RC_SYN;	/* Current SPI return code. */
-static uint32_t gs_ul_spi_state = 0;	/* Current SPI state. */
+static uint32_t gs_ul_spi_cmd = RC_SYN;		/* Current SPI return code. */
+static uint32_t gs_ul_spi_state = 0;		/* Current SPI state. */
 
 /* 64 bytes data buffer for SPI transfer and receive. */
 volatile uint8_t *gs_puc_transfer_buffer; 	/* Pointer to transfer buffer. */
@@ -31,10 +29,7 @@ volatile bool new_rx_wifi = false;
 volatile uint32_t input_pos_wifi = 0;
 volatile bool command_flag = false;
 
-//DEFINE WiFi functions here
-
-char buff_storage[50];
-
+// Functions below
 void wifi_usart_handler(void)
 {
 	uint32_t ul_status;
@@ -56,7 +51,7 @@ void wifi_command_response_handler(uint32_t ul_id, uint32_t ul_mask)
 	uint32_t ind = 0;
 	while (ind < 1000)
 	{
-		input_line_wifi[ind] = 0;
+		wifi_buffer_in[ind] = 0;
 		ind += 1;
 	}
 	input_pos_wifi = 0;
@@ -65,12 +60,12 @@ void wifi_command_response_handler(uint32_t ul_id, uint32_t ul_mask)
 
 void process_incoming_byte_wifi(uint8_t in_byte)
 {
-	input_line_wifi[input_pos_wifi++] = in_byte;
+	wifi_buffer_in[input_pos_wifi++] = in_byte;
 }
 
 void process_data_wifi()
 {
-	if (strstr(input_line_wifi, "SUCCESS"))
+	if (strstr(wifi_buffer_in, "SUCCESS"))
 	{
 		reading_wifi_flag = true;
 	}
