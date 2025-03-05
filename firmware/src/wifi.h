@@ -7,14 +7,8 @@
 
 #ifndef WIFI_H_
 #define WIFI_H_
-
 #include <asf.h>
 #include <string.h>
-
-// moved to conf_board
-// // Test LED Pins, for breadboard debugging
-// #define LED_PIN		PIO_PA19_IDX
-// #define LED_PIN2	PIO_PA22_IDX
 
 // Control Pins Declaration - PA9, PA10, PB3 // change name
 #define ESP_COMM_GPIO					21	// COMM PIN   - connect to MCU | PA9
@@ -22,16 +16,17 @@
 #define ESP_CLIENT_GPIO					32	// CLIENT PIN - connect to MCU | PB3
 
 
-// ESP32 LED Indicator pins (on the ESP32 NOT the MCU!)
-#define ESP_PROV_LED					26	// Indicator LED Pin (ON ESP32): Chip is in provisioning mode
-#define ESP_NET_LED						25	// Indicator LED Pin (ON ESP32): Chip is connected to the internet
-#define ESP_CLIENT_LED					27	// Indicator LED Pin (ON ESP32): Chip has at least one client connected
+// WIFI BOARD LEDs
+#define ESP_NET_LED						25  // LED2
+#define ESP_PROV_LED					26  // LED3
+#define ESP_CLIENT_LED					27  // LED4
 
 
-//DECLARE WiFi variables here
-uint8_t in_byte, cnt;
+
 uint32_t ul_id, ul_mask;
-char* comm;
+//not used?
+// uint8_t in_byte, cnt;
+// char* comm;
 //uint8_t cnt;
 
 // Interrupt and Control Line Variable Initialization
