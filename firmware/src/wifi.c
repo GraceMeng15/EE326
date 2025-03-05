@@ -12,7 +12,6 @@
 
 // ----------------------------------------------------------------------------
 // SPI Code from spi_example
-
 static uint32_t gs_ul_spi_cmd = RC_SYN;		/* Current SPI return code. */
 static uint32_t gs_ul_spi_state = 0;		/* Current SPI state. */
 
@@ -26,7 +25,7 @@ volatile uint32_t times_through_buffer; //
 // UART Communication and Control Line Variables
 volatile uint32_t received_byte_wifi = 0;
 volatile bool new_rx_wifi = false;
-volatile uint32_t input_pos_wifi = 0;
+volatile uint32_t wifi_buffer_in_index = 0;
 volatile bool command_flag = false;
 
 // Functions below
@@ -48,19 +47,19 @@ void wifi_usart_handler(void)
 void wifi_command_response_handler(uint32_t ul_id, uint32_t ul_mask)
 {
 	process_data_wifi();
-	uint32_t ind = 0;
-	while (ind < 1000)
+	uint32_t i = 0;
+	while (id_t < 1000)
 	{
-		wifi_buffer_in[ind] = 0;
-		ind += 1;
+		wifi_buffer_in[i] = 0;
+		i += 1;
 	}
-	input_pos_wifi = 0;
+	wifi_buffer_in_index = 0;
 	command_flag = true;
 }
 
 void process_incoming_byte_wifi(uint8_t in_byte)
 {
-	wifi_buffer_in[input_pos_wifi++] = in_byte;
+	wifi_buffer_in[wifi_buffer_in_index++] = in_byte;
 }
 
 void process_data_wifi()
@@ -108,8 +107,7 @@ void configure_wifi_comm_pin(void)
 	/* Configure PIO clock. */
 	pmc_enable_periph_clk(WIFI_COMM_ID);
 
-	/* Initialize PIO interrupt handler, see PIO definition in conf_board.h
-	**/
+	/* Initialize PIO interrupt handler, see PIO definition in conf_board.h */
 	pio_handler_set(WIFI_COMM_PIO, WIFI_COMM_ID, WIFI_COMM_PIN_NUM, WIFI_COMM_ATTR, wifi_command_response_handler);
 
 	/* Enable PIO controller IRQs. */
@@ -119,8 +117,7 @@ void configure_wifi_comm_pin(void)
 	pio_enable_interrupt(WIFI_COMM_PIO, WIFI_COMM_PIN_NUM);
 }
 
-
-void write_wifi_command(char* comm, uint8_t total)
+void write_wifi_command(char* comm, uint8_t cnt)
 {
 	counts = 0;
 	command_flag = false;
@@ -130,7 +127,7 @@ void write_wifi_command(char* comm, uint8_t total)
 	usart_write_line(WIFI_USART, wifi_buff);
 	while (true)
 	{
-		if (counts >= total)
+		if (counts >= cnt)
 		{
 			break;
 		}
@@ -150,7 +147,6 @@ void wifi_provision_handler(uint32_t ul_id, uint32_t ul_mask)
 {
 	unused(ul_id);
 	unused(ul_mask);
-	// Set provisioning flag to true
 	provisioning_flag = true;
 }
 
@@ -171,8 +167,7 @@ void configure_wifi_provision_pin(void)
 }
 
 void wifi_spi_handler(void)
-{
-	//// Handler for peripheral mode interrupts on SPI bus. When the
+{	//// Handler for peripheral mode interrupts on SPI bus. When the
 	//// ESP32 SPI controller requests data, this interrupt should 
 	//// send one byte of the image at a time.
 	

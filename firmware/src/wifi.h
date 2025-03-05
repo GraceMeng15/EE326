@@ -25,7 +25,7 @@
 volatile bool reading_wifi_flag;
 volatile bool provisioning_flag;
 volatile char wifi_buffer_in[1000];
-volatile uint32_t input_pos_wifi;
+volatile uint32_t wifi_buffer_in_index;
 
 uint32_t ul_id, ul_mask;
 
