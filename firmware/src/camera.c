@@ -26,18 +26,16 @@ void vsync_handler(uint32_t ul_id, uint32_t ul_mask){
 }
 
 void init_vsync_interrupts(void){
-	// Initialize PIO interrupt handler, see PIO definition in conf_board.h
 	pio_handler_set(OV7740_VSYNC_PIO, OV7740_VSYNC_ID, OV7740_VSYNC_MASK,
 			OV7740_VSYNC_TYPE, vsync_handler);	
 
-	/* Enable PIO controller IRQs */
 	NVIC_EnableIRQ((IRQn_Type)OV7740_VSYNC_ID);
 }
 
 void configure_twi(void){
 	// Two Wire Interface
 	twi_options_t opt;
-	pmc_enable_periph_clk(ID_BOARD_TWI);	// Enable TWI peripheral
+	pmc_enable_periph_clk(ID_BOARD_TWI);
 
 	// Init TWI peripheral
 	opt.master_clk = sysclk_get_cpu_hz();
@@ -59,10 +57,9 @@ void init_camera(void){
 	pio_capture_init(OV_DATA_BUS_PIO, OV_DATA_BUS_ID);	// Init PIO capture
 
 	// Enable XCLCK
-	pmc_enable_pllbck(7, 0x1, 1); /* PLLA work at 96 Mhz */ // PA17 is xclck signal
+	pmc_enable_pllbck(7, 0x1, 1);						/* PLLA work at 96 Mhz */
 	
-	// Init PCK1 to work at 24 Mhz
-	// 96/4=24 Mhz
+	// PCK1 @ 24 Mhz
 	PMC->PMC_PCK[1] = (PMC_PCK_PRES_CLK_4 | PMC_PCK_CSS_PLLB_CLK);
 	PMC->PMC_SCER = PMC_SCER_PCK1;
 	while (!(PMC->PMC_SCSR & PMC_SCSR_PCK1)) {}	
@@ -137,10 +134,7 @@ uint8_t start_capture(void){
 	
 	/* Capture acquisition will start on rising edge of Vsync signal.
 	 * So wait g_vsync_flag = 1 before start process */
-	while (!g_ul_vsync_flag)
-	{
-		delay_ms(10);		// !!! TRY WITHOUT
-	}
+	while (!g_ul_vsync_flag){}
 	
 	/* Disable vsync interrupt*/
 	pio_disable_interrupt(OV7740_VSYNC_PIO, OV7740_VSYNC_MASK);
@@ -148,8 +142,7 @@ uint8_t start_capture(void){
 	/* Enable pio capture*/
 	pio_capture_enable(OV7740_DATA_BUS_PIO);
 
-	/* Capture data and send it to external SRAM memory thanks to PDC
-	 * feature */
+	/* Capture data and send it to external SRAM memory thanks to PDC* feature */
 	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf, 25000);		// 100000 >> 2 = 25000
 
 	/* Wait end of capture*/
