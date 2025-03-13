@@ -31,11 +31,7 @@ int main (void)
 	ioport_set_pin_level(WIFI_RESET_MASK, false);
 	delay_ms(100);
 	ioport_set_pin_level(WIFI_RESET_MASK, true);
-	delay_ms(5000);
-	
-	// Set SPI Baud Rate
-	sprintf(buff, "set spi_baud %d", SPI_BAUDRATE);
-	write_wifi_command(buff, 2);
+	delay_ms(100);
 
 	// Send ESP32 indicator LED config commands
 	sprintf (buff, "set wlan_gpio %d", ESP_NET_LED);
@@ -51,6 +47,10 @@ int main (void)
 	sprintf (buff, "set net_gpio %d", ESP_NET_GPIO);
 	write_wifi_command(buff, 2);
 	sprintf (buff, "set clients_gpio %d", ESP_CLIENT_GPIO);
+	write_wifi_command(buff, 2);
+	
+	// Set SPI Baud Rate
+	sprintf(buff, "set spi_baud %d", SPI_BAUDRATE);
 	write_wifi_command(buff, 2);
 
 	reading_wifi_flag = false;

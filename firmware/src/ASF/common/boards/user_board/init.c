@@ -26,14 +26,14 @@ void board_init(void)
 	gpio_configure_pin(OV_RST_GPIO, OV_RST_TYPE);
 	gpio_configure_pin(OV_HREF_GPIO, OV_HREF_FLAGS);
 	gpio_configure_pin(OV_VSYNC_GPIO, OV_VSYNC_FLAGS);
+	gpio_configure_pin(OV_DATA_BUS_D0, OV_DATA_BUS_FLAGS);
+	gpio_configure_pin(OV_DATA_BUS_D1, OV_DATA_BUS_FLAGS);
 	gpio_configure_pin(OV_DATA_BUS_D2, OV_DATA_BUS_FLAGS);
 	gpio_configure_pin(OV_DATA_BUS_D3, OV_DATA_BUS_FLAGS);
 	gpio_configure_pin(OV_DATA_BUS_D4, OV_DATA_BUS_FLAGS);
 	gpio_configure_pin(OV_DATA_BUS_D5, OV_DATA_BUS_FLAGS);
 	gpio_configure_pin(OV_DATA_BUS_D6, OV_DATA_BUS_FLAGS);
 	gpio_configure_pin(OV_DATA_BUS_D7, OV_DATA_BUS_FLAGS);
-	gpio_configure_pin(OV_DATA_BUS_D8, OV_DATA_BUS_FLAGS);
-	gpio_configure_pin(OV_DATA_BUS_D9, OV_DATA_BUS_FLAGS);
 		
 	// XCLK
 	gpio_configure_pin(PIN_PCK1, PIN_PCK1_FLAGS);
@@ -47,12 +47,6 @@ void board_init(void)
 	// USART
 	gpio_configure_pin(PIN_USART0_TXD_IDX, PIN_USART0_TXD_FLAGS);
 	gpio_configure_pin(PIN_USART0_RXD_IDX, PIN_USART0_RXD_FLAGS);
-
-	// IO Directions and Init Values for LED 1+2
-	ioport_set_pin_dir(LED_PIN, IOPORT_DIR_OUTPUT);
-	ioport_set_pin_level(LED_PIN, false);
-	ioport_set_pin_dir(LED_PIN2, IOPORT_DIR_OUTPUT);
-	ioport_set_pin_level(LED_PIN2, false);
 
 	// Control line Pins - MASK+CLIENT
 	ioport_set_pin_dir(WIFI_NET_MASK, IOPORT_DIR_INPUT);

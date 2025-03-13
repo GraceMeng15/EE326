@@ -89,7 +89,7 @@
 #define MAX_DATA_BLOCK_NUMBER  4    /* Data block number. */
 #define MAX_RETRY    4              /* Max retry times. */
 
-#define SPI_BAUDRATE		800000 /* SPi baudrate, used in UART command to ESP32 to set the SPI baudrate (wow crazy) */
+#define SPI_BAUDRATE		800000 /* SPi baudrate */
 
 
 // -------------------------------------------------------- TWI --------------------------------------------------------
@@ -168,14 +168,14 @@
 #define OV_VSYNC_TYPE                  PIO_PULLUP
 
 /** OV Data Bus pins */
-#define OV_DATA_BUS_D2                 PIO_PA24_IDX
-#define OV_DATA_BUS_D3                 PIO_PA25_IDX
-#define OV_DATA_BUS_D4                 PIO_PA26_IDX
-#define OV_DATA_BUS_D5                 PIO_PA27_IDX
-#define OV_DATA_BUS_D6                 PIO_PA28_IDX
-#define OV_DATA_BUS_D7                 PIO_PA29_IDX
-#define OV_DATA_BUS_D8                 PIO_PA30_IDX
-#define OV_DATA_BUS_D9                 PIO_PA31_IDX
+#define OV_DATA_BUS_D0                 PIO_PA24_IDX
+#define OV_DATA_BUS_D1                 PIO_PA25_IDX
+#define OV_DATA_BUS_D2                 PIO_PA26_IDX
+#define OV_DATA_BUS_D3                 PIO_PA27_IDX
+#define OV_DATA_BUS_D4                 PIO_PA28_IDX
+#define OV_DATA_BUS_D5                 PIO_PA29_IDX
+#define OV_DATA_BUS_D6                 PIO_PA30_IDX
+#define OV_DATA_BUS_D7                 PIO_PA31_IDX
 #define OV_DATA_BUS_FLAGS              (PIO_INPUT | PIO_PULLUP)
 #define OV_DATA_BUS_MASK               (0xFF000000UL)
 #define OV_DATA_BUS_PIO                PIOA
@@ -230,15 +230,11 @@
 #define WIFI_RESET_NUM					PIO_PB0
 
 // WIFI: SETUP Button
-#define WIFI_SETUP_BUTTON_MASK			PIO_PB14_IDX
-#define WIFI_SETUP_BUTTON_ID            ID_PIOB
-#define WIFI_SETUP_BUTTON_PIO           PIOB
-#define WIFI_SETUP_BUTTON_NUM			PIO_PB14
+#define WIFI_SETUP_BUTTON_MASK			PIO_PA19_IDX
+#define WIFI_SETUP_BUTTON_ID            ID_PIOA
+#define WIFI_SETUP_BUTTON_PIO           PIOA
+#define WIFI_SETUP_BUTTON_NUM			PIO_PA19
 #define WIFI_SETUP_BUTTON_ATTR          (PIO_PULLUP | PIO_DEBOUNCE | PIO_IT_FALL_EDGE)
-
-// LED Pins on MCU
-#define LED_PIN		PIO_PA19_IDX
-#define LED_PIN2	PIO_PA22_IDX
 
 #define wifi_ready ioport_get_pin_level(WIFI_NET_MASK)
 #define capture_ready ioport_get_pin_level(WIFI_CLIENT_PIN_MASK)

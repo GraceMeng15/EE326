@@ -121,7 +121,6 @@ void write_wifi_command(char* comm, uint8_t cnt)
 {
 	counts = 0;
 	command_flag = false;
-	ioport_set_pin_level(LED_PIN2, 1);
 	char wifi_buff[100];
 	sprintf (wifi_buff, "%s\r\n", comm);
 	usart_write_line(WIFI_USART, wifi_buff);
@@ -239,7 +238,8 @@ void write_image_to_web(void)
 	{
 		prepare_spi_transfer();
 		char* command_buffer[100];
-		sprintf(command_buffer, "image_transfer %d", image_size+3); // sprintf(command_buffer, "image_test %d", image_size+3);
+		sprintf(command_buffer, "image_transfer %d", image_size+3);
+		//sprintf(command_buffer, "image_test %d", image_size+3);
 		write_wifi_command(command_buffer, 1);
 	}
 }
