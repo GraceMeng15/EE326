@@ -6,7 +6,7 @@
 #include "ov2640.h"
 #include "timer_interface.h"
 
-char* buff[100];
+char buff[100];
 
 int main (void)
 {

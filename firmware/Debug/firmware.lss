@@ -9,9 +9,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   2 .relocate     000009c0  20000000  0040791c  00020000  2**3
                   CONTENTS, ALLOC, LOAD, CODE
-  3 .bss          00018d60  200009c0  004082dc  000209c0  2**2
+  3 .bss          00018c34  200009c0  004082dc  000209c0  2**2
                   ALLOC
-  4 .stack        00003000  20019720  0042103c  000209c0  2**0
+  4 .stack        00003004  200195f4  00420f10  000209c0  2**0
                   ALLOC
   5 .ARM.attributes 0000002a  00000000  00000000  000209c0  2**0
                   CONTENTS, READONLY
@@ -39,7 +39,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
 Disassembly of section .text:
 
 00400000 <exception_table>:
-  400000:	20 c7 01 20 15 16 40 00 11 16 40 00 11 16 40 00      .. ..@...@...@.
+  400000:	f8 c5 01 20 15 16 40 00 11 16 40 00 11 16 40 00     ... ..@...@...@.
   400010:	11 16 40 00 11 16 40 00 11 16 40 00 00 00 00 00     ..@...@...@.....
 	...
   40002c:	11 16 40 00 11 16 40 00 00 00 00 00 11 16 40 00     ..@...@.......@.
@@ -3344,7 +3344,7 @@ void board_init(void)
   40169c:	20000000 	.word	0x20000000
   4016a0:	0040791c 	.word	0x0040791c
   4016a4:	200009c0 	.word	0x200009c0
-  4016a8:	20019720 	.word	0x20019720
+  4016a8:	200195f4 	.word	0x200195f4
   4016ac:	200009c0 	.word	0x200009c0
   4016b0:	e000ed00 	.word	0xe000ed00
   4016b4:	00400000 	.word	0x00400000
@@ -3537,12 +3537,12 @@ void board_init(void)
   40186e:	bf00      	nop
   401870:	20000a68 	.word	0x20000a68
   401874:	2001fffc 	.word	0x2001fffc
-  401878:	2001c720 	.word	0x2001c720
+  401878:	2001c5f8 	.word	0x2001c5f8
 
 0040187c <main>:
 #include "timer_interface.h"
 
-char* buff[100];
+char buff[100];
 
 int main (void)
 {
@@ -8808,13 +8808,13 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   404c54:	4801      	ldr	r0, [pc, #4]	; (404c5c <__malloc_lock+0x8>)
   404c56:	f7ff bc2d 	b.w	4044b4 <__retarget_lock_acquire_recursive>
   404c5a:	bf00      	nop
-  404c5c:	20019708 	.word	0x20019708
+  404c5c:	200195dc 	.word	0x200195dc
 
 00404c60 <__malloc_unlock>:
   404c60:	4801      	ldr	r0, [pc, #4]	; (404c68 <__malloc_unlock+0x8>)
   404c62:	f7ff bc29 	b.w	4044b8 <__retarget_lock_release_recursive>
   404c66:	bf00      	nop
-  404c68:	20019708 	.word	0x20019708
+  404c68:	200195dc 	.word	0x200195dc
 
 00404c6c <_Balloc>:
   404c6c:	6cc3      	ldr	r3, [r0, #76]	; 0x4c
@@ -9453,7 +9453,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   40527a:	d0fb      	beq.n	405274 <_sbrk_r+0x14>
   40527c:	602b      	str	r3, [r5, #0]
   40527e:	bd38      	pop	{r3, r4, r5, pc}
-  405280:	2001971c 	.word	0x2001971c
+  405280:	200195f0 	.word	0x200195f0
 
 00405284 <strchr>:
   405284:	b2c9      	uxtb	r1, r1
@@ -11920,7 +11920,7 @@ Disassembly of section .relocate:
 	...
 
 20000440 <__atexit_recursive_mutex>:
-20000440:	96f8 2001                                   ... 
+20000440:	95cc 2001                                   ... 
 
 20000444 <__malloc_av_>:
 	...

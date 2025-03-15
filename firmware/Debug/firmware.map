@@ -96,7 +96,7 @@ __lock___arc4random_mutex
 errno               0x4               c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-reent.o)
 uc_buf              0x4               src/camera.o
 wifi_buffer_in      0x3e8             src/wifi.o
-buff                0x190             src/main.o
+buff                0x64              src/main.o
 gs_ul_transfer_index
                     0x4               src/wifi.o
 ptr_get             0x4               src/ASF/common/utils/stdio/read.o
@@ -7739,7 +7739,7 @@ LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin
                 0x200009c0                . = ALIGN (0x4)
                 0x200009c0                _erelocate = .
 
-.bss            0x200009c0    0x18d60 load address 0x004082dc
+.bss            0x200009c0    0x18c34 load address 0x004082dc
                 0x200009c0                . = ALIGN (0x4)
                 0x200009c0                _sbss = .
                 0x200009c0                _szero = .
@@ -7807,34 +7807,35 @@ LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin
  *fill*         0x20019561        0x3 
  COMMON         0x20019564        0x4 src/ASF/sam/drivers/pio/pio.o
                 0x20019564                pio_capture_enable_flag
- COMMON         0x20019568      0x190 src/main.o
+ COMMON         0x20019568       0x64 src/main.o
                 0x20019568                buff
- COMMON         0x200196f8       0x21 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
-                0x200196f8                __lock___atexit_recursive_mutex
-                0x200196fc                __lock___arc4random_mutex
-                0x20019700                __lock___env_recursive_mutex
-                0x20019704                __lock___sinit_recursive_mutex
-                0x20019708                __lock___malloc_recursive_mutex
-                0x2001970c                __lock___at_quick_exit_mutex
-                0x20019710                __lock___dd_hash_mutex
-                0x20019714                __lock___tz_mutex
-                0x20019718                __lock___sfp_recursive_mutex
- *fill*         0x20019719        0x3 
- COMMON         0x2001971c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-reent.o)
-                0x2001971c                errno
-                0x20019720                . = ALIGN (0x4)
-                0x20019720                _ebss = .
-                0x20019720                _ezero = .
+ COMMON         0x200195cc       0x21 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
+                0x200195cc                __lock___atexit_recursive_mutex
+                0x200195d0                __lock___arc4random_mutex
+                0x200195d4                __lock___env_recursive_mutex
+                0x200195d8                __lock___sinit_recursive_mutex
+                0x200195dc                __lock___malloc_recursive_mutex
+                0x200195e0                __lock___at_quick_exit_mutex
+                0x200195e4                __lock___dd_hash_mutex
+                0x200195e8                __lock___tz_mutex
+                0x200195ec                __lock___sfp_recursive_mutex
+ *fill*         0x200195ed        0x3 
+ COMMON         0x200195f0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-reent.o)
+                0x200195f0                errno
+                0x200195f4                . = ALIGN (0x4)
+                0x200195f4                _ebss = .
+                0x200195f4                _ezero = .
 
-.stack          0x20019720     0x3000 load address 0x0042103c
-                0x20019720                . = ALIGN (0x8)
-                0x20019720                _sstack = .
-                0x2001c720                . = (. + __stack_size__)
- *fill*         0x20019720     0x3000 
-                0x2001c720                . = ALIGN (0x8)
-                0x2001c720                _estack = .
-                0x2001c720                . = ALIGN (0x4)
-                0x2001c720                _end = .
+.stack          0x200195f4     0x3004 load address 0x00420f10
+                0x200195f8                . = ALIGN (0x8)
+ *fill*         0x200195f4        0x4 
+                0x200195f8                _sstack = .
+                0x2001c5f8                . = (. + __stack_size__)
+ *fill*         0x200195f8     0x3000 
+                0x2001c5f8                . = ALIGN (0x8)
+                0x2001c5f8                _estack = .
+                0x2001c5f8                . = ALIGN (0x4)
+                0x2001c5f8                _end = .
 OUTPUT(firmware.elf elf32-littlearm)
 
 .ARM.attributes

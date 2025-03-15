@@ -170,7 +170,7 @@ uint8_t find_image_len(void){
 	uint8_t current_byte, next_byte;
 	uint8_t success = 0;
 	uint32_t i = 0;
-	const uint32_t loop_limit = 100000;  // Define the loop limit for clarity
+	const uint32_t loop_limit = 20000;  // Define the loop limit for clarity
 
 	while(i < loop_limit && !success) {
 		current_byte = g_p_uc_cap_dest_buf[i];
