@@ -229,7 +229,7 @@ void write_image_to_web(void)
 	else
 	{
 		prepare_spi_transfer();
-		char* command_buffer[100];
+		char command_buffer[100];
 		sprintf(command_buffer, "image_transfer %d", image_size+3);
 		write_wifi_command(command_buffer, 1);
 	}
