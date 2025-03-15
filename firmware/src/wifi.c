@@ -43,11 +43,7 @@ void wifi_command_response_handler(uint32_t ul_id, uint32_t ul_mask)
 {
 	process_data_wifi();
 	uint32_t i = 0;
-	while (i < 1000)
-	{
-		wifi_buffer_in[i] = 0;
-		i += 1;
-	}
+	memset(wifi_buffer_in, 0, sizeof(wifi_buffer_in));
 	wifi_buffer_in_index = 0;
 	command_flag = true;
 }

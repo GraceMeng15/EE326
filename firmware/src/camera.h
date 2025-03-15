@@ -15,7 +15,6 @@
 uint32_t ul_id, ul_mask, ul_size;
 uint8_t *uc_buf;
 Pio *p_pio;
-uint8_t find_len_success;
 
 volatile uint32_t image_size;
 volatile uint32_t image_start;

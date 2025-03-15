@@ -157,9 +157,8 @@ uint8_t start_capture(void){
 	g_ul_vsync_flag = false;
 	
 	/* Check Size  */
-	find_len_success = 0;
-	find_image_len();
-	
+	uint8_t success = find_image_len();
+	return success;
 }
 
 uint8_t find_image_len(void){
@@ -171,6 +170,7 @@ uint8_t find_image_len(void){
 	image_started = 0;
 	uint8_t current_byte;
 	uint8_t next_byte;
+	uint8_t success = 0;
 	
 	for (uint32_t i = 0; i < 100000; ++i){
 	
@@ -183,15 +183,15 @@ uint8_t find_image_len(void){
 		}
 		else if (image_started && current_byte == 0xff && next_byte == 0xd9) {  
 			image_end = i+1;
-			find_len_success = 1;
+			success = 1;
 			break;
 		}
 	}
 	
-	if (find_len_success) {
+	if (success) {
         image_size = image_end - image_start - 1 ; 
     } else {
         image_size = 0;
     }
-	return find_len_success;	// 1 if both SOI and EOI are found
+	return success;	// 1 if both SOI and EOI are found
 }

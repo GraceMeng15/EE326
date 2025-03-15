@@ -93,8 +93,7 @@ int main (void)
 		}
 		else if (capture_ready)
 		{
-			start_capture();
-			if (find_len_success)
+			if (start_capture())
 			{
 				write_image_to_web();
 			}
