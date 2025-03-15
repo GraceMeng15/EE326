@@ -162,36 +162,35 @@ uint8_t start_capture(void){
 }
 
 uint8_t find_image_len(void){
-	// Finds image length based on JPEG protocol. Returns 1 on success
-	// (i.e. able to find ?end of image? and ?start of image? markers),
-	// 0 on error.
-	
+	// Finds image length based on JPEG protocol.
+	// Returns 1 on success (both SOI and EOI markers are found), 0 on error.
+
 	image_size = 0;
 	image_started = 0;
-	uint8_t current_byte;
-	uint8_t next_byte;
+	uint8_t current_byte, next_byte;
 	uint8_t success = 0;
-	
-	for (uint32_t i = 0; i < 100000; ++i){
-	
+	uint32_t i = 0;
+	const uint32_t loop_limit = 100000;  // Define the loop limit for clarity
+
+	while(i < loop_limit && !success) {
 		current_byte = g_p_uc_cap_dest_buf[i];
-		next_byte = g_p_uc_cap_dest_buf[i+1];
-		
-		if (current_byte == 0xff && next_byte == 0xd8) {
+		next_byte = g_p_uc_cap_dest_buf[i + 1];
+
+		if(current_byte == 0xff && next_byte == 0xd8) {
 			image_started = 1;
-			image_start = i;	// => gs_ul_transfer_index
+			image_start = i;  // Store start index (SOI marker found)
 		}
-		else if (image_started && current_byte == 0xff && next_byte == 0xd9) {  
-			image_end = i+1;
+		else if(image_started && current_byte == 0xff && next_byte == 0xd9) {
+			image_end = i + 1;  // Store end index (EOI marker found)
 			success = 1;
-			break;
 		}
+		i++;
 	}
-	
-	if (success) {
-        image_size = image_end - image_start - 1 ; 
-    } else {
-        image_size = 0;
-    }
-	return success;	// 1 if both SOI and EOI are found
+
+	if(success) {
+		image_size = image_end - image_start - 1;
+		} else {
+		image_size = 0;
+	}
+	return success;  // Returns 1 if both SOI and EOI are found, 0 otherwise
 }
