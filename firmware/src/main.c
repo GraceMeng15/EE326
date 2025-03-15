@@ -53,7 +53,7 @@ int main (void)
 	sprintf(buff, "set spi_baud %d", SPI_BAUDRATE);
 	write_wifi_command(buff, 2);
 
-	reading_wifi_flag = false;
+	wifi_success = false;
 	provisioning_flag = false;
 
 	// Wait for Network Connection ACK
@@ -71,7 +71,7 @@ int main (void)
 	write_wifi_command("test", 10);
 	delay_ms(1000);	// test to find optimal time?
 	
-	while (!reading_wifi_flag)
+	while (!wifi_success)
 	{
 		// Reset wifi chip
 		ioport_set_pin_level(WIFI_RESET_MASK,false);

@@ -22,7 +22,7 @@
 #define ESP_CLIENT_LED					27  // LED4
 
 // Interrupt and Control Line Variable Initialization
-volatile bool reading_wifi_flag;
+volatile bool wifi_success;
 volatile bool provisioning_flag;
 volatile char wifi_buffer_in[1000];
 volatile uint32_t wifi_buffer_in_index;

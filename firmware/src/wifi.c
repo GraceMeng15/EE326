@@ -57,7 +57,7 @@ void process_data_wifi()
 {
 	if (strstr(wifi_buffer_in, "SUCCESS"))
 	{
-		reading_wifi_flag = true;
+		wifi_success = true;
 	}
 }
 
