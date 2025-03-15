@@ -74,7 +74,8 @@ void configure_usart(void)
 		US_MR_PAR_NO,
 		US_MR_NBSTOP_1_BIT,
 		US_MR_CHMODE_NORMAL,
-		0 // IrDA mode only
+		/* This field is only used in IrDA mode. */
+		0
 	};
 
 	/* Enable the peripheral clock in the PMC. */
@@ -139,8 +140,6 @@ void write_wifi_command(char* comm, uint8_t cnt)
 
 void wifi_provision_handler(uint32_t ul_id, uint32_t ul_mask)
 {
-	unused(ul_id);
-	unused(ul_mask);
 	provisioning_flag = true;
 }
 
@@ -161,15 +160,14 @@ void configure_wifi_provision_pin(void)
 }
 
 void wifi_spi_handler(void)
-{	//// Handler for peripheral mode interrupts on SPI bus. When the
-	//// ESP32 SPI controller requests data, this interrupt should 
-	//// send one byte of the image at a time.
+{	// Handler for peripheral mode interrupts on SPI bus. When the
+	// ESP32 SPI controller requests data, this interrupt should 
+	// send one byte of the image at a time.
 	
 	uint32_t new_cmd = 0;
 	static uint16_t data;
 	uint8_t uc_pcs;
 
-	//if status register says "ready" and Receive Data Register Full
 	if (spi_read_status(SPI_SLAVE_BASE) & SPI_SR_RDRF)
 	{		
 		spi_read(SPI_SLAVE_BASE, &data, &uc_pcs);
@@ -188,15 +186,16 @@ void configure_spi(void)
 	NVIC_ClearPendingIRQ(SPI_IRQn);
 	NVIC_SetPriority(SPI_IRQn, 0);
 	NVIC_EnableIRQ(SPI_IRQn);
-	//Configuration of SPI port used to send images to the ESP32.
+	
+	// Configuration of SPI port and interrupts used to send images to the
+	// ESP32.
 	spi_peripheral_initialize();
-	/* Start waiting command. */
 	prepare_spi_transfer();
 }
 
 void spi_peripheral_initialize(void)
 {
-	//Initialize the SPI port as a peripheral (slave) device.
+	// Initialize the SPI port as a peripheral (slave) device.
 	spi_enable_clock(SPI_SLAVE_BASE);
 	spi_disable(SPI_SLAVE_BASE);
 	spi_reset(SPI_SLAVE_BASE);
@@ -220,9 +219,9 @@ void prepare_spi_transfer(void)
 
 void write_image_to_web(void)
 {
-	 //Writes an image from the SAM4S8B to the ESP32. If the length of the image is zero 
-	 //(i.e. the image is not valid), return. Otherwise, follow this protocol
-	 //(illustrated in Appendix C):
+	 // Writes an image from the SAM4S8B to the ESP32. If the length of the image is zero 
+	 // (i.e. the image is not valid), return. Otherwise, follow this protocol
+	 // (illustrated in Appendix C):
 	if (image_size == 0)
 	{
 		return;
@@ -232,7 +231,6 @@ void write_image_to_web(void)
 		prepare_spi_transfer();
 		char* command_buffer[100];
 		sprintf(command_buffer, "image_transfer %d", image_size+3);
-		//sprintf(command_buffer, "image_test %d", image_size+3);
 		write_wifi_command(command_buffer, 1);
 	}
 }

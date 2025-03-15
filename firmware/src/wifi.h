@@ -42,7 +42,7 @@ void configure_usart_wifi(void);
 void configure_wifi_comm_pin(void);
 void configure_wifi_provision_pin(void);
 
-//SPIs
+// SPIs
 void wifi_spi_handler(void);
 void configure_spi(void);
 void spi_peripheral_initialize(void);
