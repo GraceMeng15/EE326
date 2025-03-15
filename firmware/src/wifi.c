@@ -28,7 +28,6 @@ volatile bool new_rx_wifi = false;
 volatile uint32_t wifi_buffer_in_index = 0;
 volatile bool command_flag = false;
 
-// Functions below
 void wifi_usart_handler(void)
 {
 	uint32_t ul_status;
