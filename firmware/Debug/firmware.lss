@@ -9,9 +9,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   2 .relocate     000009c0  20000000  0040791c  00020000  2**3
                   CONTENTS, ALLOC, LOAD, CODE
-  3 .bss          00018c34  200009c0  004082dc  000209c0  2**2
+  3 .bss          00018c30  200009c0  004082dc  000209c0  2**2
                   ALLOC
-  4 .stack        00003004  200195f4  00420f10  000209c0  2**0
+  4 .stack        00003000  200195f0  00420f0c  000209c0  2**0
                   ALLOC
   5 .ARM.attributes 0000002a  00000000  00000000  000209c0  2**0
                   CONTENTS, READONLY
@@ -29,17 +29,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  12 .debug_macro  0000802d  00000000  00000000  000454b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   0000fe70  00000000  00000000  0004d4e5  2**0
+ 13 .debug_line   0000fe72  00000000  00000000  0004d4e5  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00052f6e  00000000  00000000  0005d355  2**0
+ 14 .debug_str    00052f61  00000000  00000000  0005d357  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_frame  000025d0  00000000  00000000  000b02c4  2**2
+ 15 .debug_frame  000025d0  00000000  00000000  000b02b8  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00400000 <exception_table>:
-  400000:	f8 c5 01 20 15 16 40 00 11 16 40 00 11 16 40 00     ... ..@...@...@.
+  400000:	f0 c5 01 20 15 16 40 00 11 16 40 00 11 16 40 00     ... ..@...@...@.
   400010:	11 16 40 00 11 16 40 00 11 16 40 00 00 00 00 00     ..@...@...@.....
 	...
   40002c:	11 16 40 00 11 16 40 00 00 00 00 00 11 16 40 00     ..@...@.......@.
@@ -143,7 +143,7 @@ Disassembly of section .text:
   40018c:	00401243 	.word	0x00401243
   400190:	00401247 	.word	0x00401247
   400194:	200009dc 	.word	0x200009dc
-  400198:	20019564 	.word	0x20019564
+  400198:	20019560 	.word	0x20019560
   40019c:	20000a50 	.word	0x20000a50
 
 004001a0 <pio_handler_set>:
@@ -1266,35 +1266,35 @@ uint8_t find_image_len(void){
 	image_started = 0;
   400918:	4b1e      	ldr	r3, [pc, #120]	; (400994 <find_image_len+0x84>)
   40091a:	7018      	strb	r0, [r3, #0]
-	uint8_t success = 0;
 	uint32_t i = 0;
 	const uint32_t loop_limit = 100000;  // Define the loop limit for clarity
 
-	while(i < loop_limit && !success) {
+	while(i < loop_limit && !success)
+	{
 		current_byte = g_p_uc_cap_dest_buf[i];
   40091c:	4c1e      	ldr	r4, [pc, #120]	; (400998 <find_image_len+0x88>)
-	while(i < loop_limit && !success) {
+	while(i < loop_limit && !success)
   40091e:	4e1f      	ldr	r6, [pc, #124]	; (40099c <find_image_len+0x8c>)
-
-		if(current_byte == 0xff && next_byte == 0xd8) {
+		if(current_byte == 0xff && next_byte == 0xd8)
+		{
 			image_started = 1;
 			image_start = i;  // Store start index (SOI marker found)
 		}
-		else if(image_started && current_byte == 0xff && next_byte == 0xd9) {
+		else if(image_started && current_byte == 0xff && next_byte == 0xd9)
   400920:	461d      	mov	r5, r3
 			image_started = 1;
   400922:	f04f 0e01 	mov.w	lr, #1
 			image_start = i;  // Store start index (SOI marker found)
   400926:	4f1e      	ldr	r7, [pc, #120]	; (4009a0 <find_image_len+0x90>)
   400928:	e006      	b.n	400938 <find_image_len+0x28>
-		if(current_byte == 0xff && next_byte == 0xd8) {
+		if(current_byte == 0xff && next_byte == 0xd8)
   40092a:	29d8      	cmp	r1, #216	; 0xd8
   40092c:	d00d      	beq.n	40094a <find_image_len+0x3a>
-		else if(image_started && current_byte == 0xff && next_byte == 0xd9) {
+		else if(image_started && current_byte == 0xff && next_byte == 0xd9)
   40092e:	782b      	ldrb	r3, [r5, #0]
   400930:	b97b      	cbnz	r3, 400952 <find_image_len+0x42>
   400932:	4610      	mov	r0, r2
-	while(i < loop_limit && !success) {
+	while(i < loop_limit && !success)
   400934:	42b2      	cmp	r2, r6
   400936:	d024      	beq.n	400982 <find_image_len+0x72>
 		current_byte = g_p_uc_cap_dest_buf[i];
@@ -1304,10 +1304,10 @@ uint8_t find_image_len(void){
   40093c:	1c42      	adds	r2, r0, #1
   40093e:	5ca1      	ldrb	r1, [r4, r2]
   400940:	b2c9      	uxtb	r1, r1
-		if(current_byte == 0xff && next_byte == 0xd8) {
+		if(current_byte == 0xff && next_byte == 0xd8)
   400942:	2bff      	cmp	r3, #255	; 0xff
   400944:	d0f1      	beq.n	40092a <find_image_len+0x1a>
-		else if(image_started && current_byte == 0xff && next_byte == 0xd9) {
+		else if(image_started && current_byte == 0xff && next_byte == 0xd9)
   400946:	782b      	ldrb	r3, [r5, #0]
   400948:	e7f3      	b.n	400932 <find_image_len+0x22>
 			image_started = 1;
@@ -1315,32 +1315,33 @@ uint8_t find_image_len(void){
 			image_start = i;  // Store start index (SOI marker found)
   40094e:	6038      	str	r0, [r7, #0]
   400950:	e001      	b.n	400956 <find_image_len+0x46>
-		else if(image_started && current_byte == 0xff && next_byte == 0xd9) {
+		else if(image_started && current_byte == 0xff && next_byte == 0xd9)
   400952:	29d9      	cmp	r1, #217	; 0xd9
   400954:	d004      	beq.n	400960 <find_image_len+0x50>
   400956:	4610      	mov	r0, r2
-	while(i < loop_limit && !success) {
+	while(i < loop_limit && !success)
   400958:	42b2      	cmp	r2, r6
   40095a:	d1ed      	bne.n	400938 <find_image_len+0x28>
   40095c:	2000      	movs	r0, #0
   40095e:	e011      	b.n	400984 <find_image_len+0x74>
+		{
 			image_end = i + 1;  // Store end index (EOI marker found)
   400960:	4b10      	ldr	r3, [pc, #64]	; (4009a4 <find_image_len+0x94>)
   400962:	601a      	str	r2, [r3, #0]
-	while(i < loop_limit && !success) {
+	while(i < loop_limit && !success)
   400964:	4b0d      	ldr	r3, [pc, #52]	; (40099c <find_image_len+0x8c>)
   400966:	429a      	cmp	r2, r3
 			success = 1;
   400968:	bf08      	it	eq
   40096a:	2001      	moveq	r0, #1
-	while(i < loop_limit && !success) {
+	while(i < loop_limit && !success)
   40096c:	d00a      	beq.n	400984 <find_image_len+0x74>
   40096e:	2001      	movs	r0, #1
-		}
 		i++;
 	}
 
-	if(success) {
+	if(success)
+	{
 		image_size = image_end - image_start - 1;
   400970:	4b0c      	ldr	r3, [pc, #48]	; (4009a4 <find_image_len+0x94>)
   400972:	681b      	ldr	r3, [r3, #0]
@@ -1352,10 +1353,12 @@ uint8_t find_image_len(void){
   40097e:	6013      	str	r3, [r2, #0]
   400980:	bdf0      	pop	{r4, r5, r6, r7, pc}
   400982:	2000      	movs	r0, #0
-	if(success) {
+	if(success)
   400984:	2800      	cmp	r0, #0
   400986:	d1f3      	bne.n	400970 <find_image_len+0x60>
-		} else {
+	}
+	else
+	{
 		image_size = 0;
   400988:	2200      	movs	r2, #0
   40098a:	4b01      	ldr	r3, [pc, #4]	; (400990 <find_image_len+0x80>)
@@ -2039,7 +2042,7 @@ void wifi_provision_handler(uint32_t ul_id, uint32_t ul_mask)
   400d2e:	4b01      	ldr	r3, [pc, #4]	; (400d34 <wifi_provision_handler+0x8>)
   400d30:	701a      	strb	r2, [r3, #0]
   400d32:	4770      	bx	lr
-  400d34:	20019560 	.word	0x20019560
+  400d34:	2001955d 	.word	0x2001955d
 
 00400d38 <process_incoming_byte_wifi>:
 	wifi_buffer_in[wifi_buffer_in_index++] = in_byte;
@@ -2093,7 +2096,7 @@ void wifi_provision_handler(uint32_t ul_id, uint32_t ul_mask)
   400d8e:	4b05      	ldr	r3, [pc, #20]	; (400da4 <process_data_wifi+0x1c>)
   400d90:	4798      	blx	r3
   400d92:	b110      	cbz	r0, 400d9a <process_data_wifi+0x12>
-		reading_wifi_flag = true;
+		wifi_success = true;
   400d94:	2201      	movs	r2, #1
   400d96:	4b04      	ldr	r3, [pc, #16]	; (400da8 <process_data_wifi+0x20>)
   400d98:	701a      	strb	r2, [r3, #0]
@@ -2101,7 +2104,7 @@ void wifi_provision_handler(uint32_t ul_id, uint32_t ul_mask)
   400d9c:	004075a4 	.word	0x004075a4
   400da0:	20019168 	.word	0x20019168
   400da4:	00401e51 	.word	0x00401e51
-  400da8:	20019554 	.word	0x20019554
+  400da8:	2001955c 	.word	0x2001955c
 
 00400dac <wifi_command_response_handler>:
 {
@@ -2384,7 +2387,7 @@ static inline uint32_t spi_read_status(Spi *p_spi)
   400f90:	40008000 	.word	0x40008000
   400f94:	20000a5e 	.word	0x20000a5e
   400f98:	0040025f 	.word	0x0040025f
-  400f9c:	20019558 	.word	0x20019558
+  400f9c:	20019554 	.word	0x20019554
   400fa0:	20019550 	.word	0x20019550
   400fa4:	20000aa8 	.word	0x20000aa8
   400fa8:	0040028d 	.word	0x0040028d
@@ -2486,9 +2489,9 @@ void prepare_spi_transfer(void)
   40102c:	4770      	bx	lr
   40102e:	bf00      	nop
   401030:	20000aa8 	.word	0x20000aa8
-  401034:	2001955c 	.word	0x2001955c
+  401034:	20019558 	.word	0x20019558
   401038:	20000aa0 	.word	0x20000aa0
-  40103c:	20019558 	.word	0x20019558
+  40103c:	20019554 	.word	0x20019554
   401040:	20019148 	.word	0x20019148
   401044:	20019550 	.word	0x20019550
 
@@ -2930,7 +2933,7 @@ static inline int pll_wait_for_lock(unsigned int pll_id)
   40137a:	4b01      	ldr	r3, [pc, #4]	; (401380 <pio_capture_enable+0x14>)
   40137c:	601a      	str	r2, [r3, #0]
   40137e:	4770      	bx	lr
-  401380:	20019564 	.word	0x20019564
+  401380:	20019560 	.word	0x20019560
 
 00401384 <pio_capture_disable>:
   401384:	f8d0 3150 	ldr.w	r3, [r0, #336]	; 0x150
@@ -2940,7 +2943,7 @@ static inline int pll_wait_for_lock(unsigned int pll_id)
   401392:	4b01      	ldr	r3, [pc, #4]	; (401398 <pio_capture_disable+0x14>)
   401394:	601a      	str	r2, [r3, #0]
   401396:	4770      	bx	lr
-  401398:	20019564 	.word	0x20019564
+  401398:	20019560 	.word	0x20019560
 
 0040139c <pmc_switch_mck_to_pllack>:
   40139c:	4a17      	ldr	r2, [pc, #92]	; (4013fc <pmc_switch_mck_to_pllack+0x60>)
@@ -3344,7 +3347,7 @@ void board_init(void)
   40169c:	20000000 	.word	0x20000000
   4016a0:	0040791c 	.word	0x0040791c
   4016a4:	200009c0 	.word	0x200009c0
-  4016a8:	200195f4 	.word	0x200195f4
+  4016a8:	200195f0 	.word	0x200195f0
   4016ac:	200009c0 	.word	0x200009c0
   4016b0:	e000ed00 	.word	0xe000ed00
   4016b4:	00400000 	.word	0x00400000
@@ -3537,7 +3540,7 @@ void board_init(void)
   40186e:	bf00      	nop
   401870:	20000a68 	.word	0x20000a68
   401874:	2001fffc 	.word	0x2001fffc
-  401878:	2001c5f8 	.word	0x2001c5f8
+  401878:	2001c5f0 	.word	0x2001c5f0
 
 0040187c <main>:
 #include "timer_interface.h"
@@ -3685,7 +3688,7 @@ int main (void)
   40192a:	4620      	mov	r0, r4
   40192c:	47a8      	blx	r5
 
-	reading_wifi_flag = false;
+	wifi_success = false;
   40192e:	2300      	movs	r3, #0
   401930:	4a43      	ldr	r2, [pc, #268]	; (401a40 <main+0x1c4>)
   401932:	7013      	strb	r3, [r2, #0]
@@ -3743,7 +3746,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   40196c:	483a      	ldr	r0, [pc, #232]	; (401a58 <main+0x1dc>)
   40196e:	47a0      	blx	r4
 	
-	while (!reading_wifi_flag)
+	while (!wifi_success)
   401970:	4b33      	ldr	r3, [pc, #204]	; (401a40 <main+0x1c4>)
   401972:	781b      	ldrb	r3, [r3, #0]
   401974:	b9cb      	cbnz	r3, 4019aa <main+0x12e>
@@ -3780,7 +3783,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
 		delay_ms(1000);
   40199e:	4638      	mov	r0, r7
   4019a0:	47a0      	blx	r4
-	while (!reading_wifi_flag)
+	while (!wifi_success)
   4019a2:	4b27      	ldr	r3, [pc, #156]	; (401a40 <main+0x1c4>)
   4019a4:	781b      	ldrb	r3, [r3, #0]
   4019a6:	2b00      	cmp	r3, #0
@@ -3842,7 +3845,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   401a08:	400e1000 	.word	0x400e1000
   401a0c:	000d1437 	.word	0x000d1437
   401a10:	20000001 	.word	0x20000001
-  401a14:	20019568 	.word	0x20019568
+  401a14:	20019564 	.word	0x20019564
   401a18:	004075c8 	.word	0x004075c8
   401a1c:	00401b55 	.word	0x00401b55
   401a20:	00400ea5 	.word	0x00400ea5
@@ -3853,8 +3856,8 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   401a34:	00407628 	.word	0x00407628
   401a38:	000c3500 	.word	0x000c3500
   401a3c:	0040763c 	.word	0x0040763c
-  401a40:	20019554 	.word	0x20019554
-  401a44:	20019560 	.word	0x20019560
+  401a40:	2001955c 	.word	0x2001955c
+  401a44:	2001955d 	.word	0x2001955d
   401a48:	400e0e00 	.word	0x400e0e00
   401a4c:	0040764c 	.word	0x0040764c
   401a50:	00407658 	.word	0x00407658
@@ -8808,13 +8811,13 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   404c54:	4801      	ldr	r0, [pc, #4]	; (404c5c <__malloc_lock+0x8>)
   404c56:	f7ff bc2d 	b.w	4044b4 <__retarget_lock_acquire_recursive>
   404c5a:	bf00      	nop
-  404c5c:	200195dc 	.word	0x200195dc
+  404c5c:	200195d8 	.word	0x200195d8
 
 00404c60 <__malloc_unlock>:
   404c60:	4801      	ldr	r0, [pc, #4]	; (404c68 <__malloc_unlock+0x8>)
   404c62:	f7ff bc29 	b.w	4044b8 <__retarget_lock_release_recursive>
   404c66:	bf00      	nop
-  404c68:	200195dc 	.word	0x200195dc
+  404c68:	200195d8 	.word	0x200195d8
 
 00404c6c <_Balloc>:
   404c6c:	6cc3      	ldr	r3, [r0, #76]	; 0x4c
@@ -9453,7 +9456,7 @@ __always_inline static bool arch_ioport_get_pin_level(ioport_pin_t pin)
   40527a:	d0fb      	beq.n	405274 <_sbrk_r+0x14>
   40527c:	602b      	str	r3, [r5, #0]
   40527e:	bd38      	pop	{r3, r4, r5, pc}
-  405280:	200195f0 	.word	0x200195f0
+  405280:	200195ec 	.word	0x200195ec
 
 00405284 <strchr>:
   405284:	b2c9      	uxtb	r1, r1
@@ -11920,7 +11923,7 @@ Disassembly of section .relocate:
 	...
 
 20000440 <__atexit_recursive_mutex>:
-20000440:	95cc 2001                                   ... 
+20000440:	95c8 2001                                   ... 
 
 20000444 <__malloc_av_>:
 	...

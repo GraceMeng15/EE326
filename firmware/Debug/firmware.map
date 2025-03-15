@@ -104,7 +104,6 @@ __lock___env_recursive_mutex
                     0x1               c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
 __lock___sinit_recursive_mutex
                     0x1               c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
-reading_wifi_flag   0x1               src/wifi.o
 g_p_uc_cap_dest_buf
                     0x186a0           src/camera.o
 gs_ul_transfer_length
@@ -121,6 +120,7 @@ gs_puc_transfer_buffer
                     0x4               src/wifi.o
 stdio_base          0x4               src/ASF/common/utils/stdio/write.o
 ul_id               0x4               src/camera.o
+wifi_success        0x1               src/wifi.o
 provisioning_flag   0x1               src/wifi.o
 __lock___at_quick_exit_mutex
                     0x1               c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
@@ -7739,7 +7739,7 @@ LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin
                 0x200009c0                . = ALIGN (0x4)
                 0x200009c0                _erelocate = .
 
-.bss            0x200009c0    0x18c34 load address 0x004082dc
+.bss            0x200009c0    0x18c30 load address 0x004082dc
                 0x200009c0                . = ALIGN (0x4)
                 0x200009c0                _sbss = .
                 0x200009c0                _szero = .
@@ -7797,45 +7797,44 @@ LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin
  COMMON         0x20019164        0x1 src/timer_interface.o
                 0x20019164                counts
  *fill*         0x20019165        0x3 
- COMMON         0x20019168      0x3f9 src/wifi.o
+ COMMON         0x20019168      0x3f6 src/wifi.o
                 0x20019168                wifi_buffer_in
                 0x20019550                gs_ul_transfer_index
-                0x20019554                reading_wifi_flag
-                0x20019558                gs_ul_transfer_length
-                0x2001955c                gs_puc_transfer_buffer
-                0x20019560                provisioning_flag
- *fill*         0x20019561        0x3 
- COMMON         0x20019564        0x4 src/ASF/sam/drivers/pio/pio.o
-                0x20019564                pio_capture_enable_flag
- COMMON         0x20019568       0x64 src/main.o
-                0x20019568                buff
- COMMON         0x200195cc       0x21 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
-                0x200195cc                __lock___atexit_recursive_mutex
-                0x200195d0                __lock___arc4random_mutex
-                0x200195d4                __lock___env_recursive_mutex
-                0x200195d8                __lock___sinit_recursive_mutex
-                0x200195dc                __lock___malloc_recursive_mutex
-                0x200195e0                __lock___at_quick_exit_mutex
-                0x200195e4                __lock___dd_hash_mutex
-                0x200195e8                __lock___tz_mutex
-                0x200195ec                __lock___sfp_recursive_mutex
- *fill*         0x200195ed        0x3 
- COMMON         0x200195f0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-reent.o)
-                0x200195f0                errno
-                0x200195f4                . = ALIGN (0x4)
-                0x200195f4                _ebss = .
-                0x200195f4                _ezero = .
+                0x20019554                gs_ul_transfer_length
+                0x20019558                gs_puc_transfer_buffer
+                0x2001955c                wifi_success
+                0x2001955d                provisioning_flag
+ *fill*         0x2001955e        0x2 
+ COMMON         0x20019560        0x4 src/ASF/sam/drivers/pio/pio.o
+                0x20019560                pio_capture_enable_flag
+ COMMON         0x20019564       0x64 src/main.o
+                0x20019564                buff
+ COMMON         0x200195c8       0x21 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-lock.o)
+                0x200195c8                __lock___atexit_recursive_mutex
+                0x200195cc                __lock___arc4random_mutex
+                0x200195d0                __lock___env_recursive_mutex
+                0x200195d4                __lock___sinit_recursive_mutex
+                0x200195d8                __lock___malloc_recursive_mutex
+                0x200195dc                __lock___at_quick_exit_mutex
+                0x200195e0                __lock___dd_hash_mutex
+                0x200195e4                __lock___tz_mutex
+                0x200195e8                __lock___sfp_recursive_mutex
+ *fill*         0x200195e9        0x3 
+ COMMON         0x200195ec        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/arm/arm-gnu-toolchain/bin/../lib/gcc/arm-none-eabi/6.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libc.a(lib_a-reent.o)
+                0x200195ec                errno
+                0x200195f0                . = ALIGN (0x4)
+                0x200195f0                _ebss = .
+                0x200195f0                _ezero = .
 
-.stack          0x200195f4     0x3004 load address 0x00420f10
-                0x200195f8                . = ALIGN (0x8)
- *fill*         0x200195f4        0x4 
-                0x200195f8                _sstack = .
-                0x2001c5f8                . = (. + __stack_size__)
- *fill*         0x200195f8     0x3000 
-                0x2001c5f8                . = ALIGN (0x8)
-                0x2001c5f8                _estack = .
-                0x2001c5f8                . = ALIGN (0x4)
-                0x2001c5f8                _end = .
+.stack          0x200195f0     0x3000 load address 0x00420f0c
+                0x200195f0                . = ALIGN (0x8)
+                0x200195f0                _sstack = .
+                0x2001c5f0                . = (. + __stack_size__)
+ *fill*         0x200195f0     0x3000 
+                0x2001c5f0                . = ALIGN (0x8)
+                0x2001c5f0                _estack = .
+                0x2001c5f0                . = ALIGN (0x4)
+                0x2001c5f0                _end = .
 OUTPUT(firmware.elf elf32-littlearm)
 
 .ARM.attributes
@@ -8174,29 +8173,29 @@ OUTPUT(firmware.elf elf32-littlearm)
  .debug_macro   0x0000780c      0x122 src/ASF/sam/utils/syscalls/gcc/syscalls.o
  .debug_macro   0x0000792e      0x6ff src/main.o
 
-.debug_line     0x00000000     0xfe70
+.debug_line     0x00000000     0xfe72
  .debug_line    0x00000000      0xafe src/ASF/sam/drivers/pio/pio_handler.o
  .debug_line    0x00000afe      0xc8a src/ASF/sam/drivers/spi/spi.o
  .debug_line    0x00001788      0xbd7 src/ASF/sam/drivers/tc/tc.o
  .debug_line    0x0000235f      0xc9d src/ASF/sam/drivers/twi/twi.o
  .debug_line    0x00002ffc      0xfb5 src/ASF/sam/drivers/usart/usart.o
  .debug_line    0x00003fb1      0xa8b src/ASF/sam/drivers/wdt/wdt.o
- .debug_line    0x00004a3c     0x1088 src/camera.o
- .debug_line    0x00005ac4      0xdde src/ov2640.o
- .debug_line    0x000068a2      0xbed src/ov2640_table_registers.o
- .debug_line    0x0000748f      0xfae src/timer_interface.o
- .debug_line    0x0000843d     0x1148 src/wifi.o
- .debug_line    0x00009585      0xa3f src/ASF/common/services/delay/sam/cycle_counter.o
- .debug_line    0x00009fc4      0xbc8 src/ASF/common/services/clock/sam4s/sysclk.o
- .debug_line    0x0000ab8c      0xee8 src/ASF/sam/drivers/pio/pio.o
- .debug_line    0x0000ba74      0xfcf src/ASF/sam/drivers/pmc/pmc.o
- .debug_line    0x0000ca43      0xf84 src/ASF/common/boards/user_board/init.o
- .debug_line    0x0000d9c7      0x80c src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
- .debug_line    0x0000e1d3      0x83d src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
- .debug_line    0x0000ea10      0x40b src/ASF/sam/utils/syscalls/gcc/syscalls.o
- .debug_line    0x0000ee1b     0x1055 src/main.o
+ .debug_line    0x00004a3c     0x108a src/camera.o
+ .debug_line    0x00005ac6      0xdde src/ov2640.o
+ .debug_line    0x000068a4      0xbed src/ov2640_table_registers.o
+ .debug_line    0x00007491      0xfae src/timer_interface.o
+ .debug_line    0x0000843f     0x1148 src/wifi.o
+ .debug_line    0x00009587      0xa3f src/ASF/common/services/delay/sam/cycle_counter.o
+ .debug_line    0x00009fc6      0xbc8 src/ASF/common/services/clock/sam4s/sysclk.o
+ .debug_line    0x0000ab8e      0xee8 src/ASF/sam/drivers/pio/pio.o
+ .debug_line    0x0000ba76      0xfcf src/ASF/sam/drivers/pmc/pmc.o
+ .debug_line    0x0000ca45      0xf84 src/ASF/common/boards/user_board/init.o
+ .debug_line    0x0000d9c9      0x80c src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
+ .debug_line    0x0000e1d5      0x83d src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
+ .debug_line    0x0000ea12      0x40b src/ASF/sam/utils/syscalls/gcc/syscalls.o
+ .debug_line    0x0000ee1d     0x1055 src/main.o
 
-.debug_str      0x00000000    0x52f6e
+.debug_str      0x00000000    0x52f61
  .debug_str     0x00000000    0x4ac4f src/ASF/sam/drivers/pio/pio_handler.o
                               0x4b109 (size before relaxing)
  .debug_str     0x0004ac4f     0x29e5 src/ASF/sam/drivers/spi/spi.o
@@ -8209,34 +8208,34 @@ OUTPUT(firmware.elf elf32-littlearm)
                               0x4afea (size before relaxing)
  .debug_str     0x0004e814      0x12a src/ASF/sam/drivers/wdt/wdt.o
                               0x4a6ec (size before relaxing)
- .debug_str     0x0004e93e     0x25c9 src/camera.o
+ .debug_str     0x0004e93e     0x25c1 src/camera.o
                               0x4fe21 (size before relaxing)
- .debug_str     0x00050f07      0x1e8 src/ov2640.o
+ .debug_str     0x00050eff      0x1e8 src/ov2640.o
                               0x4f0d0 (size before relaxing)
- .debug_str     0x000510ef       0x20 src/ov2640_table_registers.o
+ .debug_str     0x000510e7       0x20 src/ov2640_table_registers.o
                               0x4e88d (size before relaxing)
- .debug_str     0x0005110f       0x66 src/timer_interface.o
+ .debug_str     0x00051107       0x66 src/timer_interface.o
                               0x4e035 (size before relaxing)
- .debug_str     0x00051175      0x34d src/wifi.o
-                              0x5008a (size before relaxing)
- .debug_str     0x000514c2       0x35 src/ASF/common/services/delay/sam/cycle_counter.o
+ .debug_str     0x0005116d      0x348 src/wifi.o
+                              0x50085 (size before relaxing)
+ .debug_str     0x000514b5       0x35 src/ASF/common/services/delay/sam/cycle_counter.o
                               0x4a765 (size before relaxing)
- .debug_str     0x000514f7      0x271 src/ASF/common/services/clock/sam4s/sysclk.o
+ .debug_str     0x000514ea      0x271 src/ASF/common/services/clock/sam4s/sysclk.o
                               0x4cf62 (size before relaxing)
- .debug_str     0x00051768      0x467 src/ASF/sam/drivers/pio/pio.o
+ .debug_str     0x0005175b      0x467 src/ASF/sam/drivers/pio/pio.o
                               0x4b205 (size before relaxing)
- .debug_str     0x00051bcf      0x58a src/ASF/sam/drivers/pmc/pmc.o
+ .debug_str     0x00051bc2      0x58a src/ASF/sam/drivers/pmc/pmc.o
                               0x4b051 (size before relaxing)
- .debug_str     0x00052159      0x166 src/ASF/common/boards/user_board/init.o
+ .debug_str     0x0005214c      0x166 src/ASF/common/boards/user_board/init.o
                               0x4e085 (size before relaxing)
- .debug_str     0x000522bf      0x428 src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
+ .debug_str     0x000522b2      0x428 src/ASF/sam/utils/cmsis/sam4s/source/templates/gcc/startup_sam4s.o
                               0x3a207 (size before relaxing)
- .debug_str     0x000526e7       0xb9 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
+ .debug_str     0x000526da       0xb9 src/ASF/sam/utils/cmsis/sam4s/source/templates/system_sam4s.o
                               0x39fac (size before relaxing)
- .debug_str     0x000527a0      0x77b src/ASF/sam/utils/syscalls/gcc/syscalls.o
+ .debug_str     0x00052793      0x77b src/ASF/sam/utils/syscalls/gcc/syscalls.o
                                0x740c (size before relaxing)
- .debug_str     0x00052f1b       0x53 src/main.o
-                              0x4fa3e (size before relaxing)
+ .debug_str     0x00052f0e       0x53 src/main.o
+                              0x4fa39 (size before relaxing)
 
 .debug_frame    0x00000000     0x25d0
  .debug_frame   0x00000000       0xdc src/ASF/sam/drivers/pio/pio_handler.o
@@ -8907,8 +8906,6 @@ provisioning_flag                                 src/main.o
                                                   src/wifi.o
 ptr_get                                           src/ASF/common/utils/stdio/read.o
 ptr_put                                           src/ASF/common/utils/stdio/write.o
-reading_wifi_flag                                 src/main.o
-                                                  src/wifi.o
 received_byte_wifi                                src/wifi.o
 rtc_clear_date_alarm                              src/ASF/sam/drivers/rtc/rtc.o
 rtc_clear_status                                  src/ASF/sam/drivers/rtc/rtc.o
@@ -9182,6 +9179,8 @@ wifi_buffer_in_index                              src/wifi.o
                                                   src/main.o
 wifi_command_response_handler                     src/wifi.o
 wifi_provision_handler                            src/wifi.o
+wifi_success                                      src/main.o
+                                                  src/wifi.o
 write_image_to_web                                src/wifi.o
                                                   src/main.o
 write_wifi_command                                src/wifi.o
