@@ -218,7 +218,6 @@ void spi_peripheral_initialize(void)
 void prepare_spi_transfer(void)
 {
 	// Set necessary parameters to prepare for SPI transfer.
-	image_sent_flag = 0;
 	gs_puc_transfer_buffer = g_p_uc_cap_dest_buf;
 	gs_ul_transfer_length = image_size + 1;
 	gs_ul_transfer_index = image_start;

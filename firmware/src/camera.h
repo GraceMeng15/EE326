@@ -11,10 +11,9 @@
 #include <asf.h>
 #include "ov2640.h"
 
-//DECLARE camera variables here
 #define end_cap ((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) == PIO_PCIMR_RXBUFF)
-uint32_t ul_id, ul_mask, ul_size; // For interrupts
-uint8_t *uc_buf;    //buffer to store the image in
+uint32_t ul_id, ul_mask, ul_size;
+uint8_t *uc_buf;
 Pio *p_pio;
 uint8_t find_len_success;
 
@@ -25,10 +24,7 @@ volatile uint8_t image_started;
 volatile uint8_t image_ended;
 volatile uint8_t g_p_uc_cap_dest_buf[100000];
 
-volatile uint8_t image_sent_flag;
-
-
-// Required Camera Functions
+// Functions
 void vsync_handler(uint32_t ul_id, uint32_t ul_mask);
 void init_vsync_interrupts(void);
 void configure_twi(void);
