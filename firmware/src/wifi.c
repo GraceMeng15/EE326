@@ -20,11 +20,8 @@ volatile uint8_t *gs_puc_transfer_buffer; 	/* Pointer to transfer buffer. */
 volatile uint32_t gs_ul_transfer_index; 	/* Transfer buffer index. */
 volatile uint32_t gs_ul_transfer_length; 	/* Transfer buffer length. */
 
-volatile uint32_t times_through_buffer; //
-
 // UART Communication and Control Line Variables
 volatile uint32_t received_byte_wifi = 0;
-volatile bool new_rx_wifi = false;
 volatile uint32_t wifi_buffer_in_index = 0;
 volatile bool command_flag = false;
 
@@ -38,7 +35,6 @@ void wifi_usart_handler(void)
 	if (ul_status & US_CSR_RXBUFF)
 	{
 		usart_read(WIFI_USART, &received_byte_wifi);
-		new_rx_wifi = true;
 		process_incoming_byte_wifi((uint8_t)received_byte_wifi);
 	}
 }
@@ -177,7 +173,6 @@ void wifi_spi_handler(void)
 	if (spi_read_status(SPI_SLAVE_BASE) & SPI_SR_RDRF)
 	{		
 		spi_read(SPI_SLAVE_BASE, &data, &uc_pcs);
-		times_through_buffer++;
 		if (gs_ul_transfer_length--)
 		{
 			//transfer one byte of image
