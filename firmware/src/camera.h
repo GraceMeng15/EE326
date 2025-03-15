@@ -19,8 +19,8 @@ Pio *p_pio;
 uint8_t find_len_success;
 
 volatile uint32_t image_size;
-volatile uint32_t start_pos;
-volatile uint32_t end_pos;
+volatile uint32_t image_start;
+volatile uint32_t image_end;
 volatile uint8_t image_started;
 volatile uint8_t image_ended;
 volatile uint8_t g_p_uc_cap_dest_buf[100000];

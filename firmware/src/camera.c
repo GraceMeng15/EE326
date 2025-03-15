@@ -50,8 +50,8 @@ void configure_twi(void){
 }
 
 void init_camera(void){
-	//Configuration of camera pins, camera clock (XCLK), and
-	//calling the configure_twi() function.
+	// Configuration of camera pins, camera clock (XCLK), and
+	// calling the configure_twi() function.
 	configure_twi();
 	init_vsync_interrupts();							// Init Vsync handler
 	pio_capture_init(OV_DATA_BUS_PIO, OV_DATA_BUS_ID);	// Init PIO capture
@@ -84,7 +84,7 @@ void configure_camera(void){
  * \param ul_id Corresponding PIO ID.
  */
 void pio_capture_init(Pio *p_pio, uint32_t ul_id){
-	///* Enable peripheral clock */
+	/* Enable peripheral clock */
 	pmc_enable_periph_clk(ul_id);
 
 	/* Disable PIO capture */
@@ -125,11 +125,12 @@ uint8_t pio_capture_to_buffer(Pio *p_pio, uint8_t *uc_buf, uint32_t ul_size){
 	}
 }
 
+/**
+ * \brief Start picture capture.
+ * Captures an image after a rising edge of VSYNC, and gets image
+ * length. Returns 1 on success (i.e. a nonzero image length), 0 on error.
+ */
 uint8_t start_capture(void){
-	//Captures an image after a rising edge of VSYNC, and gets image	
-	//length. Returns 1 on success (i.e. a nonzero image length), 0 on error.
-	
-	
 	pio_enable_interrupt(OV7740_VSYNC_PIO, OV7740_VSYNC_MASK);	// Enable vsync interrupt*/
 	
 	/* Capture acquisition will start on rising edge of Vsync signal.
@@ -178,17 +179,17 @@ uint8_t find_image_len(void){
 		
 		if (current_byte == 0xff && next_byte == 0xd8) {
 			image_started = 1;
-			start_pos = i;	// => gs_ul_transfer_index
+			image_start = i;	// => gs_ul_transfer_index
 		}
 		else if (image_started && current_byte == 0xff && next_byte == 0xd9) {  
-			end_pos = i+1;
+			image_end = i+1;
 			find_len_success = 1;
 			break;
 		}
 	}
 	
 	if (find_len_success) {
-        image_size = end_pos - start_pos - 1 ; 
+        image_size = image_end - image_start - 1 ; 
     } else {
         image_size = 0;
     }

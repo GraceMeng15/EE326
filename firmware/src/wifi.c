@@ -222,7 +222,7 @@ void prepare_spi_transfer(void)
 	image_sent_flag = 0;
 	gs_puc_transfer_buffer = g_p_uc_cap_dest_buf;
 	gs_ul_transfer_length = image_size + 1;
-	gs_ul_transfer_index = start_pos;
+	gs_ul_transfer_index = image_start;
 }
 
 void write_image_to_web(void)
